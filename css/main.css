@@ -111,7 +111,53 @@
     stroke-dashoffset: 0;
   }
 }
-.test
-{
-  color:red;
+
+
+@font-face {
+  font-family: 'Open Sans Light';
+  src: url('../fonts/open-sans/OpenSans-Light.ttf');
+  font-weight:bold;
 }
+@font-face {
+  font-family: 'Open Sans Bold';
+  src: url('../fonts/open-sans/OpenSans-Bold.ttf');
+  font-weight:bold;
+}
+body{
+  font-family : 'Open Sans Light';
+  background-color : rgba(217, 30, 24, 0.3) !important;
+}
+.navbar-sandwich {
+  background-color : transparent;
+  border-bottom : 2px solid #D91E18;
+}
+.nav-sandwich {
+  margin-top : 2.5px;
+  margin-bottom : 2.5px;
+}
+.nav-sandwich li a {
+  padding-bottom : 15px !important;
+  margin-bottom : -5px;
+  padding-top : 15px;
+  margin-top : -5px;
+  color : rgba(0, 0, 0, 0.5) !important;
+  border : none !important;
+  background-color : transparent !important;
+}
+.nav-sandwich li a:hover {
+  color : #000 !important;
+  background-color : rgba(217, 30, 24, 0.6) !important;
+}
+.nav-sandwich li a:focus, .nav-sandwich li a:active {
+  color : #000 !important;
+  background-color : rgba(217, 30, 24, 0.8) !important;
+}
+.nav-sandwich li.active a, .nav-sandwich li.active a:hover, .nav-sandwich li.active a:active {
+  color : #000 !important;
+  background-color : #D91E18 !important;
+}
+#content {
+  padding : 65px 15px 15px 15px;
+  color : #000;
+}
+
