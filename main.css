@@ -1,0 +1,117 @@
+#breadBot
+{
+  stroke:#DC9A5E;
+  stroke-dasharray: 2127;
+  stroke-dashoffset: 2127;
+  stroke-width: 5;
+  fill-opacity: 0;
+}
+#salad
+{
+  stroke:#81B670;
+  stroke-dasharray: 2111;
+  stroke-dashoffset: 2111;
+  stroke-width: 5;
+  fill-opacity: 0;
+}
+#ham
+{
+  stroke:#E18183;
+  stroke-dasharray: 2111;
+  stroke-dashoffset: 2111;
+  stroke-width: 5;
+  fill-opacity: 0;
+}
+#cheese1
+{
+  stroke:#FFE085;
+  stroke-dasharray: 2111;
+  stroke-dashoffset: 2111;
+  stroke-width: 5;
+  fill-opacity: 0;
+}
+#cheese2
+{
+  stroke:#FFE085;
+  stroke-dasharray: 2111;
+  stroke-dashoffset: 2111;
+  stroke-width: 5;
+  fill-opacity: 0;
+}
+#tomato1
+{
+  stroke:#F05921;
+  stroke-dasharray: 2111;
+  stroke-dashoffset: 2111;
+  stroke-width: 5;
+  fill-opacity: 0;
+}
+#tomato2
+{
+  stroke:#F05921;
+  stroke-dasharray: 2111;
+  stroke-dashoffset: 2111;
+  stroke-width: 5;
+  fill-opacity: 0;
+}
+#tomato3
+{
+  stroke:#F05921;
+  stroke-dasharray: 2111;
+  stroke-dashoffset: 2111;
+  stroke-width: 5;
+  fill-opacity: 0;
+}
+#breadTop
+{
+  stroke:#DC9A5E;
+  stroke-dasharray: 2111;
+  stroke-dashoffset: 2111;
+  stroke-width: 5;
+  fill-opacity: 0;
+}
+#lines
+{
+  stroke:#B4672F;
+  stroke-dasharray: 2111;
+  stroke-dashoffset: 2111;
+  stroke-width: 5;
+  fill-opacity: 0;
+}
+
+@keyframes draw
+{
+  0%{
+    fill-opacity: 0;
+    stroke-width: 0;
+  }
+  99%{
+    fill-opacity: 0;
+    stroke-width: 4;
+  }
+  100%{
+    fill-opacity: 1;
+    stroke-width: 4;
+    stroke-dashoffset: 0;
+  }
+}
+@-moz-keyframes draw
+{
+  0%{
+    fill-opacity: 0;
+    stroke-width: 0;
+  }
+  99%{
+    fill-opacity: 0;
+    stroke-width: 4;
+  }
+  100%{
+    fill-opacity: 1;
+    stroke-width: 4;
+    stroke-dashoffset: 0;
+  }
+}
+.test
+{
+  color:red;
+}
