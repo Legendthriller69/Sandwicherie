@@ -1,3 +1,36 @@
+<?php
+	session_start();
+	require('function.php');
+	
+	if(isset($_GET['page']))
+	{}
+	else
+	{
+		header('Location: index.php?page=home&function=getHomePage');
+	}
+	
+	$html = '';
+	//Get the page content
+	if(isset($_GET['page']) && file_exists($_GET['page'].'.php')) {
+	
+		include($_GET['page'].'.php');
+		
+		if(isset($_GET['function']) && function_exists($_GET['function'])) {
+		
+			$html .= $_GET['function']();
+		}
+		else
+		{
+			$html .= error_404();
+			//header('Location: '.$_SERVER['HTTP_REFERER'] );
+		}
+	}
+	else
+	{
+		$html .= error_404();
+		//header('Location: '.$_SERVER['HTTP_REFERER'] );
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -177,26 +210,26 @@
     </style>
 </head>
 <body>
-
-<nav class="navbar navbar-default navbar-fixed-top navbar-sandwich">
-    <div class="container">
-        <ul class="nav navbar-nav nav-sandwich">
-			<li class="active">
-				<a href="LINK_HOME"><span class="glyphicon glyphicon-home"></span> Accueil</a>
-			</li>
-			<li>
-				<a href="LINK_COMMAND"><span class="glyphicon glyphicon-cutlery"></span> Commander</a>
-			</li>
-			<li>
-				<a href="LINK_CONTACT"><span class="glyphicon glyphicon-phone-alt"></span> Contact</a>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right nav-sandwich">
-
-		</ul>
-    </div>
-</nav>
-
+	<nav class="navbar navbar-default navbar-fixed-top navbar-sandwich">
+		<div class="container">
+			<?php
+				$page = $_GET['page'];
+				
+				echo '
+				<ul class="nav navbar-nav nav-sandwich">
+					<li ';if($page == 'home'){ echo 'class="active"';} echo '><a href="'.LINK_HOME.'"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
+					<li ';if($page == 'command'){ echo 'class="active"';} echo '><a href="'.LINK_COMMAND.'"><span class="glyphicon glyphicon-cutlery"></span> Commander</a></li>
+					<li ';if($page == 'contact'){ echo 'class="active"';} echo '><a href="'.LINK_CONTACT.'"><span class="glyphicon glyphicon-phone-alt"></span> Nous contacter</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right nav-sandwich">
+					<li ';if($page == 'login'){ echo 'class="active"';} echo '><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
+				</ul>';
+			?>
+		</div>
+	</nav>
+	<div id="content">
+		<?php echo $html; ?>
+	</div>
 <section id="section1" class="section background-section5">
     section1
 </section>
