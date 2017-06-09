@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="css/main.css" rel='stylesheet' type='text/css'>
+	<link href="css/bootstrap.css" rel='stylesheet' type='text/css'>
     <style>
 
         #breadBot {
@@ -167,31 +168,37 @@
 </head>
 <body>
 
-<nav class="nav" id="nav">
-    <div class="main-nav" id="main-nav">
-        <div class="width1600">
-            <div class="menu right" id="menu">
-                <ul>
-                    <li><a class="scrollTo" id="animate1" href="#section1">home</a></li>
-                    <li><a class="scrollTo" id="animate2" href="#section2">commander</a></li>
-                    <li><a class="scrollTo" id="animate3" href="#section3">contact</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="clear"></div>
-    </div>
+
+<nav class="navbarScroll">
+	<div class="container">
+		<div class="menu" id="menu">
+			<ul>
+				<li><a class="scrollTo" id="animate1" href="#section1">HOME</a></li>
+				<li><a class="scrollTo" id="animate2" href="#section2">COMMANDER</a></li>
+				<li><a class="scrollTo" id="animate3" href="#section3">CONTACT</a></li>
+			</ul>
+		</div>
+	</div>
 </nav>
 
-<section id="section1" class="section background-section5">
+
+
+<section id="section1" class="background-section">
+	<div>
+
+	</div>
     section1
 </section>
-<section id="section2" class="section background-section6">
-    <div class="content-section width1600">
-        <div class="content">
-
-            <div class="grid">
-                <div class="col-1-1">
-                    <div class="col-3-4">
+<section id="section2" class="background-section container-fluid">
+	<div class="content">
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="titre ">Mon sandwich</h2>
+		</div>
+	</div>
+            <div class="row">
+                <div class="col-md-8 col-sm-8">
                         <div>
 							<svg version="1.1" id="sandwich" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 913 359.7" style="enable-background:new 0 0 913 359.7;" xml:space="preserve">
@@ -905,13 +912,8 @@
 		/>
 </g>
 </svg>
-
-
-
-
 						</div>
-                    </div>
-                    <div class="col-1-4">
+                    <div class="col-md-4 col-sm-4">
                         <div id="hello" style="color:white">hello</div>
 
                         <script>
@@ -1035,9 +1037,9 @@
                         });
                     </script>
                 </div>
-            </div>
+			</div>
         </div>
-    </div>
+	</div>
 </section>
 
 </body>
