@@ -36,6 +36,14 @@ section {
 
 }
 
+.background-section-green
+{
+  background: #97CE68;
+  color: black;
+  background: linear-gradient(to bottom, rgba(9, 39, 86,0.4), rgba(44, 201, 144,.25)), linear-gradient(225deg, #97CE68, #2CC990);
+
+}
+
   .navbarScroll {
     position: fixed;
     right: 0;

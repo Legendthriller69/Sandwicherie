@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="css/main.css" rel='stylesheet' type='text/css'>
     <link href="css/bootstrap.css" rel='stylesheet' type='text/css'>
+	<link href="css/main.css" rel='stylesheet' type='text/css'>
+	<link href="css/sandwich.css" rel='stylesheet' type='text/css'>
     <style>
 
         #breadBot {
@@ -182,14 +183,13 @@
 </nav>
 
 
-
 <section id="section1" class="background-section">
     <div>
 
     </div>
     section1
 </section>
-<section id="section2" class="background-section container-fluid">
+<section id="section2" class="container-fluid background-section-green">
     <div class="content">
         <div class="container">
             <div class="row">
@@ -198,39 +198,122 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-8 col-sm-8">
+                <div class="col-md-10 col-sm-10">
                     <div>
                         <svg version="1.1" id="sandwich" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 913 359.7" style="enable-background:new 0 0 913 359.7;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#DE9A5E;}
-    .st1{fill:#BF8352;}
-    .st2{fill:#7FB76E;}
-    .st3{fill:#8ECC79;}
-    .st4{fill:#F0CCC7;}
-    .st5{fill:#F5B1A3;}
-    .st6{fill:#F1A69A;}
-    .st7{fill:#933D2F;}
-    .st8{fill:#B24630;}
-    .st9{fill:#EA9B83;}
-    .st10{fill:#FFE283;}
-    .st11{fill:#F8D273;}
-    .st12{fill:#F9F7E4;}
-    .st13{fill:#FFFFE8;}
-    .st14{fill:#FCF6ED;}
-    .st15{fill:#F9DCB2;}
-    .st16{fill:#FFFAC8;}
-    .st17{fill:#FBF4BE;}
-    .st18{fill:#EFE0A0;}
-    .st19{fill:#F2E49E;}
-    .st20{fill:#F9EDAA;}
-    .st21{fill:#54893E;}
-    .st22{fill:#96CD71;}
-    .st23{fill:#BDE89A;}
-    .st24{fill:#D04727;}
-    .st25{fill:#F05A28;}
-    .st26{fill:#F6921E;}
-    .st27{fill:#B76B32;}
+	.st0 {
+        fill: #DE9A5E;
+    }
+
+    .st1 {
+        fill: #BF8352;
+    }
+
+    .st2 {
+        fill: #7FB76E;
+    }
+
+    .st3 {
+        fill: #8ECC79;
+    }
+
+    .st4 {
+        fill: #F0CCC7;
+    }
+
+    .st5 {
+        fill: #F5B1A3;
+    }
+
+    .st6 {
+        fill: #F1A69A;
+    }
+
+    .st7 {
+        fill: #933D2F;
+    }
+
+    .st8 {
+        fill: #B24630;
+    }
+
+    .st9 {
+        fill: #EA9B83;
+    }
+
+    .st10 {
+        fill: #FFE283;
+    }
+
+    .st11 {
+        fill: #F8D273;
+    }
+
+    .st12 {
+        fill: #F9F7E4;
+    }
+
+    .st13 {
+        fill: #FFFFE8;
+    }
+
+    .st14 {
+        fill: #FCF6ED;
+    }
+
+    .st15 {
+        fill: #F9DCB2;
+    }
+
+    .st16 {
+        fill: #FFFAC8;
+    }
+
+    .st17 {
+        fill: #FBF4BE;
+    }
+
+    .st18 {
+        fill: #EFE0A0;
+    }
+
+    .st19 {
+        fill: #F2E49E;
+    }
+
+    .st20 {
+        fill: #F9EDAA;
+    }
+
+    .st21 {
+        fill: #54893E;
+    }
+
+    .st22 {
+        fill: #96CD71;
+    }
+
+    .st23 {
+        fill: #BDE89A;
+    }
+
+    .st24 {
+        fill: #D04727;
+    }
+
+    .st25 {
+        fill: #F05A28;
+    }
+
+    .st26 {
+        fill: #F6921E;
+    }
+
+    .st27 {
+        fill: #B76B32;
+    }
 </style>
 <path id="breadBot" class="st0" d="M854,266.5c-7-0.5-204.2-0.5-397.7-0.4C262.8,266,65.5,266,58.6,266.5
 	c-13.8,1.1-27.5,25.1-24.8,52.3c1.6,15.8,43.1,22.4,116.7,26.5c74,5.6,182.4,10.2,305.8,9.3c123.3,1,231.8-3.7,305.8-9.3
@@ -913,134 +996,172 @@
 </g>
 </svg>
                     </div>
-                    <div class="col-md-4 col-sm-4">
-                        <div id="hello" style="color:white">hello</div>
-
-                        <script>
-                            var path = document.querySelector("#salami1 path");
-
-                            var total_length = path.getTotalLength();
-
-
-                            document.getElementById("hello").innerHTML = total_length;
-                        </script>
-
-                        <div>
-                            Baguette
-                            <select class="bread">
-                                <option value="test">Test</option>
-                                <option value="baguette">Française</option>
-                            </select>
-                        </div>
-                        <div>
-                            Option 0
-                            <select class="salad">
-                                <option value="test">Test</option>
-                                <option value="baguette">Salade</option>
-                            </select>
-                        </div>
-                        <div>
-                            Option 1
-                            <select class="ham">
-                                <option value="test">Test</option>
-                                <option value="ham">Jambon</option>
-                                <option value="salami">Salami</option>
-                            </select>
-                        </div>
-                        <div>
-                            Option 2
-                            <select class="cheese">
-                                <option value="test">Test</option>
-                                <option value="cheddar">Cheddar</option>
-                                <option value="mozza">Mozzarella</option>
-                                <option value="brie">Brie</option>
-                                <option value="raclette">Raclette</option>
-                                <option value="pickle">Pickle</option>
-                            </select>
-                        </div>
-                        <div>
-                            Option 3
-                            <select class="tomato">
-                                <option value="test">Test</option>
-                                <option value="baguette">Tomato</option>
-                            </select>
-                        </div>
-                        <div>
-                            <button class="reset">Replay</button>
-                        </div>
-
-                    </div>
-                    <script>
-                        $('.bread').on('change', function () {
-                            breadBot.style.animation = "draw 1.5s forwards 1 linear";
-                            breadTop.style.animation = "draw 1.5s forwards 1 linear";
-                            breadBotShadow.style.animation = "draw 1.5s forwards 1 linear";
-                            breadTopShadow.style.animation = "draw 1.5s forwards 1 linear";
-                            lines.style.animation = "draw 1.5s forwards 1 linear";
-
-                        });
-
-                        $('.salad').on('change', function () {
-                            salad1.style.animation = "draw 1.5s forwards 1 linear";
-                            salad2.style.animation = "draw 1.5s forwards 1 linear";
-
-                        });
-
-                        $('.ham').on('change', function () {
-                            if ($(this).val() == 'ham') {
-                                ham1.style.animation = "draw 1.5s forwards 1 linear";
-                                ham2.style.animation = "draw 1.5s forwards 1 linear";
-                                ham3.style.animation = "draw 1.5s forwards 1 linear";
-                            }
-                            if ($(this).val() == 'salami') {
-                                salami1.style.animation = "draw 1.5s forwards 1 linear";
-                                salami2.style.animation = "draw 1.5s forwards 1 linear";
-                                salami3.style.animation = "draw 1.5s forwards 1 linear";
-                            }
-
-
-                        });
-                        $('.cheese').on('change', function () {
-                            if ($(this).val() == 'cheddar') {
-                                cheese1.style.animation = "draw 1.5s forwards 1 linear";
-                                cheese2.style.animation = "draw 1.5s forwards 1 linear";
-                            }
-                            if ($(this).val() == 'mozza') {
-                                mozza1.style.animation = "draw 1.5s forwards 1 linear";
-                                mozza2.style.animation = "draw 1.5s forwards 1 linear";
-                            }
-                            if ($(this).val() == 'brie') {
-                                brie1.style.animation = "draw 1.5s forwards 1 linear";
-                                brie2.style.animation = "draw 1.5s forwards 1 linear";
-                                brie3.style.animation = "draw 1.5s forwards 1 linear";
-
-                            }
-                            if ($(this).val() == 'raclette') {
-                                raclette1.style.animation = "draw 1.5s forwards 1 linear";
-                                raclette2.style.animation = "draw 1.5s forwards 1 linear";
-                                raclette3.style.animation = "draw 1.5s forwards 1 linear";
-
-                            }
-                            if ($(this).val() == 'pickle') {
-                                pickle1.style.animation = "draw 1.5s forwards 1 linear";
-                                pickle2.style.animation = "draw 1.5s forwards 1 linear";
-                                pickle3.style.animation = "draw 1.5s forwards 1 linear";
-
-                            }
-
-                        });
-                        $('.tomato').on('change', function () {
-                            tomato1.style.animation = "draw 1.5s forwards 1 linear";
-                            tomato2.style.animation = "draw 1.5s forwards 1 linear";
-                            tomato3.style.animation = "draw 1.5s forwards 1 linear";
-
-                        });
-                    </script>
                 </div>
+                <div class="col-md-2 col-sm-2">
+                    <div id="hello" style="color:white">hello</div>
+
+                    <script>
+                        var path = document.querySelector("#salami1 path");
+
+                        var total_length = path.getTotalLength();
+
+
+                        document.getElementById("hello").innerHTML = total_length;
+                    </script>
+
+                    <div>
+                        Baguette
+                        <select class="bread select">
+                            <option value="test">Test</option>
+                            <option value="baguette">Française</option>
+                        </select>
+                    </div>
+                    <div>
+                        Option 0
+                        <select class="salad">
+                            <option value="test">Test</option>
+                            <option value="baguette">Salade</option>
+                        </select>
+                    </div>
+                    <div>
+                        Option 1
+                        <select class="ham">
+                            <option value="test">Test</option>
+                            <option value="ham">Jambon</option>
+                            <option value="salami">Salami</option>
+                        </select>
+                    </div>
+                    <div>
+                        Option 2
+                        <select class="cheese">
+                            <option value="test">Test</option>
+                            <option value="cheddar">Cheddar</option>
+                            <option value="mozza">Mozzarella</option>
+                            <option value="brie">Brie</option>
+                            <option value="raclette">Raclette</option>
+                            <option value="pickle">Pickle</option>
+                        </select>
+                    </div>
+                    <div>
+                        Option 3
+                        <select class="tomato">
+                            <option value="test">Test</option>
+                            <option value="baguette">Tomato</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="reset">Replay</button>
+                    </div>
+
+                </div>
+                <script>
+                    $('.bread').on('change', function () {
+                        breadBot.style.animation = "draw 1.5s forwards 1 linear";
+                        breadTop.style.animation = "draw 1.5s forwards 1 linear";
+                        breadBotShadow.style.animation = "draw 1.5s forwards 1 linear";
+                        breadTopShadow.style.animation = "draw 1.5s forwards 1 linear";
+                        lines.style.animation = "draw 1.5s forwards 1 linear";
+
+                    });
+
+                    $('.salad').on('change', function () {
+                        salad1.style.animation = "draw 1.5s forwards 1 linear";
+                        salad2.style.animation = "draw 1.5s forwards 1 linear";
+
+                    });
+
+                    $('.ham').on('change', function () {
+                        if ($(this).val() == 'ham') {
+                            ham1.style.animation = "draw 1.5s forwards 1 linear";
+                            ham2.style.animation = "draw 1.5s forwards 1 linear";
+                            ham3.style.animation = "draw 1.5s forwards 1 linear";
+                        }
+                        if ($(this).val() == 'salami') {
+                            salami1.style.animation = "draw 1.5s forwards 1 linear";
+                            salami2.style.animation = "draw 1.5s forwards 1 linear";
+                            salami3.style.animation = "draw 1.5s forwards 1 linear";
+                        }
+
+
+                    });
+                    $('.cheese').on('change', function () {
+                        if ($(this).val() == 'cheddar') {
+                            cheese1.style.animation = "draw 1.5s forwards 1 linear";
+                            cheese2.style.animation = "draw 1.5s forwards 1 linear";
+                        }
+                        if ($(this).val() == 'mozza') {
+                            mozza1.style.animation = "draw 1.5s forwards 1 linear";
+                            mozza2.style.animation = "draw 1.5s forwards 1 linear";
+                        }
+                        if ($(this).val() == 'brie') {
+                            brie1.style.animation = "draw 1.5s forwards 1 linear";
+                            brie2.style.animation = "draw 1.5s forwards 1 linear";
+                            brie3.style.animation = "draw 1.5s forwards 1 linear";
+
+                        }
+                        if ($(this).val() == 'raclette') {
+                            raclette1.style.animation = "draw 1.5s forwards 1 linear";
+                            raclette2.style.animation = "draw 1.5s forwards 1 linear";
+                            raclette3.style.animation = "draw 1.5s forwards 1 linear";
+
+                        }
+                        if ($(this).val() == 'pickle') {
+                            pickle1.style.animation = "draw 1.5s forwards 1 linear";
+                            pickle2.style.animation = "draw 1.5s forwards 1 linear";
+                            pickle3.style.animation = "draw 1.5s forwards 1 linear";
+
+                        }
+
+                    });
+                    $('.tomato').on('change', function () {
+                        tomato1.style.animation = "draw 1.5s forwards 1 linear";
+                        tomato2.style.animation = "draw 1.5s forwards 1 linear";
+                        tomato3.style.animation = "draw 1.5s forwards 1 linear";
+
+                    });
+                </script>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    $(".custom-select").each(function() {
+        var classes = $(this).attr("class"),
+            id      = $(this).attr("id"),
+            name    = $(this).attr("name");
+        var template =  '<div class="' + classes + '">';
+        template += '<span class="custom-select-trigger">' + $(this).attr("placeholder") + '</span>';
+        template += '<div class="custom-options">';
+        $(this).find("option").each(function() {
+            template += '<span class="custom-option ' + $(this).attr("class") + '" data-value="' + $(this).attr("value") + '">' + $(this).html() + '</span>';
+        });
+        template += '</div></div>';
+
+        $(this).wrap('<div class="custom-select-wrapper"></div>');
+        $(this).hide();
+        $(this).after(template);
+    });
+    $(".custom-option:first-of-type").hover(function() {
+        $(this).parents(".custom-options").addClass("option-hover");
+    }, function() {
+        $(this).parents(".custom-options").removeClass("option-hover");
+    });
+    $(".custom-select-trigger").on("click", function() {
+        $('html').one('click',function() {
+            $(".custom-select").removeClass("opened");
+        });
+        $(this).parents(".custom-select").toggleClass("opened");
+        event.stopPropagation();
+    });
+    $(".custom-option").on("click", function() {
+        $(this).parents(".custom-select-wrapper").find("select").val($(this).data("value"));
+        $(this).parents(".custom-options").find(".custom-option").removeClass("selection");
+        $(this).addClass("selection");
+        $(this).parents(".custom-select").removeClass("opened");
+        $(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text());
+    });
+</script>
 
 </body>
 </html>
