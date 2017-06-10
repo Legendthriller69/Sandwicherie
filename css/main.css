@@ -16,7 +16,6 @@ body {
   margin: 0;
   font-weight: 500;
   overflow:visible;
-  font-family: 'Open Sans', sans-serif;
 }
 
 section {
@@ -84,19 +83,29 @@ section {
   transition: background 300ms ease-in-out;
 }
 
+.mainTitre{
+  text-align: center ;
+  margin-top: 130px;
+  font-size: 50px;
+  color: #FFFFFF;
+}
+
 .titre{
   text-align: left ;
-  margin-top: 40px;
+  margin-top: 130px;
   margin-bottom: 40px;
   font-size: 50px;
   color: #FFFFFF;
 }
 
-.content {
-  display: table-cell;
-  vertical-align: middle;
-
+.right {
+  text-align: right;
 }
+
+
+
+
+
 
 
 
