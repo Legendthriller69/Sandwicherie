@@ -12,6 +12,7 @@ html, body
 
 }
 
+
 body {
   margin: 0;
   font-weight: 500;
@@ -41,6 +42,13 @@ section {
   color: black;
   background: linear-gradient(to bottom, rgba(9, 39, 86,0.4), rgba(44, 201, 144,.25)), linear-gradient(225deg, #97CE68, #2CC990);
 
+}
+
+.background-section-footer{
+  background-color: #333333;
+  color: white;
+  height: 100px;
+  padding-top: 30px;
 }
 
   .navbarScroll {
@@ -106,6 +114,71 @@ section {
 
 
 
+textarea,input{
+  color: black !important;
+  margin-bottom: 30px;
+  border:none !important;
+  border-radius: 0px !important;
+}
+
+input{
+  margin-bottom: 30px;
+
+}
+button{
+  background-color: #26A65B;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.paddingFooter{
+  padding-top: 10px;
+}
+
+.madeLove{
+  text-align: right;
+  padding-top: 40px;
+}
+
+.text1{
+  text-align: justify;
+  font-size: 20px;
+  font-weight: bolder;
+  color: white;
+}
+
+.heart {
+  color: #de2c3c;
+}
+
+.heartbeat {
+  animation-name: heartbeat;
+  -webkit-animation-name: heartbeat;
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+  animation-iteration-count:infinite;
+  -webkit-animation-iteration-count:infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); -moz-transform: scale(1); -webkit-transform: scale(1); -o-transform: scale(1); }
+  50% { transform: scale(1.1); -moz-transform: scale(1.1); -webkit-transform: scale(1.1); -o-transform: scale(1.1); }
+  100% { transform: scale(1); -moz-transform: scale(1); -webkit-transform: scale(1); -o-transform: scale(1); }
+}
+@-webkit-keyframes heartbeat {
+  0% { transform: scale(1); -moz-transform: scale(1); -webkit-transform: scale(1); -o-transform: scale(1); }
+  50% { transform: scale(1.1); -moz-transform: scale(1.1); -webkit-transform: scale(1.1); -o-transform: scale(1.1); }
+  100% { transform: scale(1); -moz-transform: scale(1); -webkit-transform: scale(1); -o-transform: scale(1); }
+}
 
 
 
