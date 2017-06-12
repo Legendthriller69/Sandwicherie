@@ -145,7 +145,8 @@
 
 }
 
-/*1ER ETAGE*/
+/* ALL DIFFERENT INGREDIENTS*/
+/* SALADS */
 #salad {
     stroke: #7FB76E;
     stroke-dasharray: 2052px;
@@ -167,91 +168,6 @@
     stroke: #4c2a22;
     stroke-dasharray: 2052px;
     stroke-dashoffset: 2052px;
-    stroke-width: 0;
-    fill-opacity: 0;
-}
-
-#saladShadowCh {
-    stroke: #816d31;
-    stroke-dasharray: 2052px;
-    stroke-dashoffset: 2052px;
-    stroke-width: 0;
-    fill-opacity: 0;
-
-}
-/*2ème ETAGE*/
-#ham1, #ham2, #ham3 {
-    stroke: #F5B1A3;
-    stroke-dasharray: 935px;
-    stroke-dashoffset: 935px;
-    stroke-width: 0;
-    fill-opacity: 0;
-}
-
-#salami1, #salami2, #salami3 {
-    stroke: #933D2F;
-    stroke-dasharray: 742px;
-    stroke-dashoffset: 742px;
-    stroke-width: 0;
-    fill-opacity: 0;
-}
-
-#morta1, #morta2, #morta3 {
-    stroke: #f5b1a3;
-    stroke-dasharray: 742px;
-    stroke-dashoffset: 742px;
-    stroke-width: 0;
-    fill-opacity: 0;
-}
-/*3ème ETAGE*/
-#cheese1, #cheese2 {
-    stroke: #FFE283;
-    stroke-dasharray: 989px;
-    stroke-dashoffset: 989px;
-    stroke-width: 0;
-    fill-opacity: 0;
-
-}
-
-#cheddar1, #cheddar2 {
-    stroke: #fabf12;
-    stroke-dasharray: 989px;
-    stroke-dashoffset: 989px;
-    stroke-width: 0;
-    fill-opacity: 0;
-
-}
-
-#mozza1, #mozza2 {
-    stroke: #F9F7E4;
-    stroke-dasharray: 797px;
-    stroke-dashoffset: 797px;
-    stroke-width: 0;
-    fill-opacity: 0;
-}
-
-#brie1, #brie2, #brie3 {
-    stroke: #F9DCB2;
-    stroke-dasharray: 783px;
-    stroke-dashoffset: 783px;
-    stroke-width: 0;
-    fill-opacity: 0;
-}
-
-#raclette1, #raclette2, #raclette3 {
-    stroke: #F2E49E;
-    stroke-dasharray: 715px;
-    stroke-dashoffset: 715px;
-    stroke-width: 0;
-    fill-opacity: 0;
-}
-
-
-/*4ème ETAGE*/
-#tomato1, #tomato2, #tomato3 {
-    stroke: #D04727;
-    stroke-dasharray: 702px;
-    stroke-dashoffset: 702px;
     stroke-width: 0;
     fill-opacity: 0;
 }
@@ -290,7 +206,89 @@
 
 }
 
-/*SUPPLEMENTS*/
+#saladShadowCh {
+    stroke: #816d31;
+    stroke-dasharray: 2052px;
+    stroke-dashoffset: 2052px;
+    stroke-width: 0;
+    fill-opacity: 0;
+
+}
+/* HAMS */
+#ham1, #ham2, #ham3 {
+    stroke: #F5B1A3;
+    stroke-dasharray: 935px;
+    stroke-dashoffset: 935px;
+    stroke-width: 0;
+    fill-opacity: 0;
+}
+/* SALAMIS */
+#salami1, #salami2, #salami3 {
+    stroke: #933D2F;
+    stroke-dasharray: 742px;
+    stroke-dashoffset: 742px;
+    stroke-width: 0;
+    fill-opacity: 0;
+}
+/* MORTAS */
+#morta1, #morta2, #morta3 {
+    stroke: #f5b1a3;
+    stroke-dasharray: 742px;
+    stroke-dashoffset: 742px;
+    stroke-width: 0;
+    fill-opacity: 0;
+}
+/* CHEESES */
+#cheese1, #cheese2 {
+    stroke: #FFE283;
+    stroke-dasharray: 989px;
+    stroke-dashoffset: 989px;
+    stroke-width: 0;
+    fill-opacity: 0;
+
+}
+/* CHEDDARS */
+#cheddar1, #cheddar2 {
+    stroke: #fabf12;
+    stroke-dasharray: 989px;
+    stroke-dashoffset: 989px;
+    stroke-width: 0;
+    fill-opacity: 0;
+
+}
+/* MOZZAS */
+#mozza1, #mozza2 {
+    stroke: #F9F7E4;
+    stroke-dasharray: 797px;
+    stroke-dashoffset: 797px;
+    stroke-width: 0;
+    fill-opacity: 0;
+}
+/* BRIES */
+#brie1, #brie2, #brie3 {
+    stroke: #F9DCB2;
+    stroke-dasharray: 783px;
+    stroke-dashoffset: 783px;
+    stroke-width: 0;
+    fill-opacity: 0;
+}
+/* RACLETTES */
+#raclette1, #raclette2, #raclette3 {
+    stroke: #F2E49E;
+    stroke-dasharray: 715px;
+    stroke-dashoffset: 715px;
+    stroke-width: 0;
+    fill-opacity: 0;
+}
+/* TOAMTOES */
+#tomato1, #tomato2, #tomato3 {
+    stroke: #D04727;
+    stroke-dasharray: 702px;
+    stroke-dashoffset: 702px;
+    stroke-width: 0;
+    fill-opacity: 0;
+}
+/*PICKLES*/
 #pickle1, #pickle2, #pickle3 {
     stroke: #54893E;
     stroke-dasharray: 519px;
@@ -298,6 +296,39 @@
     stroke-width: 0;
     fill-opacity: 0;
 }
+/*BACONS*/
+#bacon1, #bacon2 {
+    stroke: #c54328;
+    stroke-dasharray: 1043px;
+    stroke-dashoffset: 1043px;
+    stroke-width: 0;
+    fill-opacity: 0;
+}
+/*SAUMONS*/
+#saumon1, #saumon2, #saumon3{
+    stroke: #fe8855;
+    stroke-dasharray: 857px;
+    stroke-dashoffset: 857px;
+    stroke-width: 0;
+    fill-opacity: 0;
+}
+/*OGNONS*/
+#ognon1, #ognon2, #ognon3{
+    stroke: #c779aa;
+    stroke-dasharray: 560px;
+    stroke-dashoffset: 560px;
+    stroke-width: 0;
+    fill-opacity: 0;
+}
+/*EGGS*/
+#egg1, #egg2, #egg3{
+    stroke: #f9f8f7;
+    stroke-dasharray: 552px;
+    stroke-dashoffset: 552px;
+    stroke-width: 0;
+    fill-opacity: 0;
+}
+
 
 
 
