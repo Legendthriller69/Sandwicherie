@@ -347,3 +347,48 @@
         fill-opacity: 1;
     }
 }
+@-webkit-keyframes draw {
+    0% {
+        fill-opacity: 0;
+        stroke-width: 4;
+    }
+    99% {
+        fill-opacity: 0;
+        stroke-width: 4;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        stroke-width: 0;
+        fill-opacity: 1;
+    }
+}
+@-moz-keyframes draw {
+    0% {
+        fill-opacity: 0;
+        stroke-width: 4;
+    }
+    99% {
+        fill-opacity: 0;
+        stroke-width: 4;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        stroke-width: 0;
+        fill-opacity: 1;
+    }
+}
+@-o-keyframes draw {
+    0% {
+        fill-opacity: 0;
+        stroke-width: 4;
+    }
+    99% {
+        fill-opacity: 0;
+        stroke-width: 4;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        stroke-width: 0;
+        fill-opacity: 1;
+    }
+}
