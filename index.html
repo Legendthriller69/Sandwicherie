@@ -38,7 +38,7 @@
 
 	<div class="row">
 		<div class="col-md-3">
-			<div class="text1">
+			<div class="text-mainsection">
 				<p>
 					Crée ton sandwich.
 				</p>
@@ -92,6 +92,17 @@
                         </select>
                     </div>
                     <div>
+                        Sélectionne tes ingrédients
+                        <select class="select"  id="multiselect" onclick="showCheckboxes()">
+                        </select>
+                        <div id="checkboxes">
+                            <label for="lt">
+                                <input type="checkbox" id="lt" />Laitue</label>
+                            <label for="ch">
+                                <input type="checkbox" id="ch" />Feuilles de chêne</label>
+                        </div>
+                    </div>
+                    <div>
                         1er étage
                         <select class="select"  id="first">
 							<option selected="selected" disabled="disabled">Légumes</option>
@@ -135,6 +146,21 @@
 							<option value="pc">Cornichons</option>
 						</select>
 					</div>
+
+                    <script>
+                        var expanded = false;
+
+                        function showCheckboxes() {
+                            var checkboxes = document.getElementById("checkboxes");
+                            if (!expanded) {
+                                checkboxes.style.display = "block";
+                                expanded = true;
+                            } else {
+                                checkboxes.style.display = "none";
+                                expanded = false;
+                            }
+                        }
+                    </script>
 
                 </div>
 

@@ -386,6 +386,15 @@ $('#fifth').on('change', function () {
 
 });
 
+$('#checkboxes input:checkbox').on('change', function () {
+    var val = $('#checkboxes input:checkbox').find(":checkbox:checked").val();
+    $(':checkbox:checked').each(function() {
+        startAnimation('#pickle1');
+    });
+
+
+});
+
 function startAnimation (targetElementClass) {
     var targetElement = $(targetElementClass)
     targetElement.css('animation', "draw 1.5s forwards 1 linear");
