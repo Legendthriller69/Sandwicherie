@@ -1668,7 +1668,7 @@
 			<path fill="#F8D273" d="M832.437,231.83c0,0,198.421-4.264,186.805,19.123c-11.614,23.382-367.42,3.607-367.42,3.607
 				s1.809,6.845,25.494,7.413c23.688,0.567,345.503,12.356,349.075-9.884C1029.967,229.847,877.027,220.697,832.437,231.83"/>
 		</g>
-		<g id="cheese1_1_">
+		<g id="cheddar1">
 			<path fill="#FABF12" d="M270.942,255.302c0,0,14.054-18.527,77.807-40.173c63.748-21.647,124.951-63.223,176.8-94.403
 				c51.85-31.182,202.775-12.567,181.051,31.519c-21.72,44.083-66.207,100.713-66.207,100.713S618.135,275.446,270.942,255.302"/>
 			<path fill="#FBA411" d="M454.183,234.045c0,0,152.71-133.541,244.476-146.447c91.762-12.909-58.077,167.704-58.077,167.704
@@ -1676,7 +1676,7 @@
 			<path fill="#F09734" d="M449.769,235.436c0,0,196.461-3.73,184.962,16.71c-11.499,20.438-363.789,3.156-363.789,3.156
 				s1.793,5.98,25.244,6.479c23.454,0.495,342.085,10.8,345.623-8.638C645.346,233.701,493.922,225.703,449.769,235.436"/>
 		</g>
-		<g id="cheese2_1_">
+		<g id="cheddar2">
 			<path fill="#FABF12" d="M651.822,254.56c0,0,14.196-21.195,78.586-45.961c64.385-24.767,126.193-72.331,178.564-108.007
 				c52.367-35.676,204.797-14.378,182.856,36.06c-21.938,50.438-66.862,115.229-66.862,115.229S1002.483,277.61,651.822,254.56"/>
 			<path fill="#FBA411" d="M836.895,230.24c0,0,154.229-152.784,246.914-167.551c92.684-14.768-58.652,191.87-58.652,191.87
@@ -2159,7 +2159,7 @@
                     <div id="hello" style="color:white">hello</div>
 
                     <script>
-                        var path = document.querySelector("#morta1 path");
+                        var path = document.querySelector("#raclette1 polygon");
 
                         var total_length = path.getTotalLength();
 
@@ -2206,285 +2206,23 @@
                     </div>
                     <div>
                         Option 3
-                        <select class="tomato">
-                            <option value="test">Test</option>
-                            <option value="baguette">Tomato</option>
+                        <select class="select" id="fourth">
+							<option selected="selected" disabled="disabled">Je sais pas quoi</option>
+                            <option value="to">Tomates</option>
+							<option value="lt">Laitue</option>
+							<option value="ch">Feuilles de chêne</option>
                         </select>
                     </div>
-                    <div>
-                        <button class="reset">Replay</button>
-                    </div>
+					<div>
+						Suppléments
+						<select class="select" id="fifth">
+							<option selected="selected" disabled="disabled">Suppléments</option>
+							<option value="pc">Cornichons</option>
+						</select>
+					</div>
 
                 </div>
-                <script>
-                    $('#bread').on('change', function () {
-                        var val = $('#bread').find("option:selected").val();
 
-                        switch(val)
-						{
-							case "fr":
-							    /*end others animations*/
-                                endAnimation('#breadTopPt');
-                                endAnimation('#breadTopShadowPt');
-                                endAnimation('#traitsPt');
-                                endAnimation('#flavor');
-                                endAnimation('#breadBotPt');
-                                endAnimation('#breadBotShadowPt');
-
-                                endAnimation('#breadTopCereals');
-                                endAnimation('#breadTopShadowCereals');
-                                endAnimation('#cerealsTop');
-                                endAnimation('#breadBotCereals');
-                                endAnimation('#breadBotShadowCereals');
-							    /*start animation*/
-                                startAnimation('#breadTop');
-                                startAnimation('#breadTopShadow');
-                                startAnimation('#traits');
-
-                                startAnimation('#breadBot');
-                                startAnimation('#breadBotShadow');
-
-
-                                break;
-							case "pt":
-								/*end others animations*/
-                                endAnimation('#breadTop');
-                                endAnimation('#breadTopShadow');
-                                endAnimation('#traits');
-                                endAnimation('#breadBot');
-                                endAnimation('#breadBotShadow');
-
-                                endAnimation('#breadTopCereals');
-                                endAnimation('#breadTopShadowCereals');
-                                endAnimation('#cerealsTop');
-                                endAnimation('#breadBotCereals');
-                                endAnimation('#breadBotShadowCereals');
-								/*start animation*/
-                                startAnimation('#breadTopPt');
-                                startAnimation('#breadTopShadowPt');
-                                startAnimation('#traitsPt');
-                                startAnimation('#flavor');
-
-                                startAnimation('#breadBotPt');
-                                startAnimation('#breadBotShadowPt');
-                                break;
-                            case "cr":
-								/*end others animations*/
-                                endAnimation('#breadTop');
-                                endAnimation('#breadTopShadow');
-                                endAnimation('#traits');
-                                endAnimation('#breadBot');
-                                endAnimation('#breadBotShadow');
-
-                                endAnimation('#breadTopPt');
-                                endAnimation('#breadTopShadowPt');
-                                endAnimation('#traitsPt');
-                                endAnimation('#flavor');
-                                endAnimation('#breadBotPt');
-                                endAnimation('#breadBotShadowPt');
-								/*start animation*/
-                                startAnimation('#breadTopCereals');
-                                startAnimation('#breadTopShadowCereals');
-                                startAnimation('#cerealsTop');
-                                startAnimation('#breadBotCereals');
-                                startAnimation('#breadBotShadowCereals');
-                                break;
-						}
-
-
-
-
-
-                    });
-
-                    $('#first').on('change', function () {
-                        var val = $('#first').find("option:selected").val();
-
-                        switch(val)
-                        {
-                            case "lt":
-								/*end others animations*/
-                                endAnimation('#saladCh');
-                                endAnimation('#saladShadowCh');
-
-								/*start animation*/
-                                startAnimation('#salad');
-                                startAnimation('#saladShadow');
-
-
-                                break;
-                            case "ch":
-								/*end others animations*/
-                                endAnimation('#salad');
-                                endAnimation('#saladShadow');
-
-								/*start animation*/
-                                startAnimation('#saladCh');
-                                startAnimation('#saladShadowCh');
-                                break;
-                        }
-
-
-                    });
-
-                    $('#second').on('change', function () {
-                        var val = $('#second').find("option:selected").val();
-
-                        switch(val)
-                        {
-                            case "ha":
-								/*end others animations*/
-                                endAnimation('#salami1');
-                                endAnimation('#salami2');
-                                endAnimation('#salami3');
-                                endAnimation('#morta1');
-                                endAnimation('#morta2');
-                                endAnimation('#morta3');
-
-								/*start animation*/
-                                startAnimation('#ham1');
-                                startAnimation('#ham2');
-                                startAnimation('#ham3');
-
-
-                                break;
-                            case "sa":
-								/*end others animations*/
-                                endAnimation('#morta1');
-                                endAnimation('#morta2');
-                                endAnimation('#morta3');
-                                endAnimation('#ham1');
-                                endAnimation('#ham2');
-                                endAnimation('#ham3');
-
-								/*start animation*/
-                                startAnimation('#salami1');
-                                startAnimation('#salami2');
-                                startAnimation('#salami3');
-                                break;
-                            case "mo":
-								/*end others animations*/
-                                endAnimation('#ham1');
-                                endAnimation('#ham2');
-                                endAnimation('#ham3');
-                                endAnimation('#salami1');
-                                endAnimation('#salami2');
-                                endAnimation('#salami3');
-
-								/*start animation*/
-                                startAnimation('#morta1');
-                                startAnimation('#morta2');
-                                startAnimation('#morta3');
-                                break;
-                        }
-
-
-                    });
-
-                    $('#second').on('change', function () {
-                        var val = $('#second').find("option:selected").val();
-
-                        switch(val)
-                        {
-                            case "ha":
-								/*end others animations*/
-                                endAnimation('#salami1');
-                                endAnimation('#salami2');
-                                endAnimation('#salami3');
-                                endAnimation('#morta1');
-                                endAnimation('#morta2');
-                                endAnimation('#morta3');
-
-								/*start animation*/
-                                startAnimation('#ham1');
-                                startAnimation('#ham2');
-                                startAnimation('#ham3');
-
-
-                                break;
-                            case "sa":
-								/*end others animations*/
-                                endAnimation('#morta1');
-                                endAnimation('#morta2');
-                                endAnimation('#morta3');
-                                endAnimation('#ham1');
-                                endAnimation('#ham2');
-                                endAnimation('#ham3');
-
-								/*start animation*/
-                                startAnimation('#salami1');
-                                startAnimation('#salami2');
-                                startAnimation('#salami3');
-                                break;
-                            case "mo":
-								/*end others animations*/
-                                endAnimation('#ham1');
-                                endAnimation('#ham2');
-                                endAnimation('#ham3');
-                                endAnimation('#salami1');
-                                endAnimation('#salami2');
-                                endAnimation('#salami3');
-
-								/*start animation*/
-                                startAnimation('#morta1');
-                                startAnimation('#morta2');
-                                startAnimation('#morta3');
-                                break;
-                        }
-
-
-                    });
-
-
-                    $('.cheese').on('change', function () {
-                        if ($(this).val() == 'cheddar') {
-                            cheese1.style.animation = "draw 1.5s forwards 1 linear";
-                            cheese2.style.animation = "draw 1.5s forwards 1 linear";
-                        }
-                        if ($(this).val() == 'mozza') {
-                            mozza1.style.animation = "draw 1.5s forwards 1 linear";
-                            mozza2.style.animation = "draw 1.5s forwards 1 linear";
-                        }
-                        if ($(this).val() == 'brie') {
-                            brie1.style.animation = "draw 1.5s forwards 1 linear";
-                            brie2.style.animation = "draw 1.5s forwards 1 linear";
-                            brie3.style.animation = "draw 1.5s forwards 1 linear";
-
-                        }
-                        if ($(this).val() == 'raclette') {
-                            raclette1.style.animation = "draw 1.5s forwards 1 linear";
-                            raclette2.style.animation = "draw 1.5s forwards 1 linear";
-                            raclette3.style.animation = "draw 1.5s forwards 1 linear";
-
-                        }
-                        if ($(this).val() == 'pickle') {
-                            pickle1.style.animation = "draw 1.5s forwards 1 linear";
-                            pickle2.style.animation = "draw 1.5s forwards 1 linear";
-                            pickle3.style.animation = "draw 1.5s forwards 1 linear";
-
-                        }
-
-                    });
-                    $('.tomato').on('change', function () {
-                        tomato1.style.animation = "draw 1.5s forwards 1 linear";
-                        tomato2.style.animation = "draw 1.5s forwards 1 linear";
-                        tomato3.style.animation = "draw 1.5s forwards 1 linear";
-
-                    });
-
-                    function startAnimation (targetElementClass) {
-                        var targetElement = $(targetElementClass)
-                        targetElement.css('animation', "draw 1.5s forwards 1 linear");
-
-                    }
-
-                    function endAnimation (targetElementClass) {
-                        var targetElement = $(targetElementClass)
-                        targetElement.css('animation','');
-                        targetElement.off();
-
-                    }
-                </script>
             </div>
         </div>
     </div>
@@ -2527,6 +2265,7 @@
         $(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text());
     });
 </script>
+<script src="js/sandwichCreation.js"></script>
 
 </body>
 </html>

@@ -203,7 +203,7 @@
     stroke-width: 0;
     fill-opacity: 0;
 }
-/*CHEESES*/
+/*3ème ETAGE*/
 #cheese1, #cheese2 {
     stroke: #FFE283;
     stroke-dasharray: 989px;
@@ -212,7 +212,16 @@
     fill-opacity: 0;
 
 }
-/*MOZZARELLAS*/
+
+#cheddar1, #cheddar2 {
+    stroke: #fabf12;
+    stroke-dasharray: 989px;
+    stroke-dashoffset: 989px;
+    stroke-width: 0;
+    fill-opacity: 0;
+
+}
+
 #mozza1, #mozza2 {
     stroke: #F9F7E4;
     stroke-dasharray: 797px;
@@ -220,23 +229,25 @@
     stroke-width: 0;
     fill-opacity: 0;
 }
-/*BRIES*/
+
 #brie1, #brie2, #brie3 {
     stroke: #F9DCB2;
-    stroke-dasharray: 782px;
-    stroke-dashoffset: 782px;
+    stroke-dasharray: 783px;
+    stroke-dashoffset: 783px;
     stroke-width: 0;
     fill-opacity: 0;
 }
-/*RACLETTES*/
+
 #raclette1, #raclette2, #raclette3 {
     stroke: #F2E49E;
-    stroke-dasharray: 303px;
-    stroke-dashoffset: 303px;
+    stroke-dasharray: 715px;
+    stroke-dashoffset: 715px;
     stroke-width: 0;
     fill-opacity: 0;
 }
-/*TOMATOS*/
+
+
+/*4ème ETAGE*/
 #tomato1, #tomato2, #tomato3 {
     stroke: #D04727;
     stroke-dasharray: 702px;
@@ -244,7 +255,42 @@
     stroke-width: 0;
     fill-opacity: 0;
 }
-/*PICKLES*/
+
+#saladTop {
+    stroke: #7FB76E;
+    stroke-dasharray: 2052px;
+    stroke-dashoffset: 2052px;
+    stroke-width: 0;
+    fill-opacity: 0;
+}
+
+#saladTopShadow {
+    stroke: #8ECC79;
+    stroke-dasharray: 2052px;
+    stroke-dashoffset: 2052px;
+    stroke-width: 0;
+    fill-opacity: 0;
+
+}
+
+#saladTopCh {
+    stroke: #4c2a22;
+    stroke-dasharray: 2052px;
+    stroke-dashoffset: 2052px;
+    stroke-width: 0;
+    fill-opacity: 0;
+}
+
+#saladTopShadowCh {
+    stroke: #816d31;
+    stroke-dasharray: 2052px;
+    stroke-dashoffset: 2052px;
+    stroke-width: 0;
+    fill-opacity: 0;
+
+}
+
+/*SUPPLEMENTS*/
 #pickle1, #pickle2, #pickle3 {
     stroke: #54893E;
     stroke-dasharray: 519px;
