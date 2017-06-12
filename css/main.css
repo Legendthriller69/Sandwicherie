@@ -9,14 +9,12 @@
 html, body
 {
   height:100%;
-
 }
 
 
 body {
-  margin: 0;
   font-weight: 500;
-  overflow:visible;
+
 }
 
 section {
@@ -52,10 +50,7 @@ section {
 }
 
   .navbarScroll {
-    position: fixed;
-    right: 0;
-    left: 0;
-    z-index:10;
+
 
     background: rgba(30, 30, 30, 0.75);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -125,6 +120,7 @@ input{
   margin-bottom: 30px;
 
 }
+
 button{
   background-color: #26A65B;
   border: none;
