@@ -1,0 +1,74 @@
+{
+	"pains": [
+		{ 
+			"nom" : "français",
+			"prix" : 4.50
+		},
+		{
+			"nom" : "céréales",
+			"prix" : 5.20	  
+		},
+		{
+			"nom" : "portugais",
+			"prix" : 5.80		  
+		}
+	],
+	"ingrédients": [
+		{ 
+			"nom" : "salade",
+			"prix" : 0.50
+		},
+		{
+			"nom" : "tomates",
+			"prix" : 0.50	  
+		},
+		{
+			"nom" : "oignons",
+			"prix" : 0.50		  
+		},
+		{
+			"nom" : "oeuf",
+			"prix" : 0.50		  
+		},
+		{
+			"nom" : "cornichons",
+			"prix" : 0.50		  
+		},
+		{
+			"nom" : "mozzarella",
+			"prix" : 0.50		  
+		},
+		{
+			"nom" : "cheddar",
+			"prix" : 0.50		  
+		},
+		{
+			"nom" : "edam",
+			"prix" : 0.50		  
+		},
+		{
+			"nom" : "fromage à raclette",
+			"prix" : 0.50		  
+		},
+		{
+			"nom" : "salami",
+			"prix" : 0.50		  
+		},
+		{
+			"nom" : "mortadelle",
+			"prix" : 0.50		  
+		},
+		{
+			"nom" : "saumon",
+			"prix" : 0.50		  
+		},
+		{
+			"nom" : "bacon",
+			"prix" : 0.50		  
+		},
+		{
+			"nom" : "jambon",
+			"prix" : 0.50		  
+		}
+	]
+}
