@@ -96,7 +96,6 @@ section {
 .titre{
   text-align: left ;
   margin-top: 130px;
-  margin-bottom: 40px;
   font-size: 50px;
   color: #FFFFFF;
 }
@@ -144,10 +143,12 @@ button{
 }
 
 .text1{
-  text-align: justify;
+  text-align: justify ;
+    vertical-align: middle;
   font-size: 20px;
   font-weight: bolder;
   color: white;
+    margin-top: 50px;
 }
 
 .heart {
@@ -177,5 +178,39 @@ button{
 }
 
 
+.logo{
+    width: 60%;
+    float: right;
+   margin-bottom: 200px;
+    vertical-align: middle;
+}
 
 
+.draw-logo
+{
+    animation: draw-logo 2s forwards 1 linear;
+    stroke: white;
+}
+
+@keyframes draw-logo {
+    0% {
+        fill-opacity: 0;
+        stroke-width: 4;
+    }
+    99% {
+        fill-opacity: 0;
+        stroke-width: 4;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        stroke-width: 0;
+        fill-opacity: 1;
+    }
+}
+
+.titre-postule{
+    text-align: left ;
+    margin-top: 40px;
+    font-size: 30px;
+    color: #FFFFFF;
+}
