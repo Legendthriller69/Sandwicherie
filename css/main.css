@@ -155,14 +155,13 @@ button{
 }
 
 .heartbeat {
-  animation-name: heartbeat;
-  -webkit-animation-name: heartbeat;
+  animation: heartbeat;
+
   animation-duration: 1s;
-  -webkit-animation-duration: 1s;
+
   animation-fill-mode: both;
-  -webkit-animation-fill-mode: both;
+
   animation-iteration-count:infinite;
-  -webkit-animation-iteration-count:infinite;
 }
 
 @keyframes heartbeat {
@@ -170,11 +169,7 @@ button{
   50% { transform: scale(1.1); -moz-transform: scale(1.1); -webkit-transform: scale(1.1); -o-transform: scale(1.1); }
   100% { transform: scale(1); -moz-transform: scale(1); -webkit-transform: scale(1); -o-transform: scale(1); }
 }
-@-webkit-keyframes heartbeat {
-  0% { transform: scale(1); -moz-transform: scale(1); -webkit-transform: scale(1); -o-transform: scale(1); }
-  50% { transform: scale(1.1); -moz-transform: scale(1.1); -webkit-transform: scale(1.1); -o-transform: scale(1.1); }
-  100% { transform: scale(1); -moz-transform: scale(1); -webkit-transform: scale(1); -o-transform: scale(1); }
-}
+
 
 
 
