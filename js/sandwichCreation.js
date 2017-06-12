@@ -366,6 +366,26 @@ $('#fourth').on('change', function () {
 
 });
 
+$('#fifth').on('change', function () {
+    var val = $('#fifth').find("option:selected").val();
+
+    switch(val)
+    {
+        case "pc":
+            /*end others animations*/
+
+            /*start animation*/
+            startAnimation('#pickle1');
+            startAnimation('#pickle2');
+            startAnimation('#pickle3');
+
+
+            break;
+    }
+
+
+});
+
 function startAnimation (targetElementClass) {
     var targetElement = $(targetElementClass)
     targetElement.css('animation', "draw 1.5s forwards 1 linear");
