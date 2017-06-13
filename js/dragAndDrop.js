@@ -21,6 +21,9 @@ $('#holder').on({
 					$fileList.prepend($("<li>").append(img + file.name));
 				}, this, file, $("#fileList"));
 				reader.readAsDataURL(file);
+				$('#icon-del-file').click(function(){
+					$("#fileName").empty();
+				});
 			});
 		}
 	}
