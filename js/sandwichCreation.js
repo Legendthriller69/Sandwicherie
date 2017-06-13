@@ -327,18 +327,20 @@ function endAnimation (targetElementClass) {
 function calculatePrice(targetId)
 {
 
-    alert();
-    var data = null;
-    readTextFile("./data/dbSandwicherie.json", function(text){
-        data = JSON.parse(text);
-    });
-    alert(targetId);
+    loadJSON("data/dbSandwicherie.json");
+
+
+}
+
+function calcule(data)
+{
+    alert(data.ingredients[0].nom);
 
 
     switch(targetId)
     {
         case "salad":
-            alert(data.ingredients[0].nom[0]);
+
             break;
         case "chene":
             break;
@@ -375,18 +377,12 @@ function calculatePrice(targetId)
         case "chene2":
             break;
     }
-
 }
 
-function readTextFile(file, callback) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.overrideMimeType("application/json");
-    rawFile.open("GET", file, true);
-    rawFile.onreadystatechange = function() {
-        if (rawFile.readyState === 4 && rawFile.status == "200") {
-            callback(rawFile.responseText);
-        }
-    }
-    rawFile.send(null);
+function loadJSON(file, callback) {
+    $.get(file, function (data) {
+        calcule(data);
+    })
+
 }
 
