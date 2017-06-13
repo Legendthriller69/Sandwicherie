@@ -92,14 +92,14 @@ section {
 .mainTitre{
   text-align: center ;
   margin-top: 130px;
-  font-size: 50px;
+  font-size: 40px;
   color: #FFFFFF;
 }
 
 .titre{
   text-align: left ;
-  margin-top: 130px;
-  font-size: 50px;
+  margin-top: 70px;
+  font-size: 45px;
   color: #FFFFFF;
 }
 
@@ -108,20 +108,21 @@ section {
 }
 
 .text-mainsection{
-    text-align: justify ;
     vertical-align: middle;
-    font-size: 20px;
-    font-weight: bolder;
+    font-size: 40px;
+    font-family: "Allura";
     color: white;
     margin-top: 50px;
+    margin-left: 70px;
 }
 
-/*--------------logo section1----------------*/
+/*--------------logo section1 ----------------*/
 .logo{
-    width: 60%;
+    width: 90%;
     float: right;
     margin-bottom: 200px;
     vertical-align: middle;
+    margin-right: 50px;
 }
 
 .draw-logo
@@ -146,7 +147,31 @@ section {
     }
 }
 
-/*--------------section3----------------*/
+/*--------------section2  menu en-tête ----------------*/
+.menu-text{
+    color: white;
+    text-align: left;
+}
+
+.menu-text-entete{
+    font-size: 17px;
+    font-weight:bold;
+
+}
+
+.legume{
+    width: 25px;
+}
+
+.menu-table{
+    width: 60%;
+    font-size: 11px;
+}
+
+
+
+
+/*--------------section4 contact----------------*/
 textarea,input{
   color: black !important;
   margin-bottom: 30px;
@@ -171,7 +196,7 @@ button{
   cursor: pointer;
 }
 
-/*--------------section 4----------------*/
+/*--------------section 5 staff----------------*/
 
 .titre-postule{
     text-align: left ;
