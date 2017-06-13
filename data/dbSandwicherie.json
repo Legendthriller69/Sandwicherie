@@ -2,16 +2,50 @@
 	"pains": [
 		{ 
 			"nom" : "français",
+			"taille": "1/3",
 			"prix" : 4.50
 		},
 		{
-			"nom" : "céréales",
-			"prix" : 5.20	  
+			"nom" : "français",
+			"taille": "1/2",
+			"prix" : 5.10
+		},
+		{
+			"nom" : "français",
+			"taille": "2/3",
+			"prix" : 6.00
+		},
+		{
+			"nom" : "céréal",
+			"taille": "1/3",
+			"prix" : 5.20
+		},
+		{
+			"nom" : "céréal",
+			"taille": "1/2",
+			"prix" : 6.00
+		},
+		{
+			"nom" : "céréal",
+			"taille": "2/3",
+			"prix" : 6.80
 		},
 		{
 			"nom" : "portugais",
-			"prix" : 5.80		  
+			"taille": "1/3",
+			"prix" : 5.80
+		},
+		{
+			"nom" : "portugais",
+			"taille": "1/2",
+			"prix" : 6.50
+		},
+		{
+			"nom" : "portugais",
+			"taille": "2/3",
+			"prix" : 7.20
 		}
+
 	],
 	"ingrédients": [
 		{ 

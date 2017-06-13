@@ -92,14 +92,14 @@ section {
 .mainTitre{
   text-align: center ;
   margin-top: 130px;
-  font-size: 50px;
+  font-size: 40px;
   color: #FFFFFF;
 }
 
 .titre{
   text-align: left ;
-  margin-top: 130px;
-  font-size: 50px;
+  margin-top: 70px;
+  font-size: 45px;
   color: #FFFFFF;
 }
 
@@ -154,12 +154,21 @@ section {
 }
 
 .menu-text-entete{
-    font-size: 18px;
+    font-size: 17px;
+    font-weight:bold;
+
 }
 
 .legume{
-    width: 40px;
+    width: 25px;
 }
+
+.menu-table{
+    width: 60%;
+    font-size: 11px;
+}
+
+
 
 
 /*--------------section4 contact----------------*/
