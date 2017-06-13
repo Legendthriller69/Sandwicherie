@@ -212,6 +212,7 @@ section {
     animation: arrow-scroll 1.7s infinite ease
 }
 
+
 @keyframes arrow-scroll {
     0% {
         transform: translateY(0);

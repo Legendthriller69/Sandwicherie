@@ -96,6 +96,9 @@ $('#checkboxes').on('change' , function () {
                     /*start animation*/
                     startAnimation('#salad');
                     startAnimation('#saladShadow');
+                    calculatePrice(id);
+
+
                     break;
                 case "chene":
                     /*start animation*/
@@ -320,3 +323,70 @@ function endAnimation (targetElementClass) {
     targetElement.off();
 
 }
+
+function calculatePrice(targetId)
+{
+
+    alert();
+    var data = null;
+    readTextFile("./data/dbSandwicherie.json", function(text){
+        data = JSON.parse(text);
+    });
+    alert(targetId);
+
+
+    switch(targetId)
+    {
+        case "salad":
+            alert(data.ingredients[0].nom[0]);
+            break;
+        case "chene":
+            break;
+        case "ham":
+            break;
+        case "salami":
+            break;
+        case "morta":
+            break;
+        case "bacon":
+            break;
+        case "salmon":
+            break;
+        case "cheddar":
+            break;
+        case "edam":
+            break;
+        case "mozza":
+            break;
+        case "brie":
+            break;
+        case "raclette":
+            break;
+        case "pickle":
+            break;
+        case "egg":
+            break;
+        case "ognon":
+            break;
+        case "salad2":
+            break;
+        case "tomato":
+            break;
+        case "chene2":
+            break;
+    }
+
+}
+
+function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
+}
+
