@@ -65,7 +65,10 @@ section {
     font-weight: bold;
     color: white;
     text-align: right;
+    margin-right: 10%;
 }
+
+
 
 .menu li {
     display: inline-block;
@@ -92,19 +95,65 @@ section {
 .menu ul {
     margin-bottom: 0;
 }
+/*--------------section-title----------------*/
+.section-title
+{
+    text-align: center;
+    margin-top: 70px;
+    color: #FFFFFF;
+    vertical-align: middle;
+}
+
+.title {
+    vertical-align: middle;
+    font-family: Carosello;
+    display: inline-block;
+    font-size: 5em;
+    padding-right: 10px;
+
+}
+.section-title > span
+{
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    position: relative;
+}
+.section-title span:before
+{
+    right: 100%;
+    border-bottom: 2px solid #FFFFFF;
+    content: '';
+    margin: 0 3px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+}
+.section-title span:after
+{
+    left: 100%;
+    border-bottom: 2px solid #FFFFFF;
+    content: '';
+    margin: 0 3px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+}
+
+.menu-icon{
+    width:5em;
+    vertical-align: middle;
+    display: inline-block;
+    padding-right: 10%;
+
+
+}
+
 /*--------------section 1----------------*/
 
 .mainTitre {
     text-align: center;
     margin-top: 130px;
     font-size: 40px;
-    color: #FFFFFF;
-}
-
-.titre {
-    text-align: left;
-    margin-top: 70px;
-    font-size: 45px;
     color: #FFFFFF;
 }
 
