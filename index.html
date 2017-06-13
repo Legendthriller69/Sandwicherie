@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <table class="table menu-text menu-table">
+            <table class="table menu-text menu-table" jput="t_template">
                 <thead class="menu-text-entete">
                 <tr>
                     <th>Ingredients</th>
@@ -77,7 +77,7 @@
                     <th>2/3</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody jput="tbody_template">
                 <tr>
                     <td><img src="img/bread.svg" class="legume"></td>
                     <td></td>
@@ -86,7 +86,7 @@
 
                 </tr>
                 <tr>
-                    <td>Français</td>
+                    <td>Française</td>
                     <td>4,50</td>
                     <td>5,10</td>
                     <td>6,00</td>
@@ -324,6 +324,18 @@
                     <td>0,20</td>
                     <td>0,20</td>
                 </tr>
+				<tr>
+					<td>Sauce mexicaine</td>
+					<td>0,20</td>
+					<td>0,20</td>
+					<td>0,20</td>
+				</tr>
+				<tr>
+					<td>Sauce satay</td>
+					<td>0,20</td>
+					<td>0,20</td>
+					<td>0,20</td>
+				</tr>
                 <tr>
                     <td>Miel</td>
                     <td>0,20</td>
@@ -669,9 +681,12 @@
         $(this).parents(".custom-select").removeClass("opened");
         $(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text());
     });
+
+
 </script>
 <script src="js/sandwichCreation.js"></script>
 <script src="js/dragAndDrop.js"></script>
+
 
 </body>
 </html>
