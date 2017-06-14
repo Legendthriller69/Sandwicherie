@@ -1,4 +1,8 @@
 /* RESET */
+@font-face {
+	font-family: "Carosello";
+	src: url("../fonts/Carosello-Regular.ttf");
+}
 * {
     margin: 0 0;
     padding: 0 0;
@@ -304,16 +308,12 @@ button {
     text-align: right;
 	margin-top : 10px;
 }
-
-#holder {
+#holderMax {
     color: #ccc;
     border: 3px dashed #fff;
     padding-top: 15px;
     padding-bottom: 15px;
     text-align: center;
-}
-#icon-del-file:hover {
-	color : red;
 }
 /*--------------footer----------------*/
 .paddingFooter {

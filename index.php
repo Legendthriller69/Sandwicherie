@@ -1,1046 +1,672 @@
+<?php
+	require_once('php/Email.class.php');
+	
+	//Display success messages
+	if(isset($_SESSION['success'])) {
+		foreach($_SESSION['success'] as $success)
+		{
+			$html .= '<script>$.growl.notice({ title : "Succès", message: "'.$success.'" });</script>';
+		}
+		unset($_SESSION['success']);
+	}
+	//Display warning messages
+	if(isset($_SESSION['warning'])) {
+		foreach($_SESSION['warning'] as $warning)
+		{
+			$html .= '<script>$.growl.warning({ title : "Attention", message: "'.$warning.'" });</script>';
+		}
+		unset($_SESSION['warning']);
+	}
+	//Display error messages
+	if(isset($_SESSION['error'])) {
+		foreach($_SESSION['error'] as $error)
+		{
+			$html .= '<script>$.growl.error({ title : "Erreur", message: "'.$error.'" });</script>';
+		}
+		unset($_SESSION['error']);
+	}	
+	if(isset($_POST['contactButton'])) {
+		if(isset($_POST['contactName']) && $_POST['contactName'] != null) {
+			$email = new Email();
+			$email->formulaireContact($_POST['contactName'], $_POST['contactEmail'], $_POST['contactContent']);
+		}
+	}	
+	if(isset($_POST['cvButton'])) {
+		$email = new Email();
+		$email->sendCV($_POST['cvNom'], $_POST['cvPrenom'], $_POST['cvTelephone'], $_POST['cvEmail'], $_POST['cvAdresse'], $_POST['cvNpa'], $_POST['cvVille'], $_POST['cvFile']);
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
+    <link href="css/bootstrap.css" rel='stylesheet' type='text/css'>
     <link href="css/main.css" rel='stylesheet' type='text/css'>
-	<link href="css/bootstrap.css" rel='stylesheet' type='text/css'>
-    <style>
-
-        #breadBot {
-            stroke: #DE9A5E;
-            stroke-dasharray: 1765px;
-            stroke-dashoffset: 1765px;
-            stroke-width: 0;
-            fill-opacity: 0;
-
-        }
-
-        #breadBotShadow {
-            stroke: #BF8352;
-            stroke-dasharray: 1765px;
-            stroke-dashoffset: 1765px;
-            stroke-width: 0;
-            fill-opacity: 0;
-
-        }
-
-        #salad1 {
-            stroke: #7FB76E;
-            stroke-dasharray: 2177px;
-            stroke-dashoffset: 2177px;
-            stroke-width: 0;
-            fill-opacity: 0;
-        }
-
-        #salad2 {
-            stroke: #8ECC79;
-            stroke-dasharray: 2177px;
-            stroke-dashoffset: 2177px;
-            stroke-width: 0;
-            fill-opacity: 0;
-
-        }
-
-        #ham1, #ham2, #ham3 {
-            stroke: #F5B1A3;
-            stroke-dasharray: 935px;
-            stroke-dashoffset: 935px;
-            stroke-width: 0;
-            fill-opacity: 0;
-        }
-
-		#salami1, #salami2, #salami3 {
-			stroke: #933D2F;
-			stroke-dasharray: 741px;
-			stroke-dashoffset: 741px;
-			stroke-width: 0;
-			fill-opacity: 0;
-		}
-
-        #cheese1, #cheese2 {
-            stroke: #FFE283;
-            stroke-dasharray: 989px;
-            stroke-dashoffset: 989px;
-            stroke-width: 0;
-            fill-opacity: 0;
-
-        }
-
-        #mozza1, #mozza2 {
-            stroke: #F9F7E4;
-            stroke-dasharray: 797px;
-            stroke-dashoffset: 797px;
-            stroke-width: 0;
-            fill-opacity: 0;
-        }
-
-		#brie1, #brie2, #brie3 {
-			stroke: #F9DCB2;
-			stroke-dasharray: 782px;
-			stroke-dashoffset: 782px;
-			stroke-width: 0;
-			fill-opacity: 0;
-		}
-
-		#raclette1, #raclette2, #raclette3 {
-			stroke: #F2E49E;
-			stroke-dasharray: 303px;
-			stroke-dashoffset: 303px;
-			stroke-width: 0;
-			fill-opacity: 0;
-		}
-
-        #tomato1, #tomato2, #tomato3 {
-            stroke: #D04727;
-            stroke-dasharray: 702px;
-            stroke-dashoffset: 702px;
-            stroke-width: 0;
-            fill-opacity: 0;
-            /*
-            animation-name: draw;
-            animation-duration: 5s;
-            animation-fill-mode: forwards;
-            animation-iteration-count: 1;
-            animation-timing-function: linear;
-            */
-        }
-
-		#pickle1, #pickle2, #pickle3 {
-			stroke: #54893E;
-			stroke-dasharray: 519px;
-			stroke-dashoffset: 519px;
-			stroke-width: 0;
-			fill-opacity: 0;
-		}
-
-        #breadTop {
-            stroke: #DE9A5E;
-            stroke-dasharray: 1927px;
-            stroke-dashoffset: 1927px;
-            stroke-width: 0;
-            fill-opacity: 0;
-            /*
-            animation-name: draw;
-            animation-duration: 5s;
-            animation-fill-mode: forwards;
-            animation-iteration-count: 1;
-            animation-timing-function: linear;
-            */
-        }
-
-        #breadTopShadow {
-            stroke: #BF8352;
-            stroke-dasharray: 1765px;
-            stroke-dashoffset: 1765px;
-            stroke-width: 0;
-            fill-opacity: 0;
-        }
-
-        #lines {
-            stroke: #B76B32;
-            stroke-dasharray: 742px;
-            stroke-dashoffset: 742px;
-            stroke-width: 0;
-            fill-opacity: 0;
-            z-index: 25;
-        }
-
-        @keyframes draw {
-            0% {
-                fill-opacity: 0;
-                stroke-width: 4;
-            }
-            99% {
-                fill-opacity: 0;
-                stroke-width: 4;
-            }
-            100% {
-                stroke-dashoffset: 0;
-                stroke-width: 0;
-                fill-opacity: 1;
-            }
-        }
+    <link href="css/sandwich.css" rel='stylesheet' type='text/css'>
+    <link href="css/svg.css" rel='stylesheet' type='text/css'>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/loadSvg.js"></script>
+    <script src="js/loadLogo.js"></script>
+    <script src="js/scroll.js"></script>
+	<script src="js/jquery.growl.js"></script>
 
 
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 
+<div id="player">
+    <audio controls autoplay hidden>
+        <source src="music/music" type="audio/mpeg">
+    </audio>
+</div>
 
-<nav class="navbarScroll">
-	<div class="container">
-		<div class="menu" id="menu">
-			<ul>
-				<li><a class="scrollTo" id="animate1" href="#section1">HOME</a></li>
-				<li><a class="scrollTo" id="animate2" href="#section2">COMMANDER</a></li>
-				<li><a class="scrollTo" id="animate3" href="#section3">CONTACT</a></li>
-			</ul>
-		</div>
-	</div>
+<nav class="navbarScroll navbar navbar-default navbar-fixed-top">
+    <div class="menu" id="menu">
+        <ul>
+            <li><a class="scrollTo" id="animate1" href="#section1">accueil</a></li>
+            <li><a class="scrollTo" id="animate2" href="#section2">menu</a></li>
+            <li><a class="scrollTo" id="animate3" href="#section3">commander</a></li>
+            <li><a class="scrollTo" id="animate4" href="#section4">contact</a></li>
+            <li><a class="scrollTo" id="animate5" href="#section5">staff</a></li>
+        </ul>
+    </div>
 </nav>
 
 
+<section id="section1" class="background-section1">
+    <div class=" container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="logo">
+                        <img src="img/logo.svg" class="draw-logo svg"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
 
-<section id="section1" class="background-section">
-	<div>
+                        <p class="text-mainsection">
+                            <span class="guillemets">"</span>Crée ton sandwich. Goûte la différence.<span
+                                class="guillemets">"</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scrollTo" href="#section2">
+            <img src="img/down-arrow.svg" class="svg arrow">
+        </div>
 
-	</div>
-    section1
+    </div>
 </section>
-<section id="section2" class="background-section container-fluid">
-	<div class="content">
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<h2 class="titre ">Mon sandwich</h2>
+<section id="section2" class="background-section">
+    <div class=" container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title"><span><div
+                        class="title">Menu</div> </span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <table class="table menu-text menu-table">
+                    <thead class="menu-text-entete">
+                    <tr>
+                        <th>Ingredients</th>
+                        <th>1/3</th>
+                        <th>1/2</th>
+                        <th>2/3</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><img src="img/bread.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td>Français</td>
+                        <td>4,50</td>
+                        <td>5,10</td>
+                        <td>6,00</td>
+
+                    </tr>
+                    <tr>
+                        <td>Céréal</td>
+                        <td>5,20</td>
+                        <td>6,00</td>
+                        <td>6,80</td>
+                    </tr>
+                    <tr>
+                        <td>Portugais</td>
+                        <td>5,80</td>
+                        <td>6,50</td>
+                        <td>7,20</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/salad.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td>Laitue</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+
+                    </tr>
+                    <tr>
+                        <td>Feuille de chêne</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                    </tr>
+                    <tr>
+                        <td>Tomate</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                    </tr>
+                    <tr>
+                        <td>Oignon</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                    </tr>
+
+                    <tr>
+                        <td><img src="img/meat.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Jambon</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                    </tr>
+                    <tr>
+                        <td>Salami</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                    </tr>
+                    <tr>
+                        <td>Mortadelle</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                    </tr>
+                    <tr>
+                        <td>Lard</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <table class="table menu-text menu-table">
+                    <thead class="menu-text-entete">
+                    <tr>
+                        <th>Ingredients</th>
+                        <th>1/3</th>
+                        <th>1/2</th>
+                        <th>2/3</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <tr>
+                        <td><img src="img/fish.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Saumon</td>
+                        <td>1,20</td>
+                        <td>1,20</td>
+                        <td>1,20</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/cheese.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Cheddar</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                    </tr>
+                    <tr>
+                        <td>Emmental</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                    </tr>
+                    <tr>
+                        <td>Mozzarella</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                    </tr>
+                    <tr>
+                        <td>Brie</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                    </tr>
+                    <tr>
+                        <td>Raclette</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                    </tr>
+                    <tr>
+                        <td>Edam</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/plus.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Cornichon</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                    </tr>
+                    <tr>
+                        <td>Oeuf</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <table class="table menu-text menu-table">
+                    <thead class="menu-text-entete">
+                    <tr>
+                        <th>Ingredients</th>
+                        <th>1/3</th>
+                        <th>1/2</th>
+                        <th>2/3</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <tr>
+                        <td><img src="img/sauce.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Beurre</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Moutard</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Mayonnaise</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Huile d'olive</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Pesto</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Sauce tartare</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Sauce cocktail</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Sauce curry</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Miel</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Confiture</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="scrollTo" href="#section3">
+            <img src="img/down-arrow.svg" class="arrow">
+        </div>
+    </div>
+</section>
+
+
+<section id="section3" class="background-section-green">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title"><span><div
+                        class="title">Mon sandwich</div> </span>
+				</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9 col-sm-9">
+                <div>
+                    <img src="img/sandwich.svg" class="svg"/>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div id="hello" style="color:white">hello</div>
+
+
+                <div class="row">
+                    <select class="select" id="bread">
+                        <div class="options">
+                        <option selected="selected" disabled="disabled">Types de baguettes</option>
+                        <option value="cr">Céréales</option>
+                        <option value="fr">Française</option>
+                        <option value="pt">Portugaises</option>
+                        </div>
+                    </select>
+                </div>
+                <div class="row">
+                    <select class="select" id="multiselect" onclick="showCheckboxes()">
+                        <option selected="selected" disabled="disabled">Sélectionne tes ingrédients</option>
+                    </select>
+                    <div id="checkboxes">
+                        <label for="salad">
+                            <input type="checkbox" id="salad"/>Laitue</label>
+                        <label for="chene">
+                            <input type="checkbox" id="chene"/>Feuilles de chêne</label>
+                        <label for="ham">
+                            <input type="checkbox" id="ham"/>Jambon</label>
+                        <label for="salami">
+                            <input type="checkbox" id="salami"/>Salami</label>
+                        <label for="morta">
+                            <input type="checkbox" id="morta"/>Mortadelle</label>
+                        <label for="bacon">
+                            <input type="checkbox" id="bacon"/>Lard</label>
+                        <label for="salmon">
+                            <input type="checkbox" id="salmon"/>Saumon</label>
+                        <label for="cheddar">
+                            <input type="checkbox" id="cheddar"/>Cheddar</label>
+                        <label for="edam">
+                            <input type="checkbox" id="edam"/>Edam</label>
+                        <label for="mozza">
+                            <input type="checkbox" id="mozza"/>Mozzarella</label>
+                        <label for="brie">
+                            <input type="checkbox" id="brie"/>Brie</label>
+                        <label for="raclette">
+                            <input type="checkbox" id="raclette"/>Raclette</label>
+                        <label for="pickle">
+                            <input type="checkbox" id="pickle"/>Cornichons</label>
+                        <label for="egg">
+                            <input type="checkbox" id="egg"/>Oeufs</label>
+                        <label for="ognon">
+                            <input type="checkbox" id="ognon"/>Ognons</label>
+                        <label for="salad2">
+                            <input type="checkbox" id="salad2"/>Laitue 2ème feuille</label>
+                        <label for="tomato">
+                            <input type="checkbox" id="tomato"/>Tomates</label>
+                        <label for="chene2">
+                            <input type="checkbox" id="chene2"/>Feuilles de chêne 2ème feuille</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <select class="select" id="sauce">
+                        <option selected="selected" disabled="disabled">Choisissez votre sauce</option>
+                        <option value="beurre">Beurre</option>
+                        <option value="moutarde">Moutarde</option>
+                        <option value="mayonnaise">Mayonnaise</option>
+                        <option value="olive">Huile d'olive</option>
+                        <option value="pesto">Pesto</option>
+                        <option value="tartare">Sauce tartare</option>
+                        <option value="cocktail">Sauce cocktail</option>
+                        <option value="curry">Sauce curry</option>
+                        <option value="miel">Miel</option>
+                        <option value="confiture">Confiture</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <select class="select" id="size">
+                        <div class="options">
+                            <option selected="selected" disabled="disabled">Tailles</option>
+                            <option value="1/3">1/3</option>
+                            <option value="1/2">1/2</option>
+                            <option value="2/3">2/3</option>
+                        </div>
+                    </select>
+                </div>
+                <div class="row">
+                    Total
+                </div>
+            </div>
+        </div>
+
+        <div>
+
+            <script>
+                var expanded = false;
+
+                function showCheckboxes() {
+                    var checkboxes = document.getElementById("checkboxes");
+                    if (!expanded) {
+                        checkboxes.style.display = "block";
+                        expanded = true;
+                    } else {
+                        checkboxes.style.display = "none";
+                        expanded = false;
+                    }
+                }
+            </script>
+
+        </div>
+
+    </div>
+    <div class="scrollTo" href="#section4">
+        <img src="img/down-arrow.svg" class="arrow">
+    </div>
+    </div>
+</section>
+
+
+<section id="section4" class="background-section">
+    <div class="container-fluid ">
+		<form name="contactForm" action="index.php" method="post">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title"><span><div
+							class="title">Contacte-nous</div> </span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-6">
+							<input class="form-control" name="contactName" type="text" placeholder="Nom"/>
+						</div>
+						<div class="col-md-6">
+							<input class="form-control" name="contactEmail" type="text" placeholder="E-mail"/>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-12">
+							<textarea class="form-control" name="contactContent" rows="10"></textarea>
+						</div>
+
+					</div>
+					<div class="row right">
+						<div class="col-md-12">
+							<button name="contactButton">Envoyer</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+				</div>
+			</div>
+			<div class="scrollTo" href="#section5">
+				<img src="img/down-arrow.svg" class="arrow">
+			</div>
+		</form>
+    </div>
+</section>
+
+<section id="section5" class="background-section">
+    <div class="container-fluid ">
+		<form name="contactForm" action="index.php" method="post">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title"><span><div
+                        class="title">Jobs</div> </span>
+				</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 text-postule-list">
+                Nom :
+            </div>
+            <div class="col-md-8 field-postule">
+                <input class="form-control field-marge" type="text" name="cvNom" placeholder="Nom"/>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-4 text-postule-list">
+                Prénom :
+            </div>
+            <div class="col-md-8 field-postule">
+                <input class="form-control field-marge" type="text" name="cvPrenom" placeholder="Prénom"/>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-4 text-postule-list">
+                Téléphone :
+            </div>
+            <div class="col-md-8 field-postule">
+                <input class="form-control field-marge" type="text" name="cvTelephone" placeholder="Téléphone"/>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-4 text-postule-list">
+                E-mail :
+            </div>
+            <div class="col-md-8 field-postule">
+                <input class="form-control field-marge" type="text" name="cvEmail" placeholder="E-mail"/>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-4 text-postule-list">
+                Adresse :
+            </div>
+            <div class="col-md-8 field-postule">
+                <input class="form-control field-marge" type="text" name="cvAdresse" placeholder="Adresse"/>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-4 text-postule-list">
+                Npa :
+            </div>
+            <div class="col-md-8 field-postule">
+                <input class="form-control field-marge" type="text" name="cvNpa" placeholder="Npa"/>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-4 text-postule-list">
+                Ville :
+            </div>
+            <div class="col-md-8 field-postule">
+                <input class="form-control field-marge" type="text" name="cvVille" placeholder="Ville"/>
+            </div>
+        </div>
+		<div class="row ">
+			<div class="col-md-4 text-postule-list">
+				Curriculum Vitae :
+			</div>
+			<div class="col-md-8 field-postule">
+				<div id="holder" >Glissez-déposez votre CV
+					<input type="file" name="cvFile" id="fileName"/>
+				</div>
+			</div>
+		</div>
+		<div class="row send-postule">
+			<div class="col-md-4 text-postule-list">
+			</div>
+			<div class="col-md-8 field-postule">
+				<button name="cvButton">Envoyer</button>
+			</div>
 		</div>
 	</div>
-            <div class="row">
-                <div class="col-md-8 col-sm-8">
-                        <div>
-							<svg version="1.1" id="sandwich" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 913 359.7" style="enable-background:new 0 0 913 359.7;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#DE9A5E;}
-	.st1{fill:#BF8352;}
-	.st2{fill:#7FB76E;}
-	.st3{fill:#8ECC79;}
-	.st4{fill:#F0CCC7;}
-	.st5{fill:#F5B1A3;}
-	.st6{fill:#F1A69A;}
-	.st7{fill:#933D2F;}
-	.st8{fill:#B24630;}
-	.st9{fill:#EA9B83;}
-	.st10{fill:#FFE283;}
-	.st11{fill:#F8D273;}
-	.st12{fill:#F9F7E4;}
-	.st13{fill:#FFFFE8;}
-	.st14{fill:#FCF6ED;}
-	.st15{fill:#F9DCB2;}
-	.st16{fill:#FFFAC8;}
-	.st17{fill:#FBF4BE;}
-	.st18{fill:#EFE0A0;}
-	.st19{fill:#F2E49E;}
-	.st20{fill:#F9EDAA;}
-	.st21{fill:#54893E;}
-	.st22{fill:#96CD71;}
-	.st23{fill:#BDE89A;}
-	.st24{fill:#D04727;}
-	.st25{fill:#F05A28;}
-	.st26{fill:#F6921E;}
-	.st27{fill:#B76B32;}
-</style>
-<path id="breadBot" class="st0" d="M854,266.5c-7-0.5-204.2-0.5-397.7-0.4C262.8,266,65.5,266,58.6,266.5
-	c-13.8,1.1-27.5,25.1-24.8,52.3c1.6,15.8,43.1,22.4,116.7,26.5c74,5.6,182.4,10.2,305.8,9.3c123.3,1,231.8-3.7,305.8-9.3
-	c73.6-4.1,115.1-10.7,116.7-26.5C881.5,291.6,867.8,267.6,854,266.5z"/>
-<path id="breadBotShadow" class="st1" d="M878.8,318.8c-1.6,15.8-43.1,22.4-116.7,26.5c-74,5.6-182.4,10.2-305.8,9.3
-	c-123.3,1-231.8-3.7-305.8-9.3c-73.6-4.1-115.1-10.7-116.7-26.5c-0.2-1.5-0.2-3-0.3-4.5c-0.1,3.1,0,6.3,0.3,9.5
-	c1.6,15.8,43.1,22.4,116.7,26.5c74,5.6,182.4,10.2,305.8,9.3c123.3,1,231.8-3.7,305.8-9.3c73.6-4.1,115.1-10.7,116.7-26.5
-	c0.3-3.2,0.4-6.4,0.3-9.5C879,315.8,878.9,317.3,878.8,318.8z"/>
-<path id="salad1" class="st2" d="M893.9,250c0.4-24.4-101.6-21.4-101.6-21.4s-179,0-335.6,0.4c-156.6-0.4-335.6-0.4-335.6-0.4
-	s-102-3-101.6,21.4c0.4,24.4-46.3,48,5,44c51.3-4,46.2,31.6,73,16.3c26.8-15.2,44.1-42.4,101,0c36,26.8,75.6-2.4,89-13.3
-	c13.4-10.9,49-8,67.4,22.3c9.7,16,45.4,28.3,57.9,3.3c12.4-25.1,35.7-31.6,59.8-9.8c24.2,21.8,42.3,35.9,58.7,9.8
-	c16.4-26.1,54.3-32.7,85.6-14.2c31.3,18.5,42.1,35.9,63.5,10.9c21.5-25.1,27.3-38.1,51.9-20.7c24.6,17.4,55.3,43.6,71,14.2
-	c2.5-4.7,2.4-9.9,0.3-15.4c9.8,7,18.8,13.4,27,16.8c45.6,18.7,7.2-24.1,58.5-20.2C940.3,298,893.6,274.4,893.9,250z"/>
-<path id="salad2" class="st3" d="M893.9,243c0.4-24.4-101.6-21.4-101.6-21.4s-179,0-335.6,0.4c-156.6-0.4-335.6-0.4-335.6-0.4
-	s-102-3-101.6,21.4c0.4,24.4-46.3,48,5,44c51.3-4,46.2,31.6,73,16.3c26.8-15.2,44.1-42.4,101,0c36,26.8,75.6-2.4,89-13.3
-	c13.4-10.9,49-8,67.4,22.3c9.7,16,45.4,28.3,57.9,3.3c12.4-25.1,35.7-31.6,59.8-9.8c24.2,21.8,42.3,35.9,58.7,9.8
-	c16.4-26.1,54.3-32.7,85.6-14.2c31.3,18.5,42.1,35.9,63.5,10.9c21.5-25.1,27.3-38.1,51.9-20.7c24.6,17.4,55.3,43.6,71,14.2
-	c2.5-4.7,2.4-9.9,0.3-15.4c9.8,7,18.8,13.4,27,16.8c45.6,18.7,7.2-24.1,58.5-20.2C940.3,291,893.6,267.4,893.9,243z"/>
-<g id="ham1">
-	<path class="st4" d="M824.3,137.5c-21.7-11.2-66.4-23.6-110.6-25.9c-44.2-2.3-85.4,15.5-92.8,15.4c-7.4,0-111.8,14.8-109.8,33
-		c1.2,10.2-3,14.1-3.3,15.3c-0.3,1.2,1-1,4.1,8.4c3.2,9.5,10.2,39.2,31.6,57c21.5,17.8,35.3,16.1,46.6,22.3
-		c11.3,6.2,48.6,28.2,99.8,24.9c51.2-3.4,90.8-17.7,154.4-22.5c63.6-4.8,68.4-49.2,56.1-64.7C888.2,185.2,854.7,153.2,824.3,137.5z"
-		/>
-	<path class="st5" d="M817.3,142.6c-21.7-11.2-63.6-26.3-107.8-28.6c-44.2-2.3-84.9,13.7-92.3,13.6c-7.4,0-102.9,21.1-105.7,30.5
-		c-2.8,9.4-3,14.1-3.3,15.3c-0.3,1.2,1-1,4.1,8.4c3.2,9.5,10.2,39.2,31.6,57c21.5,17.8,35.3,16.1,46.6,22.3
-		c11.3,6.2,49.2,25.1,100.5,21.7c51.2-3.4,86.5-18.3,150.1-23.1c63.6-4.8,59.2-46.5,46.9-62C875.8,182.2,847.7,158.2,817.3,142.6z"
-		/>
-	<path class="st6" d="M550.4,235.6c-11.3-12.5-21.7-29.5-16.3-45.9c10.3-31.7,52.4-21.1,85.2-33.5c32.8-12.4,34.2-28.8,80.5-22.5
-		c46.3,6.4,150.5,24.9,159.7,67.8c9.2,42.9-46.8-0.1-94.8,15.3c-35.2,11.3-20.7,58.9-65.9,62.6C662.6,282.4,558.8,245,550.4,235.6z"
-		/>
-</g>
-<g id="ham2">
-	<path class="st4" d="M560.3,145.3c-21.7-11.2-66.4-23.6-110.6-25.9c-44.2-2.3-85.4,15.5-92.8,15.4c-7.4,0-111.8,14.8-109.8,33
-		c1.2,10.2-3,14.1-3.3,15.3c-0.3,1.2,1-1,4.1,8.4c3.2,9.5,10.2,39.2,31.6,57c21.5,17.8,35.3,16.1,46.6,22.3
-		c11.3,6.2,48.6,28.2,99.8,24.9c51.2-3.4,90.8-17.7,154.4-22.5c63.6-4.8,68.4-49.2,56.1-64.7C624.2,193,590.7,161,560.3,145.3z"/>
-	<path class="st5" d="M553.2,150.4c-21.7-11.2-63.6-26.3-107.8-28.6c-44.2-2.3-84.9,13.7-92.3,13.6c-7.4,0-102.9,21.1-105.7,30.5
-		c-2.8,9.4-3,14.1-3.3,15.3c-0.3,1.2,1-1,4.1,8.4c3.2,9.5,10.2,39.2,31.6,57c21.5,17.8,35.3,16.1,46.6,22.3
-		c11.3,6.2,49.2,25.1,100.5,21.7c51.2-3.4,86.5-18.3,150.1-23.1c63.6-4.8,59.2-46.5,46.9-62C611.7,190,583.6,166,553.2,150.4z"/>
-	<path class="st6" d="M286.3,243.4c-11.3-12.5-21.7-29.5-16.3-45.9c10.3-31.7,52.4-21.1,85.2-33.5c32.8-12.4,34.2-28.8,80.5-22.5
-		c46.3,6.4,150.5,24.9,159.7,67.8c9.2,42.9-46.8-0.1-94.8,15.3c-35.2,11.3-20.7,58.9-65.9,62.6C398.5,290.3,294.8,252.8,286.3,243.4
-		z"/>
-</g>
-<g id="ham3">
-	<path class="st4" d="M320,150.8c-21.7-11.2-66.4-23.6-110.6-25.9c-44.2-2.3-85.4,15.5-92.8,15.4c-7.4,0-111.8,14.8-109.8,33
-		c1.2,10.2-3,14.1-3.3,15.3c-0.3,1.2,1-1,4.1,8.4c3.2,9.5,10.2,39.2,31.6,57c21.5,17.8,35.3,16.1,46.6,22.3
-		c11.3,6.2,48.6,28.2,99.8,24.9c51.2-3.4,90.8-17.7,154.4-22.5c63.6-4.8,68.4-49.2,56.1-64.7C383.9,198.5,350.4,166.5,320,150.8z"/>
-	<path class="st5" d="M313,155.9c-21.7-11.2-63.6-26.3-107.8-28.6c-44.2-2.3-84.9,13.7-92.3,13.6c-7.4,0-102.9,21.1-105.7,30.5
-		c-2.8,9.4-3,14.1-3.3,15.3c-0.3,1.2,1-1,4.1,8.4c3.2,9.5,10.2,39.2,31.6,57c21.5,17.8,35.3,16.1,46.6,22.3
-		c11.3,6.2,49.2,25.1,100.5,21.7c51.2-3.4,86.5-18.3,150.1-23.1c63.6-4.8,59.2-46.5,46.9-62C371.5,195.5,343.3,171.6,313,155.9z"/>
-	<path class="st6" d="M46.1,248.9c-11.3-12.5-21.7-29.5-16.3-45.9c10.3-31.7,52.4-21.1,85.2-33.5c32.8-12.4,34.2-28.8,80.5-22.5
-		c46.3,6.4,150.5,24.9,159.7,67.8s-46.8-0.1-94.8,15.3c-35.2,11.3-20.7,58.9-65.9,62.6C158.2,295.8,54.5,258.3,46.1,248.9z"/>
-</g>
-<g id="salami3">
-	<path class="st7" d="M52.1,168.6c0,0-120,87.7,23.3,126.8c143.3,39.1,312.8-18.5,205.3-88.1C173.1,137.6,52.1,168.6,52.1,168.6z"/>
-	<path class="st8" d="M59.6,150.2c0,0-124.1,102.4,17.8,140.6c141.9,38.2,303.9-13.6,199.1-87.3C171.9,129.8,59.6,150.2,59.6,150.2z
-		"/>
-	<path class="st9" d="M113.4,274c-0.3,0.8-2.4,1.1-4.5,0.6c-2.1-0.5-3.6-1.7-3.3-2.5c0.3-0.9,2.4-1.1,4.5-0.6
-		C112.3,272,113.8,273.1,113.4,274z"/>
-	<path class="st9" d="M172,278.7c-0.3,0.8-2.4,1.1-4.5,0.6c-2.1-0.5-3.6-1.7-3.3-2.5c0.3-0.9,2.4-1.1,4.5-0.6
-		C170.9,276.7,172.4,277.8,172,278.7z"/>
-	<path class="st9" d="M53.1,224.8c-0.3,0.8-2,1.2-3.6,0.8c-1.7-0.4-2.7-1.4-2.4-2.3c0.3-0.9,2-1.2,3.6-0.8
-		C52.4,222.9,53.5,223.9,53.1,224.8z"/>
-	<path class="st9" d="M144.1,288.6c-0.4,1-4.2,1-8.3-0.1c-4.2-1-7.2-2.7-6.8-3.7c0.4-1,4.1-1,8.3,0.1
-		C141.4,285.9,144.5,287.6,144.1,288.6z"/>
-	<path class="st9" d="M131.9,224.7c-0.2,0.5-1.6,0.5-3.1,0.1c-1.5-0.4-2.6-1.1-2.5-1.6c0.2-0.5,1.6-0.5,3.1-0.1
-		C131,223.5,132.1,224.2,131.9,224.7z"/>
-	<path class="st9" d="M175.9,223.8c-0.2,0.5-2.1,0.4-4.2-0.1c-2.1-0.5-3.7-1.4-3.5-1.8c0.2-0.5,2.1-0.4,4.2,0.1
-		C174.5,222.5,176.1,223.3,175.9,223.8z"/>
-	<path class="st9" d="M182.9,248.8c-0.6,1.5-4,2-7.6,1.1c-3.6-0.9-6-2.9-5.4-4.4c0.6-1.5,4-2,7.6-1.1
-		C181,245.3,183.5,247.3,182.9,248.8z"/>
-	<path class="st9" d="M219.9,247.9c-0.8,2.1-5,2.9-9.3,1.8c-4.3-1.1-7.1-3.6-6.2-5.7c0.8-2.1,5-2.9,9.3-1.8
-		C217.9,243.3,220.7,245.8,219.9,247.9z"/>
-	<path class="st9" d="M166.5,204.4c1.8-4.4,0.8-8.6-2.2-9.4c-3-0.8-6.9,2.2-8.6,6.6c-1.8,4.4-0.8,8.6,2.2,9.4
-		C160.8,211.8,164.7,208.8,166.5,204.4z"/>
-	<path class="st9" d="M76.7,202.2c1.8-4.4,0.8-8.6-2.2-9.4c-3-0.8-6.9,2.2-8.6,6.6c-1.8,4.4-0.8,8.6,2.2,9.4
-		C71.1,209.6,75,206.6,76.7,202.2z"/>
-	<path class="st9" d="M163.6,241.5c1.8-4.4,0.8-8.6-2.2-9.4c-3-0.8-6.9,2.2-8.6,6.6c-1.8,4.4-0.8,8.6,2.2,9.4
-		C157.9,248.8,161.8,245.9,163.6,241.5z"/>
-	<path class="st9" d="M38.6,235.4c1.8-4.4,0.8-8.6-2.2-9.4c-3-0.8-6.9,2.2-8.6,6.6c-1.8,4.4-0.8,8.6,2.2,9.4
-		C32.9,242.7,36.8,239.8,38.6,235.4z"/>
-	<path class="st9" d="M196.4,215.8c1-2.6-1.7-5.6-6-6.7c-4.4-1.1-8.8,0.1-9.8,2.7c-1.1,2.6,1.7,5.6,6,6.7
-		C190.9,219.6,195.3,218.4,196.4,215.8z"/>
-	<path class="st9" d="M216.3,202.4c0.3-0.7-1.7-1.8-4.5-2.4c-2.7-0.7-5.2-0.7-5.4-0.1c-0.3,0.7,1.7,1.8,4.5,2.4
-		C213.6,203.1,216,203.1,216.3,202.4z"/>
-	<path class="st9" d="M136.5,198.1c-0.3,0.8-2.7,1-5.4,0.3c-2.6-0.7-4.5-1.9-4.1-2.7c0.3-0.8,2.7-1,5.4-0.3
-		C135,196,136.8,197.2,136.5,198.1z"/>
-	<path class="st9" d="M128.6,204.7c-0.8,2.1-8,2.2-15.9,0.2c-8-2-13.7-5.3-12.9-7.4c0.9-2.1,8-2.2,15.9-0.2
-		C123.7,199.3,129.5,202.6,128.6,204.7z"/>
-	<path class="st9" d="M63.1,244.7c-0.4,1-2,1.5-3.5,1.1c-1.5-0.4-2.5-1.5-2.1-2.5c0.4-1,2-1.5,3.5-1.1
-		C62.5,242.6,63.5,243.7,63.1,244.7z"/>
-	<path class="st9" d="M232.6,287.4c-0.4,1-2,1.5-3.5,1.1c-1.5-0.4-2.5-1.5-2.1-2.5c0.4-1,2-1.5,3.5-1.1
-		C232,285.3,233,286.4,232.6,287.4z"/>
-	<path class="st9" d="M133.3,184.8c-0.4,1-2,1.5-3.5,1.1c-1.5-0.4-2.5-1.5-2.1-2.5c0.4-1,2-1.5,3.5-1.1
-		C132.7,182.7,133.7,183.8,133.3,184.8z"/>
-	<path class="st9" d="M185.8,292.8c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C181.7,286.2,186.9,290,185.8,292.8z"/>
-	<path class="st9" d="M300.5,259.5c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C296.4,252.9,301.6,256.8,300.5,259.5z"/>
-	<path class="st9" d="M263.2,271.6c-0.7,1.7-6.1,1.9-12.2,0.3c-6-1.5-10.3-4.1-9.7-5.8c0.7-1.7,6.1-1.8,12.2-0.3
-		C259.5,267.3,263.9,269.9,263.2,271.6z"/>
-	<path class="st9" d="M92.5,174.1c-0.7,1.6-4.5,2.2-8.5,1.1c-4-1-6.7-3.2-6.1-4.8c0.6-1.7,4.4-2.2,8.5-1.2
-		C90.4,170.3,93.1,172.4,92.5,174.1z"/>
-	<path class="st9" d="M255.9,223.3c-0.7,1.6-4.5,2.2-8.5,1.1c-4-1-6.7-3.2-6.1-4.8c0.6-1.7,4.4-2.2,8.5-1.2
-		C253.9,219.5,256.6,221.7,255.9,223.3z"/>
-	<path class="st9" d="M209.4,274.2c-0.7,1.6-4.5,2.2-8.5,1.1c-4-1-6.7-3.2-6.1-4.8c0.6-1.7,4.4-2.2,8.5-1.2
-		C207.3,270.4,210.1,272.6,209.4,274.2z"/>
-	<path class="st9" d="M51.1,257.5c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C46.9,250.9,52.2,254.8,51.1,257.5z"/>
-	<path class="st9" d="M134.1,259.5c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C129.9,252.9,135.2,256.8,134.1,259.5z"/>
-	<path class="st9" d="M85.1,276.5c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C80.9,269.9,86.2,273.8,85.1,276.5z"/>
-	<path class="st9" d="M109.9,237.5c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C105.8,230.9,111,234.7,109.9,237.5z"/>
-</g>
-<g id="salami2">
-	<path class="st7" d="M353.1,152.9c0,0-120,87.7,23.3,126.8c143.3,39.1,312.8-18.5,205.3-88.1C474.1,121.9,353.1,152.9,353.1,152.9z
-		"/>
-	<path class="st8" d="M360.7,134.4c0,0-124.1,102.4,17.8,140.6c141.9,38.2,303.9-13.6,199.1-87.3
-		C472.9,114.1,360.7,134.4,360.7,134.4z"/>
-	<path class="st9" d="M414.4,258.2c-0.3,0.8-2.4,1.1-4.5,0.6c-2.1-0.5-3.6-1.7-3.3-2.5c0.3-0.9,2.4-1.1,4.5-0.6
-		C413.3,256.2,414.8,257.3,414.4,258.2z"/>
-	<path class="st9" d="M473,262.9c-0.3,0.8-2.4,1.1-4.5,0.6c-2.1-0.5-3.6-1.7-3.3-2.5c0.3-0.9,2.4-1.1,4.5-0.6
-		C471.9,260.9,473.4,262,473,262.9z"/>
-	<path class="st9" d="M354.1,209c-0.3,0.8-2,1.2-3.6,0.8c-1.7-0.4-2.7-1.4-2.4-2.3c0.3-0.9,2-1.2,3.6-0.8
-		C353.4,207.1,354.5,208.1,354.1,209z"/>
-	<path class="st9" d="M445.1,272.8c-0.4,1-4.2,1-8.3-0.1c-4.2-1-7.2-2.7-6.8-3.7c0.4-1,4.1-1,8.3,0.1
-		C442.4,270.1,445.5,271.8,445.1,272.8z"/>
-	<path class="st9" d="M432.9,208.9c-0.2,0.5-1.6,0.5-3.1,0.1c-1.5-0.4-2.6-1.1-2.5-1.6c0.2-0.5,1.6-0.5,3.1-0.1
-		C432,207.8,433.1,208.5,432.9,208.9z"/>
-	<path class="st9" d="M476.9,208c-0.2,0.5-2.1,0.4-4.2-0.1c-2.1-0.5-3.7-1.4-3.5-1.8c0.2-0.5,2.1-0.4,4.2,0.1
-		C475.5,206.7,477.1,207.5,476.9,208z"/>
-	<path class="st9" d="M483.9,233.1c-0.6,1.5-4,2-7.6,1.1c-3.6-0.9-6-2.9-5.4-4.4c0.6-1.5,4-2,7.6-1.1
-		C482,229.6,484.5,231.5,483.9,233.1z"/>
-	<path class="st9" d="M520.9,232.1c-0.8,2.1-5,2.9-9.3,1.8c-4.3-1.1-7.1-3.6-6.2-5.7c0.8-2.1,5-2.9,9.3-1.8
-		C518.9,227.5,521.7,230.1,520.9,232.1z"/>
-	<path class="st9" d="M467.5,188.7c1.8-4.4,0.8-8.6-2.2-9.4c-3-0.8-6.9,2.2-8.6,6.6c-1.8,4.4-0.8,8.6,2.2,9.4
-		C461.8,196,465.7,193.1,467.5,188.7z"/>
-	<path class="st9" d="M377.7,186.5c1.8-4.4,0.8-8.6-2.2-9.4c-3-0.8-6.9,2.2-8.6,6.6c-1.8,4.4-0.8,8.6,2.2,9.4
-		C372.1,193.8,376,190.9,377.7,186.5z"/>
-	<path class="st9" d="M464.6,225.7c1.8-4.4,0.8-8.6-2.2-9.4c-3-0.8-6.9,2.2-8.6,6.6c-1.8,4.4-0.8,8.6,2.2,9.4
-		C458.9,233.1,462.8,230.1,464.6,225.7z"/>
-	<path class="st9" d="M339.6,219.6c1.8-4.4,0.8-8.6-2.2-9.4c-3-0.8-6.9,2.2-8.6,6.6c-1.8,4.4-0.8,8.6,2.2,9.4
-		C333.9,227,337.8,224,339.6,219.6z"/>
-	<path class="st9" d="M497.4,200.1c1-2.6-1.7-5.6-6-6.7c-4.4-1.1-8.8,0.1-9.8,2.7c-1.1,2.6,1.7,5.6,6,6.7
-		C491.9,203.9,496.3,202.7,497.4,200.1z"/>
-	<path class="st9" d="M517.3,186.7c0.3-0.7-1.7-1.8-4.5-2.4c-2.7-0.7-5.2-0.7-5.4-0.1c-0.3,0.7,1.7,1.8,4.5,2.4
-		C514.6,187.3,517.1,187.3,517.3,186.7z"/>
-	<path class="st9" d="M437.5,182.3c-0.3,0.8-2.7,1-5.4,0.3c-2.6-0.7-4.5-1.9-4.1-2.7c0.3-0.8,2.7-1,5.4-0.3
-		C436,180.2,437.8,181.5,437.5,182.3z"/>
-	<path class="st9" d="M429.6,189c-0.8,2.1-8,2.2-15.9,0.2c-8-2-13.7-5.3-12.9-7.4c0.9-2.1,8-2.2,15.9-0.2
-		C424.7,183.5,430.5,186.9,429.6,189z"/>
-	<path class="st9" d="M364.1,228.9c-0.4,1-2,1.5-3.5,1.1c-1.5-0.4-2.5-1.5-2.1-2.5c0.4-1,2-1.5,3.5-1.1
-		C363.5,226.8,364.5,227.9,364.1,228.9z"/>
-	<path class="st9" d="M533.6,271.6c-0.4,1-2,1.5-3.5,1.1c-1.5-0.4-2.5-1.5-2.1-2.5c0.4-1,2-1.5,3.5-1.1
-		C533,269.5,534,270.6,533.6,271.6z"/>
-	<path class="st9" d="M434.3,169c-0.4,1-2,1.5-3.5,1.1c-1.5-0.4-2.5-1.5-2.1-2.5c0.4-1,2-1.5,3.5-1.1
-		C433.7,166.9,434.7,168,434.3,169z"/>
-	<path class="st9" d="M486.8,277c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C482.7,270.5,487.9,274.3,486.8,277z"/>
-	<path class="st9" d="M601.5,243.7c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C597.4,237.2,602.7,241,601.5,243.7z"/>
-	<path class="st9" d="M564.2,255.8c-0.7,1.7-6.1,1.9-12.2,0.3c-6-1.5-10.3-4.1-9.7-5.8c0.7-1.7,6.1-1.8,12.2-0.3
-		C560.5,251.5,564.9,254.1,564.2,255.8z"/>
-	<path class="st9" d="M393.5,158.3c-0.7,1.6-4.5,2.2-8.5,1.1c-4-1-6.7-3.2-6.1-4.8c0.6-1.7,4.4-2.2,8.5-1.2
-		C391.4,154.5,394.1,156.7,393.5,158.3z"/>
-	<path class="st9" d="M556.9,207.6c-0.7,1.6-4.5,2.2-8.5,1.1c-4-1-6.7-3.2-6.1-4.8c0.6-1.7,4.4-2.2,8.5-1.2
-		C554.9,203.8,557.6,205.9,556.9,207.6z"/>
-	<path class="st9" d="M510.4,258.5c-0.7,1.6-4.5,2.2-8.5,1.1c-4-1-6.7-3.2-6.1-4.8c0.6-1.7,4.4-2.2,8.5-1.2
-		C508.4,254.7,511.1,256.8,510.4,258.5z"/>
-	<path class="st9" d="M352.1,241.7c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C347.9,235.2,353.2,239,352.1,241.7z"/>
-	<path class="st9" d="M435.1,243.7c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C430.9,237.2,436.2,241,435.1,243.7z"/>
-	<path class="st9" d="M386.1,260.7c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C381.9,254.2,387.2,258,386.1,260.7z"/>
-	<path class="st9" d="M410.9,221.7c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C406.8,215.2,412,219,410.9,221.7z"/>
-</g>
-<g id="salami1">
-	<path class="st7" d="M636.8,151.7c0,0-120,87.7,23.3,126.8c143.3,39.1,312.8-18.5,205.3-88.1C757.8,120.7,636.8,151.7,636.8,151.7z
-		"/>
-	<path class="st8" d="M644.4,133.3c0,0-124.1,102.4,17.8,140.6c141.9,38.2,303.9-13.6,199.1-87.3
-		C756.6,112.9,644.4,133.3,644.4,133.3z"/>
-	<path class="st9" d="M698.1,257c-0.3,0.8-2.4,1.1-4.5,0.6c-2.1-0.5-3.6-1.7-3.3-2.5c0.3-0.9,2.4-1.1,4.5-0.6
-		C697,255.1,698.5,256.2,698.1,257z"/>
-	<path class="st9" d="M756.7,261.7c-0.3,0.8-2.4,1.1-4.5,0.6c-2.1-0.5-3.6-1.7-3.3-2.5c0.3-0.9,2.4-1.1,4.5-0.6
-		C755.6,259.8,757.1,260.9,756.7,261.7z"/>
-	<path class="st9" d="M637.8,207.8c-0.3,0.8-2,1.2-3.6,0.8c-1.7-0.4-2.7-1.4-2.4-2.3c0.3-0.9,2-1.2,3.6-0.8
-		C637.1,206,638.2,207,637.8,207.8z"/>
-	<path class="st9" d="M728.8,271.7c-0.4,1-4.2,1-8.3-0.1c-4.2-1-7.2-2.7-6.8-3.7c0.4-1,4.1-1,8.3,0.1
-		C726.1,269,729.2,270.6,728.8,271.7z"/>
-	<path class="st9" d="M716.6,207.8c-0.2,0.5-1.6,0.5-3.1,0.1c-1.5-0.4-2.6-1.1-2.5-1.6c0.2-0.5,1.6-0.5,3.1-0.1
-		C715.7,206.6,716.8,207.3,716.6,207.8z"/>
-	<path class="st9" d="M760.6,206.8c-0.2,0.5-2.1,0.4-4.2-0.1c-2.1-0.5-3.7-1.4-3.5-1.8c0.2-0.5,2.1-0.4,4.2,0.1
-		C759.2,205.5,760.8,206.4,760.6,206.8z"/>
-	<path class="st9" d="M767.6,231.9c-0.6,1.5-4,2-7.6,1.1c-3.6-0.9-6-2.9-5.4-4.4c0.6-1.5,4-2,7.6-1.1
-		C765.7,228.4,768.2,230.4,767.6,231.9z"/>
-	<path class="st9" d="M804.6,231c-0.8,2.1-5,2.9-9.3,1.8c-4.3-1.1-7.1-3.6-6.2-5.7c0.8-2.1,5-2.9,9.3-1.8
-		C802.6,226.4,805.4,228.9,804.6,231z"/>
-	<path class="st9" d="M751.2,187.5c1.8-4.4,0.8-8.6-2.2-9.4c-3-0.8-6.9,2.2-8.6,6.6c-1.8,4.4-0.8,8.6,2.2,9.4
-		C745.5,194.9,749.4,191.9,751.2,187.5z"/>
-	<path class="st9" d="M661.4,185.3c1.8-4.4,0.8-8.6-2.2-9.4c-3-0.8-6.9,2.2-8.6,6.6c-1.8,4.4-0.8,8.6,2.2,9.4
-		C655.8,192.7,659.7,189.7,661.4,185.3z"/>
-	<path class="st9" d="M748.3,224.5c1.8-4.4,0.8-8.6-2.2-9.4c-3-0.8-6.9,2.2-8.6,6.6c-1.8,4.4-0.8,8.6,2.2,9.4
-		C742.6,231.9,746.5,228.9,748.3,224.5z"/>
-	<path class="st9" d="M623.3,218.5c1.8-4.4,0.8-8.6-2.2-9.4c-3-0.8-6.9,2.2-8.6,6.6c-1.8,4.4-0.8,8.6,2.2,9.4
-		C617.6,225.8,621.5,222.9,623.3,218.5z"/>
-	<path class="st9" d="M781.1,198.9c1-2.6-1.7-5.6-6-6.7c-4.4-1.1-8.8,0.1-9.8,2.7c-1.1,2.6,1.7,5.6,6,6.7
-		C775.6,202.7,780.1,201.5,781.1,198.9z"/>
-	<path class="st9" d="M801,185.5c0.3-0.7-1.7-1.8-4.5-2.4c-2.7-0.7-5.2-0.7-5.4-0.1c-0.3,0.7,1.7,1.8,4.5,2.4
-		C798.3,186.1,800.8,186.2,801,185.5z"/>
-	<path class="st9" d="M721.2,181.1c-0.3,0.8-2.7,1-5.4,0.3c-2.6-0.7-4.5-1.9-4.1-2.7c0.3-0.8,2.7-1,5.4-0.3
-		C719.7,179.1,721.5,180.3,721.2,181.1z"/>
-	<path class="st9" d="M713.3,187.8c-0.8,2.1-8,2.2-15.9,0.2c-8-2-13.7-5.3-12.9-7.4c0.9-2.1,8-2.2,15.9-0.2
-		C708.4,182.4,714.2,185.7,713.3,187.8z"/>
-	<path class="st9" d="M647.8,227.8c-0.4,1-2,1.5-3.5,1.1c-1.5-0.4-2.5-1.5-2.1-2.5c0.4-1,2-1.5,3.5-1.1
-		C647.2,225.7,648.2,226.8,647.8,227.8z"/>
-	<path class="st9" d="M817.3,270.5c-0.4,1-2,1.5-3.5,1.1c-1.5-0.4-2.5-1.5-2.1-2.5c0.4-1,2-1.5,3.5-1.1
-		C816.7,268.4,817.7,269.5,817.3,270.5z"/>
-	<path class="st9" d="M718,167.9c-0.4,1-2,1.5-3.5,1.1c-1.5-0.4-2.5-1.5-2.1-2.5c0.4-1,2-1.5,3.5-1.1
-		C717.4,165.8,718.4,166.9,718,167.9z"/>
-	<path class="st9" d="M770.5,275.9c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C766.4,269.3,771.6,273.1,770.5,275.9z"/>
-	<path class="st9" d="M885.2,242.6c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C881.1,236,886.4,239.8,885.2,242.6z"/>
-	<path class="st9" d="M847.9,254.6c-0.7,1.7-6.1,1.9-12.2,0.3c-6-1.5-10.3-4.1-9.7-5.8c0.7-1.7,6.1-1.8,12.2-0.3
-		C844.2,250.3,848.6,252.9,847.9,254.6z"/>
-	<path class="st9" d="M677.2,157.2c-0.7,1.6-4.5,2.2-8.5,1.1c-4-1-6.7-3.2-6.1-4.8c0.6-1.7,4.4-2.2,8.5-1.2
-		C675.1,153.4,677.8,155.5,677.2,157.2z"/>
-	<path class="st9" d="M840.6,206.4c-0.7,1.6-4.5,2.2-8.5,1.1c-4-1-6.7-3.2-6.1-4.8c0.6-1.7,4.4-2.2,8.5-1.2
-		C838.6,202.6,841.3,204.7,840.6,206.4z"/>
-	<path class="st9" d="M794.1,257.3c-0.7,1.6-4.5,2.2-8.5,1.1c-4-1-6.7-3.2-6.1-4.8c0.6-1.7,4.4-2.2,8.5-1.2
-		C792.1,253.5,794.8,255.7,794.1,257.3z"/>
-	<path class="st9" d="M635.8,240.6c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C631.6,234,636.9,237.8,635.8,240.6z"/>
-	<path class="st9" d="M718.8,242.6c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C714.6,236,719.9,239.8,718.8,242.6z"/>
-	<path class="st9" d="M669.8,259.6c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C665.6,253,670.9,256.8,669.8,259.6z"/>
-	<path class="st9" d="M694.6,220.6c-1.1,2.8-8.2,3.4-15.8,1.5c-7.6-1.9-12.9-5.7-11.7-8.5c1.1-2.8,8.2-3.4,15.8-1.5
-		C690.5,214,695.8,217.8,694.6,220.6z"/>
-</g>
-<g id="cheese1">
-	<path class="st10" d="M20.9,252.3c0,0,14.1-18.5,77.8-40.2c63.7-21.6,125-63.2,176.8-94.4c51.8-31.2,202.8-12.6,181.1,31.5
-		C434.9,193.3,390.4,250,390.4,250S368.1,272.4,20.9,252.3z"/>
-	<path class="st10" d="M204.2,231c0,0,152.7-133.5,244.5-146.4c91.8-12.9-58.1,167.7-58.1,167.7S403.1,227.4,204.2,231z"/>
-	<path class="st11" d="M199.8,232.4c0,0,196.5-3.7,185,16.7c-11.5,20.4-363.8,3.2-363.8,3.2s1.8,6,25.2,6.5
-		c23.5,0.5,342.1,10.8,345.6-8.6C395.3,230.7,243.9,222.7,199.8,232.4z"/>
-</g>
-<g id="cheese2">
-	<path class="st10" d="M401.8,251.6c0,0,14.2-21.2,78.6-46c64.4-24.8,126.2-72.3,178.6-108c52.4-35.7,204.8-14.4,182.9,36.1
-		C819.9,184.1,775,248.9,775,248.9S752.5,274.6,401.8,251.6z"/>
-	<path class="st10" d="M586.9,227.2c0,0,154.2-152.8,246.9-167.6c92.7-14.8-58.7,191.9-58.7,191.9S787.8,223.1,586.9,227.2z"/>
-	<path class="st11" d="M582.4,228.8c0,0,198.4-4.3,186.8,19.1c-11.6,23.4-367.4,3.6-367.4,3.6s1.8,6.8,25.5,7.4
-		c23.7,0.6,345.5,12.4,349.1-9.9C780,226.8,627,217.7,582.4,228.8z"/>
-</g>
-<g id="mozza2">
-	<path class="st12" d="M518.2,113.5c0,0-129,94.3,25,136.3c154,42,336.2-19.9,220.7-94.8C648.3,80.2,518.2,113.5,518.2,113.5z"/>
-	<path class="st13" d="M516.4,89.1c0,0-135.7,102.6,23.9,146.3c159.6,43.6,339.1-5.4,220-84.8C641.3,71.2,516.4,89.1,516.4,89.1z"/>
-</g>
-<g id="mozza1">
-	<path class="st12" d="M159.4,124c0,0-129,94.3,25,136.3c154,42,336.2-19.9,220.7-94.8C289.5,90.6,159.4,124,159.4,124z"/>
-	<path class="st13" d="M157.7,99.6c0,0-135.7,102.6,23.9,146.3c159.6,43.6,339.1-5.4,220-84.8C282.5,81.6,157.7,99.6,157.7,99.6z"/>
-</g>
-<g id="brie3">
-	<g>
-		<path class="st14" d="M550.4,253.4c-22.5,9-24.9-3.9-49.1-3.9c-24.2,0-24.2,4-48.4,4c-24.2,0-24.2-4-48.4-4c-24.2,0-24.2,4-48.4,4
-			c-24.2,0-24.2-0.4-48.1-4c-3.6-0.5-2.3-1.6-2.3-5.3c0-3.6,4-3.6,4-7.2c0-3.6-4-3.6-4-7.2c0-3.6,4-3.6,4-7.2s-6.1-7.8-2.7-9.1
-			c30.9-12.3,33.3-5.4,65.2-14.6c32-9.2,30.9-13,62.8-22.2c32-9.2,33.1-5.3,65-14.5c32-9.2,30.9-13,62.8-22.2
-			c32-9.2,31.3-19.3,64.2-14.4c14.8,2.2-5.8,11.8-13.5,24.6c-7.8,12.8-11.2,10.7-19,23.5c-7.8,12.8-4.3,14.9-12.1,27.6
-			c-7.8,12.8-14.2,9.7-19.1,23.9C557.9,240.8,564.3,247.8,550.4,253.4z"/>
-	</g>
-	<g>
-		<path class="st15" d="M546.2,231.7c-22.5,7.5-24.3-3.9-48.1-3.9c-23.7,0-23.7,4-47.4,4c-23.7,0-23.7-4-47.4-4
-			c-23.7,0-23.7,4-47.4,4s-26.5,9.3-46.3-3.7c-10.9-7.1,4.9-10,12.5-20.5c7.6-10.5,10.8-8.1,18.5-18.6c7.6-10.5,4.4-12.8,12-23.3
-			c7.6-10.5,10.8-8.1,18.5-18.6s0.7-19.9,13-24c22.5-7.5,24.3,3.9,48.1,3.9c23.7,0,23.7-4,47.4-4c23.7,0,23.7,4,47.4,4
-			c23.7,0,23.7-4,47.4-4c23.7,0,26.5-9.3,46.3,3.7c10.9,7.1-4.9,10-12.5,20.5c-7.6,10.5-10.8,8.1-18.5,18.6
-			c-7.6,10.5-4.4,12.8-12,23.3c-7.6,10.5-13.4,7.1-18.7,19C553.2,221.1,558.4,227.6,546.2,231.7z"/>
-	</g>
-	<g>
-		<path class="st16" d="M545.5,226.8c-22.5,7.5-24.3-3.9-48.1-3.9c-23.7,0-23.7,4-47.4,4c-23.7,0-23.7-4-47.4-4
-			c-23.7,0-23.7,4-47.4,4s-26.5,9.3-46.3-3.7c-10.9-7.1,4.9-10,12.5-20.5c7.6-10.5,10.8-8.1,18.5-18.6c7.6-10.5,4.4-12.8,12-23.3
-			c7.6-10.5,10.8-8.1,18.5-18.6c7.6-10.5,0.7-19.9,13-24c22.5-7.5,24.3,3.9,48.1,3.9c23.7,0,23.7-4,47.4-4c23.7,0,23.7,4,47.4,4
-			c23.7,0,23.7-4,47.4-4c23.7,0,26.5-9.3,46.3,3.7c10.9,7.1-4.9,10-12.5,20.5c-7.6,10.5-10.8,8.1-18.5,18.6
-			c-7.6,10.5-4.4,12.8-12,23.3c-7.6,10.5-13.4,7.1-18.7,19C552.5,216.1,557.7,222.7,545.5,226.8z"/>
-	</g>
-	<g>
-		<path class="st17" d="M367.3,211.8c-0.6,1.8-4.2,3.1-2.5,4.1c1.6,1,5.7-5.9,7.4-4.9c1.6,1-2.4,7.9-0.8,8.8c1.6,1,5.7-5.9,7.4-4.9
-			c1.6,1,3,9.5,4.2,8.1c6.4-7.2-1.5-13,3.4-21.3c4.9-8.3,11.8-4.2,16.7-12.6c4.9-8.3-2-12.4,2.9-20.7c4.9-8.3,11.8-4.2,16.7-12.6
-			c4.9-8.3-0.6-10.9,2.6-20c0.6-1.8,4.2-3.1,2.5-4.1c-1.6-1-5.7,5.9-7.4,4.9c-1.6-1,2.4-7.9,0.8-8.8c-1.6-1-5.7,5.9-7.4,4.9
-			s-3-9.5-4.2-8.1c-6.4,7.2,1.5,13-3.4,21.3c-4.9,8.3-11.8,4.2-16.7,12.6c-4.9,8.3,2,12.4-2.9,20.7c-4.9,8.3-12.5,4.2-16.8,12.8
-			C365.5,200.5,370.5,202.7,367.3,211.8z"/>
-	</g>
-	<g>
-		<path class="st17" d="M438.8,215.3c-0.6,1.8-4.2,3.1-2.5,4.1c1.6,1,5.7-5.9,7.4-4.9c1.6,1-2.4,7.9-0.8,8.8c1.6,1,5.7-5.9,7.4-4.9
-			c1.6,1,3,9.5,4.2,8.1c6.4-7.2-1.5-13,3.4-21.3c4.9-8.3,11.8-4.2,16.7-12.6c4.9-8.3-2-12.4,2.9-20.7c4.9-8.3,11.8-4.2,16.7-12.6
-			c4.9-8.3-0.6-10.9,2.6-20c0.6-1.8,4.2-3.1,2.5-4.1c-1.6-1-5.7,5.9-7.4,4.9c-1.6-1,2.4-7.9,0.8-8.8c-1.6-1-5.7,5.9-7.4,4.9
-			c-1.6-1-3-9.5-4.2-8.1c-6.4,7.2,1.5,13-3.4,21.3c-4.9,8.3-11.8,4.2-16.7,12.6c-4.9,8.3,2,12.4-2.9,20.7
-			c-4.9,8.3-12.5,4.2-16.8,12.8C437,204.1,442,206.2,438.8,215.3z"/>
-	</g>
-	<g>
-		<path class="st17" d="M510.3,211.8c-0.6,1.8-4.2,3.1-2.5,4.1c1.6,1,5.7-5.9,7.4-4.9c1.6,1-2.4,7.9-0.8,8.8c1.6,1,5.7-5.9,7.4-4.9
-			s3,9.5,4.2,8.1c6.4-7.2-1.5-13,3.4-21.3c4.9-8.3,11.8-4.2,16.7-12.6c4.9-8.3-2-12.4,2.9-20.7c4.9-8.3,11.8-4.2,16.7-12.6
-			c4.9-8.3-0.6-10.9,2.6-20c0.6-1.8,4.2-3.1,2.5-4.1c-1.6-1-5.7,5.9-7.4,4.9c-1.6-1,2.4-7.9,0.8-8.8c-1.6-1-5.7,5.9-7.4,4.9
-			c-1.6-1-3-9.5-4.2-8.1c-6.4,7.2,1.5,13-3.4,21.3c-4.9,8.3-11.8,4.2-16.7,12.6c-4.9,8.3,2,12.4-2.9,20.7
-			c-4.9,8.3-12.5,4.2-16.8,12.8C508.5,200.5,513.5,202.7,510.3,211.8z"/>
-	</g>
-</g>
-<g id="brie2">
-	<g>
-		<path class="st14" d="M269.8,260.5c-22.5,9-24.9-3.9-49.1-3.9c-24.2,0-24.2,4-48.4,4c-24.2,0-24.2-4-48.4-4c-24.2,0-24.2,4-48.4,4
-			s-24.2-0.4-48.1-4c-3.6-0.5-2.3-1.6-2.3-5.3c0-3.6,4-3.6,4-7.2c0-3.6-4-3.6-4-7.2c0-3.6,4-3.6,4-7.2c0-3.6-6.1-7.8-2.7-9.1
-			c30.9-12.3,33.3-5.4,65.2-14.6c32-9.2,30.9-13,62.8-22.2c32-9.2,33.1-5.3,65-14.5c32-9.2,30.9-13,62.8-22.2
-			c32-9.2,31.3-19.3,64.2-14.4c14.8,2.2-5.8,11.8-13.5,24.6c-7.8,12.8-11.2,10.7-19,23.5c-7.8,12.8-4.3,14.9-12.1,27.6
-			c-7.8,12.8-14.2,9.7-19.1,23.9C277.3,247.9,283.7,254.9,269.8,260.5z"/>
-	</g>
-	<g>
-		<path class="st15" d="M265.6,238.9c-22.5,7.5-24.3-3.9-48.1-3.9c-23.7,0-23.7,4-47.4,4c-23.7,0-23.7-4-47.4-4
-			c-23.7,0-23.7,4-47.4,4s-26.5,9.3-46.3-3.7c-10.9-7.1,4.9-10,12.5-20.5c7.6-10.5,10.8-8.1,18.5-18.6c7.6-10.5,4.4-12.8,12-23.3
-			c7.6-10.5,10.8-8.1,18.5-18.6c7.6-10.5,0.7-19.9,13-24c22.5-7.5,24.3,3.9,48.1,3.9c23.7,0,23.7-4,47.4-4c23.7,0,23.7,4,47.4,4
-			c23.7,0,23.7-4,47.4-4c23.7,0,26.5-9.3,46.3,3.7c10.9,7.1-4.9,10-12.5,20.5c-7.6,10.5-10.8,8.1-18.5,18.6
-			c-7.6,10.5-4.4,12.8-12,23.3c-7.6,10.5-13.4,7.1-18.7,19C272.6,228.2,277.9,234.7,265.6,238.9z"/>
-	</g>
-	<g>
-		<path class="st16" d="M264.9,233.9c-22.5,7.5-24.3-3.9-48.1-3.9c-23.7,0-23.7,4-47.4,4c-23.7,0-23.7-4-47.4-4
-			c-23.7,0-23.7,4-47.4,4s-26.5,9.3-46.3-3.7c-10.9-7.1,4.9-10,12.5-20.5c7.6-10.5,10.8-8.1,18.5-18.6c7.6-10.5,4.4-12.8,12-23.3
-			c7.6-10.5,10.8-8.1,18.5-18.6c7.6-10.5,0.7-19.9,13-24c22.5-7.5,24.3,3.9,48.1,3.9c23.7,0,23.7-4,47.4-4c23.7,0,23.7,4,47.4,4
-			c23.7,0,23.7-4,47.4-4c23.7,0,26.5-9.3,46.3,3.7c10.9,7.1-4.9,10-12.5,20.5c-7.6,10.5-10.8,8.1-18.5,18.6
-			c-7.6,10.5-4.4,12.8-12,23.3c-7.6,10.5-13.4,7.1-18.7,19C271.9,223.2,277.2,229.8,264.9,233.9z"/>
-	</g>
-	<g>
-		<path class="st17" d="M86.7,218.9c-0.6,1.8-4.2,3.1-2.5,4.1c1.6,1,5.7-5.9,7.4-4.9c1.6,1-2.4,7.9-0.8,8.8c1.6,1,5.7-5.9,7.4-4.9
-			c1.6,1,3,9.5,4.2,8.1c6.4-7.2-1.5-13,3.4-21.3c4.9-8.3,11.8-4.2,16.7-12.6c4.9-8.3-2-12.4,2.9-20.7c4.9-8.3,11.8-4.2,16.7-12.6
-			s-0.6-10.9,2.6-20c0.6-1.8,4.2-3.1,2.5-4.1c-1.6-1-5.7,5.9-7.4,4.9c-1.6-1,2.4-7.9,0.8-8.8c-1.6-1-5.7,5.9-7.4,4.9
-			c-1.6-1-3-9.5-4.2-8.1c-6.4,7.2,1.5,13-3.4,21.3c-4.9,8.3-11.8,4.2-16.7,12.6c-4.9,8.3,2,12.4-2.9,20.7
-			c-4.9,8.3-12.5,4.2-16.8,12.8C84.9,207.6,89.9,209.8,86.7,218.9z"/>
-	</g>
-	<g>
-		<path class="st17" d="M158.2,222.4c-0.6,1.8-4.2,3.1-2.5,4.1c1.6,1,5.7-5.9,7.4-4.9c1.6,1-2.4,7.9-0.8,8.8c1.6,1,5.7-5.9,7.4-4.9
-			s3,9.5,4.2,8.1c6.4-7.2-1.5-13,3.4-21.3c4.9-8.3,11.8-4.2,16.7-12.6c4.9-8.3-2-12.4,2.9-20.7c4.9-8.3,11.8-4.2,16.7-12.6
-			c4.9-8.3-0.6-10.9,2.6-20c0.6-1.8,4.2-3.1,2.5-4.1c-1.6-1-5.7,5.9-7.4,4.9c-1.6-1,2.4-7.9,0.8-8.8c-1.6-1-5.7,5.9-7.4,4.9
-			c-1.6-1-3-9.5-4.2-8.1c-6.4,7.2,1.5,13-3.4,21.3c-4.9,8.3-11.8,4.2-16.7,12.6c-4.9,8.3,2,12.4-2.9,20.7
-			c-4.9,8.3-12.5,4.2-16.8,12.8C156.4,211.2,161.4,213.3,158.2,222.4z"/>
-	</g>
-	<g>
-		<path class="st17" d="M229.7,218.9c-0.6,1.8-4.2,3.1-2.5,4.1c1.6,1,5.7-5.9,7.4-4.9c1.6,1-2.4,7.9-0.8,8.8c1.6,1,5.7-5.9,7.4-4.9
-			c1.6,1,3,9.5,4.2,8.1c6.4-7.2-1.5-13,3.4-21.3c4.9-8.3,11.8-4.2,16.7-12.6c4.9-8.3-2-12.4,2.9-20.7c4.9-8.3,11.8-4.2,16.7-12.6
-			c4.9-8.3-0.6-10.9,2.6-20c0.6-1.8,4.2-3.1,2.5-4.1c-1.6-1-5.7,5.9-7.4,4.9c-1.6-1,2.4-7.9,0.8-8.8c-1.6-1-5.7,5.9-7.4,4.9
-			c-1.6-1-3-9.5-4.2-8.1c-6.4,7.2,1.5,13-3.4,21.3c-4.9,8.3-11.8,4.2-16.7,12.6c-4.9,8.3,2,12.4-2.9,20.7
-			c-4.9,8.3-12.5,4.2-16.8,12.8C227.9,207.6,232.9,209.8,229.7,218.9z"/>
-	</g>
-</g>
-<g id="brie1">
-	<g>
-		<path class="st14" d="M830.7,251.7c-22.5,9-24.9-3.9-49.1-3.9c-24.2,0-24.2,4-48.4,4c-24.2,0-24.2-4-48.4-4c-24.2,0-24.2,4-48.4,4
-			s-24.2-0.4-48.1-4c-3.6-0.5-2.3-1.6-2.3-5.3c0-3.6,4-3.6,4-7.2c0-3.6-4-3.6-4-7.2c0-3.6,4-3.6,4-7.2s-6.1-7.8-2.7-9.1
-			c30.9-12.3,33.3-5.4,65.2-14.6c32-9.2,30.9-13,62.8-22.2c32-9.2,33.1-5.3,65-14.5c32-9.2,30.9-13,62.8-22.2
-			c32-9.2,31.3-19.3,64.2-14.4c14.8,2.2-5.8,11.8-13.5,24.6c-7.8,12.8-11.2,10.7-19,23.5c-7.8,12.8-4.3,14.9-12.1,27.6
-			c-7.8,12.8-14.2,9.7-19.1,23.9C838.3,239.1,844.6,246.2,830.7,251.7z"/>
-	</g>
-	<g>
-		<path class="st15" d="M826.5,230.1c-22.5,7.5-24.3-3.9-48.1-3.9c-23.7,0-23.7,4-47.4,4c-23.7,0-23.7-4-47.4-4
-			c-23.7,0-23.7,4-47.4,4s-26.5,9.3-46.3-3.7c-10.9-7.1,4.9-10,12.5-20.5c7.6-10.5,10.8-8.1,18.5-18.6c7.6-10.5,4.4-12.8,12-23.3
-			c7.6-10.5,10.8-8.1,18.5-18.6c7.6-10.5,0.7-19.9,13-24c22.5-7.5,24.3,3.9,48.1,3.9c23.7,0,23.7-4,47.4-4c23.7,0,23.7,4,47.4,4
-			c23.7,0,23.7-4,47.4-4s26.5-9.3,46.3,3.7c10.9,7.1-4.9,10-12.5,20.5c-7.6,10.5-10.8,8.1-18.5,18.6c-7.6,10.5-4.4,12.8-12,23.3
-			c-7.6,10.5-13.4,7.1-18.7,19C833.5,219.5,838.8,226,826.5,230.1z"/>
-	</g>
-	<g>
-		<path class="st16" d="M825.8,225.2c-22.5,7.5-24.3-3.9-48.1-3.9c-23.7,0-23.7,4-47.4,4c-23.7,0-23.7-4-47.4-4
-			c-23.7,0-23.7,4-47.4,4s-26.5,9.3-46.3-3.7c-10.9-7.1,4.9-10,12.5-20.5c7.6-10.5,10.8-8.1,18.5-18.6c7.6-10.5,4.4-12.8,12-23.3
-			c7.6-10.5,10.8-8.1,18.5-18.6c7.6-10.5,0.7-19.9,13-24c22.5-7.5,24.3,3.9,48.1,3.9c23.7,0,23.7-4,47.4-4c23.7,0,23.7,4,47.4,4
-			c23.7,0,23.7-4,47.4-4s26.5-9.3,46.3,3.7c10.9,7.1-4.9,10-12.5,20.5c-7.6,10.5-10.8,8.1-18.5,18.6c-7.6,10.5-4.4,12.8-12,23.3
-			c-7.6,10.5-13.4,7.1-18.7,19C832.8,214.5,838.1,221.1,825.8,225.2z"/>
-	</g>
-	<g>
-		<path class="st17" d="M647.6,210.2c-0.6,1.8-4.2,3.1-2.5,4.1c1.6,1,5.7-5.9,7.4-4.9c1.6,1-2.4,7.9-0.8,8.8c1.6,1,5.7-5.9,7.4-4.9
-			c1.6,1,3,9.5,4.2,8.1c6.4-7.2-1.5-13,3.4-21.3c4.9-8.3,11.8-4.2,16.7-12.6c4.9-8.3-2-12.4,2.9-20.7c4.9-8.3,11.8-4.2,16.7-12.6
-			c4.9-8.3-0.6-10.9,2.6-20c0.6-1.8,4.2-3.1,2.5-4.1c-1.6-1-5.7,5.9-7.4,4.9c-1.6-1,2.4-7.9,0.8-8.8c-1.6-1-5.7,5.9-7.4,4.9
-			s-3-9.5-4.2-8.1c-6.4,7.2,1.5,13-3.4,21.3c-4.9,8.3-11.8,4.2-16.7,12.6c-4.9,8.3,2,12.4-2.9,20.7c-4.9,8.3-12.5,4.2-16.8,12.8
-			C645.9,198.9,650.8,201,647.6,210.2z"/>
-	</g>
-	<g>
-		<path class="st17" d="M719.1,213.7c-0.6,1.8-4.2,3.1-2.5,4.1c1.6,1,5.7-5.9,7.4-4.9c1.6,1-2.4,7.9-0.8,8.8c1.6,1,5.7-5.9,7.4-4.9
-			c1.6,1,3,9.5,4.2,8.1c6.4-7.2-1.5-13,3.4-21.3c4.9-8.3,11.8-4.2,16.7-12.6c4.9-8.3-2-12.4,2.9-20.7c4.9-8.3,11.8-4.2,16.7-12.6
-			c4.9-8.3-0.6-10.9,2.6-20c0.6-1.8,4.2-3.1,2.5-4.1c-1.6-1-5.7,5.9-7.4,4.9c-1.6-1,2.4-7.9,0.8-8.8c-1.6-1-5.7,5.9-7.4,4.9
-			c-1.6-1-3-9.5-4.2-8.1c-6.4,7.2,1.5,13-3.4,21.3c-4.9,8.3-11.8,4.2-16.7,12.6c-4.9,8.3,2,12.4-2.9,20.7
-			c-4.9,8.3-12.5,4.2-16.8,12.8C717.4,202.4,722.3,204.6,719.1,213.7z"/>
-	</g>
-	<g>
-		<path class="st17" d="M790.6,210.2c-0.6,1.8-4.2,3.1-2.5,4.1c1.6,1,5.7-5.9,7.4-4.9c1.6,1-2.4,7.9-0.8,8.8c1.6,1,5.7-5.9,7.4-4.9
-			c1.6,1,3,9.5,4.2,8.1c6.4-7.2-1.5-13,3.4-21.3c4.9-8.3,11.8-4.2,16.7-12.6c4.9-8.3-2-12.4,2.9-20.7c4.9-8.3,11.8-4.2,16.7-12.6
-			c4.9-8.3-0.6-10.9,2.6-20c0.6-1.8,4.2-3.1,2.5-4.1c-1.6-1-5.7,5.9-7.4,4.9c-1.6-1,2.4-7.9,0.8-8.8c-1.6-1-5.7,5.9-7.4,4.9
-			s-3-9.5-4.2-8.1c-6.4,7.2,1.5,13-3.4,21.3c-4.9,8.3-11.8,4.2-16.7,12.6c-4.9,8.3,2,12.4-2.9,20.7c-4.9,8.3-12.5,4.2-16.8,12.8
-			C788.9,198.9,793.8,201,790.6,210.2z"/>
-	</g>
-</g>
-<g id="raclette3">
-	<g>
-		<polygon class="st18" points="836.3,260.3 821.2,260.1 806.2,259.9 791.1,259.7 776.1,259.5 761,259.3 746,259.1 730.9,258.9
-			715.8,258.7 700.8,258.5 685.7,258.3 670.7,258.1 655.6,257.9 640.5,257.6 625.5,257.4 610.4,257.2 595.3,257 595.8,255.7
-			596.3,254.3 596.7,253 597.2,251.7 597.7,250.3 598.2,249 598.6,247.6 599.1,246.3 599.6,244.9 600,243.6 600.5,242.2 601,240.9
-			601.5,239.5 601.9,238.2 602.4,236.8 602.9,235.5 622,230.1 641.1,224.8 660.3,219.5 679.4,214.1 698.6,208.8 717.7,203.4
-			736.8,198.1 756,192.8 775.1,187.4 794.2,182.1 813.4,176.7 832.5,171.4 851.7,166.1 870.8,160.7 890,155.4 909.1,150
-			909.1,150.4 909,150.7 909,151 908.9,151.3 908.9,151.6 908.8,151.9 908.8,152.2 908.7,152.5 908.7,152.9 908.7,153.2
-			908.6,153.5 908.6,153.8 908.5,154.1 908.5,154.4 908.4,154.7 908.4,155.1 903.9,161.6 899.4,168.2 894.9,174.8 890.4,181.4
-			885.9,187.9 881.4,194.5 876.9,201.1 872.4,207.7 867.9,214.2 863.3,220.8 858.8,227.4 854.3,234 849.8,240.5 845.3,247.1
-			840.8,253.7 		"/>
-	</g>
-	<g>
-		<polygon class="st19" points="832.1,256 817.1,256 802.1,256.1 787,256.2 772,256.2 757,256.3 742,256.4 726.9,256.5 711.9,256.5
-			696.9,256.6 681.8,256.7 666.8,256.7 651.8,256.8 636.7,256.9 621.7,256.9 606.6,257 591.4,257.1 591.4,256.7 591.4,256.3
-			591.4,255.9 591.4,255.5 591.4,255.2 591.4,254.8 591.4,254.4 591.4,254 591.4,253.6 591.4,253.3 591.4,252.9 591.4,252.5
-			591.4,252.1 591.4,251.7 591.4,251.4 591.4,251 611.3,244.3 631.2,237.7 651,231.1 670.8,224.5 690.6,217.9 710.4,211.2
-			730.2,204.6 750,198 769.8,191.4 789.6,184.8 809.4,178.1 829.2,171.5 849,164.9 868.8,158.3 888.6,151.7 908.4,145 908.4,145.3
-			908.5,145.7 908.5,146 908.6,146.3 908.6,146.6 908.7,146.9 908.7,147.2 908.7,147.5 908.8,147.8 908.8,148.1 908.9,148.5
-			908.9,148.8 909,149.1 909,149.4 909.1,149.7 909.1,150 904.3,156.7 899.5,163.3 894.7,169.9 889.9,176.5 885.1,183.1
-			880.2,189.8 875.4,196.4 870.6,203 865.8,209.6 861,216.2 856.2,222.9 851.4,229.5 846.6,236.1 841.8,242.7 837,249.4 		"/>
-	</g>
-	<g>
-		<polygon class="st20" points="831.4,251 816.4,251 801.4,251 786.5,251 771.5,251 756.5,251 741.5,251 726.5,251 711.5,251
-			696.5,251 681.6,251 666.6,251 651.6,251 636.6,251 621.6,251 606.6,251 591.6,251 596.4,244.4 601.2,237.7 606,231.1
-			610.9,224.5 615.7,217.9 620.5,211.3 625.3,204.6 630.1,198 634.9,191.4 639.7,184.8 644.5,178.2 649.3,171.5 654.1,164.9
-			659,158.3 663.8,151.7 668.6,145 683.6,145 698.6,145 713.5,145 728.5,145 743.5,145 758.5,145 773.5,145 788.5,145 803.5,145
-			818.4,145 833.4,145 848.4,145 863.4,145 878.4,145 893.4,145 908.4,145 903.6,151.6 898.8,158.3 894,164.9 889.2,171.5
-			884.3,178.1 879.5,184.7 874.7,191.4 869.9,198 865.1,204.6 860.3,211.2 855.5,217.8 850.7,224.5 845.9,231.1 841.1,237.7
-			836.2,244.4 		"/>
-	</g>
-</g>
-<g id="raclette2">
-	<g>
-		<polygon class="st18" points="533.6,262.7 518.5,262.5 503.5,262.3 488.4,262.1 473.4,261.9 458.3,261.6 443.3,261.4 428.2,261.2
-			413.1,261 398.1,260.8 383,260.6 368,260.4 352.9,260.2 337.8,260 322.8,259.8 307.7,259.6 292.7,259.4 293.1,258.1 293.6,256.7
-			294.1,255.4 294.5,254 295,252.7 295.5,251.3 295.9,250 296.4,248.7 296.9,247.3 297.4,246 297.8,244.6 298.3,243.3 298.8,241.9
-			299.2,240.6 299.7,239.2 300.2,237.9 319.3,232.5 338.5,227.2 357.6,221.8 376.7,216.5 395.9,211.2 415,205.8 434.1,200.5
-			453.3,195.1 472.4,189.8 491.6,184.5 510.7,179.1 529.8,173.8 549,168.4 568.1,163.1 587.3,157.8 606.4,152.4 606.4,152.7
-			606.3,153 606.3,153.4 606.2,153.7 606.2,154 606.2,154.3 606.1,154.6 606.1,154.9 606,155.2 606,155.5 605.9,155.9 605.9,156.2
-			605.8,156.5 605.8,156.8 605.7,157.1 605.7,157.4 601.2,164 596.7,170.6 592.2,177.2 587.7,183.7 583.2,190.3 578.7,196.9
-			574.2,203.5 569.7,210 565.2,216.6 560.7,223.2 556.2,229.8 551.6,236.3 547.1,242.9 542.6,249.5 538.1,256.1 		"/>
-	</g>
-	<g>
-		<polygon class="st19" points="529.4,258.4 514.4,258.4 499.4,258.5 484.4,258.6 469.3,258.6 454.3,258.7 439.3,258.8 424.2,258.8
-			409.2,258.9 394.2,259 379.1,259 364.1,259.1 349.1,259.2 334,259.2 319,259.3 304.2,259.4 289.4,259.4 289.4,259.1 289.4,258.7
-			289.4,258.3 289.4,257.9 289.4,257.5 289.4,257.2 289.4,256.8 289.4,256.4 289.4,256 289.4,255.6 289.4,255.3 289.4,254.9
-			289.4,254.5 289.4,254.1 289.4,253.7 289.4,253.3 309,246.7 328.6,240.1 348.4,233.5 368.1,226.9 387.9,220.2 407.7,213.6
-			427.5,207 447.3,200.4 467.1,193.8 486.9,187.1 506.7,180.5 526.5,173.9 546.3,167.3 566.1,160.6 585.9,154 605.7,147.4
-			605.7,147.7 605.8,148 605.8,148.3 605.9,148.7 605.9,149 606,149.3 606,149.6 606.1,149.9 606.1,150.2 606.1,150.5 606.2,150.8
-			606.2,151.1 606.3,151.5 606.3,151.8 606.4,152.1 606.4,152.4 601.6,159 596.8,165.7 592,172.3 587.2,178.9 582.4,185.5
-			577.6,192.1 572.8,198.7 567.9,205.4 563.1,212 558.3,218.6 553.5,225.2 548.7,231.9 543.9,238.5 539.1,245.1 534.3,251.7 		"/>
-	</g>
-	<g>
-		<polygon class="st20" points="528.7,253 513.7,253 498.8,253 483.8,253 468.8,253 453.8,253 438.8,253 423.8,253 408.8,253
-			393.9,253 378.9,253 363.9,253 348.9,253 333.9,253 318.9,253 303.9,253 288.9,253 293.7,246.6 298.5,240 303.4,233.4
-			308.2,226.8 313,220.2 317.8,213.6 322.6,207 327.4,200.4 332.2,193.8 337,187.2 341.8,180.5 346.6,173.9 351.5,167.3
-			356.3,160.7 361.1,153.8 365.9,147 380.9,147 395.9,147 410.9,147 425.8,147 440.8,147 455.8,147 470.8,147 485.8,147 500.8,147
-			515.8,147 530.7,147 545.7,147 560.7,147 575.7,147 590.7,147 605.7,147 600.9,153.8 596.1,160.5 591.3,167.2 586.5,173.9
-			581.7,180.5 576.8,187.1 572,193.7 567.2,200.4 562.4,207 557.6,213.6 552.8,220.2 548,226.8 543.2,233.5 538.4,240.1
-			533.5,246.6 		"/>
-	</g>
-</g>
-<g id="raclette1">
-	<g>
-		<polygon class="st18" points="247.8,260.7 232.7,260.5 217.7,260.3 202.6,260.1 187.6,259.9 172.5,259.7 157.4,259.5 142.4,259.3
-			127.3,259.1 112.3,258.9 97.2,258.7 82.1,258.5 67.1,258.3 52,258.1 37,257.9 21.9,257.7 6.8,257.5 7.3,256.1 7.8,254.8
-			8.2,253.4 8.7,252.1 9.2,250.7 9.6,249.4 10.1,248 10.6,246.7 11.1,245.4 11.5,244 12,242.7 12.5,241.3 12.9,240 13.4,238.6
-			13.9,237.3 14.4,235.9 33.5,230.6 52.6,225.2 71.8,219.9 90.9,214.5 110,209.2 129.2,203.9 148.3,198.5 167.5,193.2 186.6,187.8
-			205.7,182.5 224.9,177.2 244,171.8 263.2,166.5 282.3,161.1 301.4,155.8 320.6,150.5 320.5,150.8 320.5,151.1 320.5,151.4
-			320.4,151.7 320.4,152 320.3,152.3 320.3,152.7 320.2,153 320.2,153.3 320.1,153.6 320.1,153.9 320.1,154.2 320,154.5 320,154.9
-			319.9,155.2 319.9,155.5 315.4,162.1 310.9,168.6 306.4,175.2 301.9,181.8 297.4,188.4 292.8,194.9 288.3,201.5 283.8,208.1
-			279.3,214.7 274.8,221.2 270.3,227.8 265.8,234.4 261.3,241 256.8,247.5 252.3,254.1 		"/>
-	</g>
-	<g>
-		<polygon class="st19" points="243.6,256.4 228.6,256.5 213.6,256.5 198.5,256.6 183.5,256.7 168.5,256.7 153.4,256.8 138.4,256.9
-			123.4,256.9 108.3,257 93.3,257.1 78.3,257.1 63.2,257.2 48.2,257.3 33.2,257.3 18.3,257.4 3.4,257.5 3.4,257.1 3.4,256.7
-			3.4,256.3 3.4,256 3.4,255.6 3.4,255.2 3.4,254.8 3.4,254.4 3.4,254.1 3.4,253.7 3.4,253.3 3.4,252.9 3.4,252.6 3.4,252.2
-			3.4,251.8 3.4,251.4 23.1,244.8 42.8,238.2 62.5,231.5 82.3,224.9 102.1,218.3 121.9,211.7 141.7,205 161.5,198.4 181.3,191.8
-			201.1,185.2 220.9,178.6 240.7,171.9 260.5,165.3 280.3,158.7 300.1,152.1 319.9,145.5 319.9,145.8 320,146.1 320,146.4
-			320.1,146.7 320.1,147 320.1,147.3 320.2,147.6 320.2,147.9 320.3,148.3 320.3,148.6 320.4,148.9 320.4,149.2 320.5,149.5
-			320.5,149.8 320.5,150.1 320.6,150.5 315.8,157.1 311,163.7 306.2,170.3 301.4,176.9 296.5,183.6 291.7,190.2 286.9,196.8
-			282.1,203.4 277.3,210 272.5,216.7 267.7,223.3 262.9,229.9 258.1,236.5 253.3,243.1 248.4,249.8 		"/>
-	</g>
-	<g>
-		<polygon class="st20" points="242.9,251 227.9,251 212.9,251 197.9,251 183,251 168,251 153,251 138,251 123,251 108,251 93,251
-			78.1,251 63.1,251 48.1,251 33.1,251 18.1,251 3.1,251 7.9,244.6 12.7,238.1 17.5,231.5 22.3,224.9 27.1,218.3 32,211.7
-			36.8,205.1 41.6,198.4 46.4,191.8 51.2,185.2 56,178.6 60.8,172 65.6,165.3 70.4,158.7 75.3,151.9 80.1,145 95.1,145 110,145
-			125,145 140,145 155,145 170,145 185,145 200,145 214.9,145 229.9,145 244.9,145 259.9,145 274.9,145 289.9,145 304.9,145
-			319.9,145 315.1,151.9 310.3,158.6 305.4,165.3 300.6,171.9 295.8,178.5 291,185.2 286.2,191.8 281.4,198.4 276.6,205
-			271.8,211.6 267,218.3 262.2,224.9 257.4,231.5 252.5,238.1 247.7,244.6 		"/>
-	</g>
-</g>
-<g id="pickle3">
-	<path class="st21" d="M269.4,235.5c-9.3,11-24.5,13.6-34.9,8.2c-43.8-22.9-97.6-16.5-134.8,16.1c-8.9,7.6-24.3,8.7-35.9,0.2l0,0
-		c-11.6-8.4-11.9-27.5,1.7-39.4c53.3-46.6,130.3-55.8,193-23C274.5,205.9,278.7,224.5,269.4,235.5L269.4,235.5z"/>
-	<path class="st22" d="M266.2,229.6c-9.3,11-24.5,13.6-34.9,8.2c-43.8-22.9-97.6-16.5-134.8,16.1c-8.9,7.6-24.3,8.7-35.9,0.2l0,0
-		c-11.6-8.4-11.9-27.5,1.7-39.4c53.3-46.6,130.3-55.8,193-23C271.3,200.1,275.5,218.7,266.2,229.6L266.2,229.6z"/>
-	<path class="st23" d="M155.5,196.6c0,0-50.7,24.7-44.1,22c6.7-2.6,42.8-19.1,45.1-17.7c2.3,1.4,23.8,17.1,17.7,10.2
-		c-6.1-6.8-14.3-13.6-11.2-14.7c3.1-1.1,55.6-17.7,46.9-16.5c-8.7,1.2-48.5,14.4-48.9,13.2c-0.4-1.2-22.6-11.4-17.5-7.7
-		C148.7,189.1,155.5,196.6,155.5,196.6z"/>
-	<path class="st23" d="M251.3,222.8c-0.1,0.8-2.1,1.4-4.6,1.3c-2.4-0.1-4.3-0.8-4.2-1.6c0.1-0.8,2.1-1.4,4.6-1.3
-		C249.5,221.3,251.4,222,251.3,222.8z"/>
-	<path class="st23" d="M124.6,203.5c-0.1,0.8-2.1,1.4-4.6,1.3c-2.4-0.1-4.3-0.8-4.2-1.6c0.1-0.8,2.1-1.4,4.6-1.3
-		C122.8,202,124.7,202.7,124.6,203.5z"/>
-	<path class="st23" d="M77.7,242c-0.1,0.8-2.1,1.4-4.6,1.3c-2.4-0.1-4.3-0.8-4.2-1.6c0.1-0.8,2.1-1.4,4.6-1.3
-		C75.9,240.5,77.8,241.2,77.7,242z"/>
-	<path class="st23" d="M228.8,207.1c-0.1,0.8-2.1,1.4-4.6,1.3c-2.4-0.1-4.3-0.8-4.2-1.6c0.1-0.8,2.1-1.4,4.6-1.3
-		C226.9,205.6,228.8,206.3,228.8,207.1z"/>
-</g>
-<g id="pickle2">
-	<path class="st21" d="M541.2,242.1c-9.3,11-24.5,13.6-34.9,8.2c-43.8-22.9-97.6-16.5-134.8,16.1c-8.9,7.6-24.3,8.7-35.9,0.2l0,0
-		c-11.6-8.4-11.9-27.5,1.7-39.4c53.3-46.6,130.3-55.8,193-23C546.3,212.6,550.5,231.2,541.2,242.1L541.2,242.1z"/>
-	<path class="st22" d="M538,236.3c-9.3,11-24.5,13.6-34.9,8.2c-43.8-22.9-97.6-16.5-134.8,16.1c-8.9,7.6-24.3,8.7-35.9,0.2l0,0
-		c-11.6-8.4-11.9-27.5,1.7-39.4c53.3-46.6,130.3-55.8,193-23C543.1,206.7,547.3,225.4,538,236.3L538,236.3z"/>
-	<path class="st23" d="M427.3,203.2c0,0-50.7,24.7-44.1,22c6.7-2.6,42.8-19.1,45.1-17.7c2.3,1.4,23.8,17.1,17.7,10.2
-		c-6.1-6.8-14.3-13.6-11.2-14.7c3.1-1.1,55.6-17.7,46.9-16.5c-8.7,1.2-48.5,14.4-48.9,13.2c-0.4-1.2-22.6-11.4-17.5-7.7
-		C420.5,195.8,427.3,203.2,427.3,203.2z"/>
-	<path class="st23" d="M523.1,229.5c-0.1,0.8-2.1,1.4-4.6,1.3c-2.4-0.1-4.3-0.8-4.2-1.6c0.1-0.8,2.1-1.4,4.6-1.3
-		C521.3,228,523.2,228.7,523.1,229.5z"/>
-	<path class="st23" d="M396.4,210.2c-0.1,0.8-2.1,1.4-4.6,1.3c-2.4-0.1-4.3-0.8-4.2-1.6c0.1-0.8,2.1-1.4,4.6-1.3
-		C394.6,208.7,396.5,209.4,396.4,210.2z"/>
-	<path class="st23" d="M349.5,248.7c-0.1,0.8-2.1,1.4-4.6,1.3c-2.4-0.1-4.3-0.8-4.2-1.6c0.1-0.8,2.1-1.4,4.6-1.3
-		C347.7,247.2,349.6,247.9,349.5,248.7z"/>
-	<path class="st23" d="M500.6,213.8c-0.1,0.8-2.1,1.4-4.6,1.3c-2.4-0.1-4.3-0.8-4.2-1.6c0.1-0.8,2.1-1.4,4.6-1.3
-		C498.8,212.3,500.7,213,500.6,213.8z"/>
-</g>
-<g id="pickle1">
-	<path class="st21" d="M800.9,235.6c-9.3,11-24.5,13.6-34.9,8.2c-43.8-22.9-97.6-16.5-134.8,16.1c-8.9,7.6-24.3,8.7-35.9,0.2l0,0
-		c-11.6-8.4-11.9-27.5,1.7-39.4c53.3-46.6,130.3-55.8,193-23C805.9,206,810.2,224.7,800.9,235.6L800.9,235.6z"/>
-	<path class="st22" d="M797.7,229.7c-9.3,11-24.5,13.6-34.9,8.2c-43.8-22.9-97.6-16.5-134.8,16.1c-8.9,7.6-24.3,8.7-35.9,0.2l0,0
-		c-11.6-8.4-11.9-27.5,1.7-39.4c53.3-46.6,130.3-55.8,193-23C802.8,200.2,807,218.8,797.7,229.7L797.7,229.7z"/>
-	<path class="st23" d="M687,196.7c0,0-50.7,24.7-44.1,22c6.7-2.6,42.8-19.1,45.1-17.7c2.3,1.4,23.8,17.1,17.7,10.2
-		c-6.1-6.8-14.3-13.6-11.2-14.7c3.1-1.1,55.6-17.7,46.9-16.5c-8.7,1.2-48.5,14.4-48.9,13.2c-0.4-1.2-22.6-11.4-17.5-7.7
-		C680.2,189.3,687,196.7,687,196.7z"/>
-	<path class="st23" d="M782.8,223c-0.1,0.8-2.1,1.4-4.6,1.3c-2.4-0.1-4.3-0.8-4.2-1.6c0.1-0.8,2.1-1.4,4.6-1.3
-		C781,221.5,782.9,222.2,782.8,223z"/>
-	<path class="st23" d="M656.1,203.7c-0.1,0.8-2.1,1.4-4.6,1.3c-2.4-0.1-4.3-0.8-4.2-1.6c0.1-0.8,2.1-1.4,4.6-1.3
-		C654.2,202.2,656.2,202.9,656.1,203.7z"/>
-	<path class="st23" d="M609.2,242.1c-0.1,0.8-2.1,1.4-4.6,1.3c-2.4-0.1-4.3-0.8-4.2-1.6c0.1-0.8,2.1-1.4,4.6-1.3
-		C607.4,240.6,609.3,241.3,609.2,242.1z"/>
-	<path class="st23" d="M760.2,207.3c-0.1,0.8-2.1,1.4-4.6,1.3c-2.4-0.1-4.3-0.8-4.2-1.6c0.1-0.8,2.1-1.4,4.6-1.3
-		C758.4,205.8,760.3,206.5,760.2,207.3z"/>
-</g>
-<g id="tomato1">
-	<path class="st24" d="M62.8,87.7c0,0-119.8,87.6,23.2,126.5c143,39,312.2-18.5,204.9-88C183.6,56.7,62.8,87.7,62.8,87.7z"/>
-	<path class="st25" d="M70.7,65.9c0,0-116.8,88.3,20.6,125.9c137.4,37.6,291.9-4.7,189.4-73C178.1,50.5,70.7,65.9,70.7,65.9z"/>
-	<path class="st26" d="M155.8,124.7c0,0-128.4,0-112.4,1.5c16,1.5,105.7,4.4,107.8,10.9c2.1,6.5,18.5,74.2,17.3,48.8
-		c-1.1-25.4-6.1-53.2,1.1-52.2c7.2,1.1,127.2,24.1,109.5,16.3c-17.7-7.8-109.3-23.8-108.4-27.3c0.9-3.5-24.5-57.9-20.6-41.9
-		C154.2,97,155.8,124.7,155.8,124.7z"/>
-	<path class="st26" d="M124.1,158.9c-0.3,0.8-2.4,1.1-4.5,0.6c-2.1-0.5-3.6-1.7-3.3-2.5c0.3-0.8,2.4-1.1,4.5-0.6
-		C123,156.9,124.4,158,124.1,158.9z"/>
-	<path class="st26" d="M63.9,143.7c-0.3,0.8-2,1.2-3.6,0.8c-1.7-0.4-2.7-1.4-2.4-2.3c0.3-0.9,2-1.2,3.6-0.8
-		C63.1,141.8,64.2,142.9,63.9,143.7z"/>
-	<path class="st26" d="M126.4,183.6c-0.2,0.4-1.5,0.4-3.1,0c-1.5-0.4-2.7-1-2.5-1.4c0.1-0.4,1.5-0.4,3.1,0
-		C125.4,182.6,126.6,183.3,126.4,183.6z"/>
-	<path class="st26" d="M142.5,143.7c-0.2,0.5-1.6,0.5-3.1,0.1c-1.5-0.4-2.6-1.1-2.5-1.6c0.2-0.5,1.6-0.5,3.1-0.1
-		C141.6,142.5,142.7,143.2,142.5,143.7z"/>
-	<path class="st26" d="M186.5,142.7c-0.2,0.5-2.1,0.4-4.2-0.1c-2.1-0.5-3.7-1.4-3.5-1.8c0.2-0.5,2.1-0.4,4.2,0.1
-		C185.1,141.4,186.7,142.2,186.5,142.7z"/>
-	<path class="st26" d="M184.9,153.8c-0.3,0.8-2,1-3.8,0.5c-1.8-0.5-3-1.4-2.7-2.2c0.3-0.8,2-1,3.8-0.5
-		C184,152,185.2,153,184.9,153.8z"/>
-	<path class="st26" d="M216.2,147.8c-0.3,0.7-1.8,1-3.3,0.6c-1.5-0.4-2.6-1.3-2.3-2.1c0.3-0.7,1.8-1,3.3-0.6
-		C215.5,146.1,216.5,147,216.2,147.8z"/>
-	<path class="st26" d="M181.6,115.3c0.8-2,0.3-3.8-1-4.2c-1.3-0.3-3.1,1-3.9,3c-0.8,2-0.3,3.8,1,4.2
-		C179,118.6,180.8,117.2,181.6,115.3z"/>
-	<path class="st26" d="M195.3,120.7c0.4-1-0.6-2.1-2.3-2.5c-1.7-0.4-3.3,0-3.7,1c-0.4,1,0.6,2.1,2.3,2.5
-		C193.3,122.1,194.9,121.7,195.3,120.7z"/>
-	<path class="st26" d="M226.8,121.4c0.3-0.7-1.7-1.7-4.5-2.4c-2.7-0.7-5.2-0.7-5.4-0.1c-0.3,0.7,1.7,1.8,4.5,2.4
-		C224.1,122,226.5,122.1,226.8,121.4z"/>
-	<path class="st26" d="M147.1,117.1c-0.3,0.8-2.7,1-5.3,0.3c-2.6-0.7-4.5-1.9-4.1-2.7c0.3-0.8,2.7-1,5.3-0.3
-		C145.6,115,147.4,116.2,147.1,117.1z"/>
-	<path class="st26" d="M110.1,116c-0.2,0.5-1.8,0.5-3.6,0c-1.8-0.5-3.1-1.2-2.9-1.7c0.2-0.5,1.8-0.5,3.6,0
-		C109,114.8,110.3,115.5,110.1,116z"/>
-	<path class="st26" d="M143.9,103.8c-0.4,1-2,1.5-3.5,1.1c-1.5-0.4-2.5-1.5-2.1-2.5c0.4-1,2-1.5,3.5-1.1
-		C143.3,101.7,144.3,102.8,143.9,103.8z"/>
-	<path class="st26" d="M259.8,174.6c-0.3,0.7-2.5,0.8-5,0.1c-2.5-0.6-4.3-1.7-4-2.4c0.3-0.7,2.5-0.8,5-0.1
-		C258.3,172.8,260.1,173.9,259.8,174.6z"/>
-	<path class="st26" d="M207.7,176.9c-0.3,0.7-1.8,0.9-3.4,0.5c-1.6-0.4-2.7-1.3-2.4-1.9c0.3-0.7,1.8-0.9,3.4-0.5
-		C206.9,175.4,208,176.3,207.7,176.9z"/>
-	<ellipse transform="matrix(0.9698 0.244 -0.244 0.9698 27.8051 -12.8717)" class="st26" cx="65.9" cy="105.8" rx="3.5" ry="0"/>
-	<path class="st26" d="M94.9,82c-0.2,0.6-1.7,0.7-3.2,0.3c-1.5-0.4-2.6-1.2-2.4-1.7c0.2-0.6,1.7-0.7,3.2-0.3
-		C94,80.7,95.1,81.5,94.9,82z"/>
-</g>
-<g id="tomato2">
-	<path class="st24" d="M343,112.3c0,0-105,76,51.7,101.8c156.7,25.8,319.5-27.8,193.1-79.9C461.4,82.2,343,112.3,343,112.3z"/>
-	<path class="st25" d="M344.5,100.1c0,0-101.7,76.5,48.9,101.4c150.6,24.9,301.4-15.8,180.3-67.1
-		C452.5,83.2,344.5,100.1,344.5,100.1z"/>
-	<path class="st26" d="M447.4,138.6c0,0-133,5.3-116.1,5.9c16.9,0.6,110.5-0.8,114.1,4.4c3.6,5.2,35.3,59.5,28.6,38.9
-		c-6.7-20.6-17.9-43-10.3-42.4c7.6,0.6,137,14.4,117,8.8c-20-5.6-118.5-14.8-118.3-17.7c0.2-2.9-38.1-46-30.5-33.2
-		C439.7,116.1,447.4,138.6,447.4,138.6z"/>
-	<path class="st26" d="M422,167.6c-0.2,0.7-2.2,1-4.5,0.6c-2.3-0.3-4.1-1.2-3.9-1.9c0.2-0.7,2.2-1,4.5-0.6
-		C420.4,166.1,422.2,166.9,422,167.6z"/>
-	<path class="st26" d="M356.3,157.8c-0.2,0.7-1.8,1-3.6,0.8c-1.8-0.3-3.1-1.1-3-1.8c0.2-0.7,1.8-1.1,3.6-0.8
-		C355.1,156.3,356.5,157.1,356.3,157.8z"/>
-	<path class="st26" d="M429.9,187.6c-0.1,0.3-1.5,0.4-3.2,0.1c-1.7-0.3-3-0.7-2.9-1c0.1-0.3,1.5-0.4,3.2-0.1
-		C428.6,186.9,429.9,187.3,429.9,187.6z"/>
-	<path class="st26" d="M437.8,154.5c-0.1,0.4-1.5,0.5-3.2,0.2c-1.7-0.3-3-0.8-2.9-1.2c0.1-0.4,1.5-0.5,3.2-0.3
-		C436.6,153.6,437.9,154.1,437.8,154.5z"/>
-	<path class="st26" d="M483.1,151.9c-0.1,0.4-2.1,0.4-4.4,0.1c-2.3-0.4-4.2-1-4.1-1.3c0.1-0.4,2.1-0.4,4.4-0.1
-		C481.4,150.9,483.2,151.5,483.1,151.9z"/>
-	<path class="st26" d="M483.9,161c-0.1,0.6-1.8,0.9-3.8,0.6c-1.9-0.3-3.4-1-3.3-1.7c0.1-0.6,1.9-0.9,3.8-0.6
-		C482.6,159.6,484,160.3,483.9,161z"/>
-	<path class="st26" d="M515,154.8c-0.1,0.6-1.6,0.9-3.3,0.7c-1.7-0.3-2.9-1-2.8-1.6c0.1-0.6,1.6-0.9,3.3-0.7
-		C513.9,153.5,515.1,154.2,515,154.8z"/>
-	<path class="st26" d="M472,129.8c0.4-1.6-0.5-3.1-2-3.4c-1.5-0.2-3,0.9-3.4,2.6c-0.4,1.6,0.5,3.1,2,3.4
-		C470.1,132.6,471.6,131.5,472,129.8z"/>
-	<path class="st26" d="M487.5,133.7c0.2-0.8-1.1-1.7-2.9-2c-1.8-0.3-3.4,0.2-3.6,1c-0.2,0.8,1.1,1.7,2.9,2
-		C485.7,134.9,487.3,134.5,487.5,133.7z"/>
-	<path class="st26" d="M520.2,133c0.1-0.5-2.2-1.3-5.2-1.8c-3-0.4-5.5-0.4-5.6,0.2c-0.1,0.5,2.2,1.4,5.2,1.8
-		C517.6,133.6,520.1,133.5,520.2,133z"/>
-	<path class="st26" d="M436.7,132.7c-0.2,0.7-2.6,0.9-5.5,0.5c-2.9-0.4-5-1.3-4.9-2c0.2-0.7,2.6-0.9,5.5-0.5
-		C434.7,131.1,436.8,132,436.7,132.7z"/>
-	<path class="st26" d="M398.1,133.4c-0.1,0.4-1.7,0.5-3.7,0.2c-1.9-0.3-3.4-0.8-3.4-1.2c0.1-0.4,1.7-0.5,3.7-0.2
-		C396.7,132.4,398.2,133,398.1,133.4z"/>
-	<path class="st26" d="M430.5,122.1c-0.2,0.8-1.7,1.3-3.4,1c-1.7-0.3-2.9-1.1-2.7-1.9c0.2-0.8,1.7-1.3,3.4-1
-		C429.5,120.4,430.7,121.3,430.5,122.1z"/>
-	<path class="st26" d="M566.1,174.8c-0.1,0.6-2.5,0.7-5.2,0.3c-2.7-0.4-4.8-1.2-4.7-1.8c0.1-0.6,2.5-0.7,5.2-0.3
-		C564.2,173.4,566.2,174.2,566.1,174.8z"/>
-	<path class="st26" d="M512.6,178.9c-0.1,0.5-1.7,0.8-3.4,0.5c-1.8-0.3-3.1-0.9-2.9-1.5c0.1-0.5,1.7-0.8,3.4-0.5
-		C511.5,177.7,512.8,178.3,512.6,178.9z"/>
-	<path class="st26" d="M353.8,127.5c0,0-1.7-0.3-3.8-0.6c-2.1-0.3-3.8-0.6-3.8-0.6s1.7,0.3,3.8,0.6
-		C352.2,127.2,353.8,127.5,353.8,127.5z"/>
-	<path class="st26" d="M374.9,106.4c-0.1,0.5-1.6,0.6-3.3,0.4c-1.7-0.3-3-0.8-2.8-1.3c0.1-0.5,1.6-0.6,3.2-0.4
-		C373.8,105.3,375,105.9,374.9,106.4z"/>
-</g>
-<g id="tomato3">
-	<path class="st24" d="M636.7,81.7c0,0-120,87.7,23.3,126.8c143.3,39.1,312.8-18.5,205.3-88.1C757.7,50.6,636.7,81.7,636.7,81.7z"/>
-	<path class="st25" d="M644.6,59.9c0,0-117,88.5,20.6,126.1c137.6,37.6,292.4-4.7,189.7-73.1C752.2,44.4,644.6,59.9,644.6,59.9z"/>
-	<path class="st26" d="M729.9,118.7c0,0-128.6,0-112.6,1.5c16,1.5,105.9,4.4,108,10.9c2.1,6.5,18.5,74.4,17.3,48.9
-		c-1.2-25.4-6.1-53.3,1.1-52.3c7.2,1.1,127.4,24.2,109.7,16.4c-17.7-7.8-109.5-23.8-108.6-27.3c0.9-3.5-24.6-58-20.6-42
-		C728.3,90.9,729.9,118.7,729.9,118.7z"/>
-	<path class="st26" d="M698.1,153c-0.3,0.8-2.4,1.1-4.5,0.6c-2.1-0.5-3.6-1.7-3.3-2.5c0.3-0.9,2.4-1.1,4.5-0.6
-		C697,151,698.4,152.1,698.1,153z"/>
-	<path class="st26" d="M637.8,137.8c-0.3,0.8-2,1.2-3.6,0.8c-1.7-0.4-2.7-1.4-2.4-2.3c0.3-0.9,2-1.2,3.6-0.8
-		C637,135.9,638.1,136.9,637.8,137.8z"/>
-	<path class="st26" d="M700.5,177.8c-0.2,0.4-1.5,0.4-3.1,0c-1.5-0.4-2.7-1-2.5-1.4c0.2-0.4,1.5-0.4,3.1,0
-		C699.5,176.8,700.6,177.4,700.5,177.8z"/>
-	<path class="st26" d="M716.6,137.7c-0.2,0.5-1.6,0.5-3.1,0.1c-1.5-0.4-2.6-1.1-2.5-1.6c0.2-0.5,1.6-0.5,3.1-0.1
-		C715.7,136.6,716.7,137.3,716.6,137.7z"/>
-	<path class="st26" d="M760.6,136.8c-0.2,0.5-2.1,0.4-4.2-0.1c-2.1-0.5-3.7-1.4-3.5-1.8c0.2-0.5,2.1-0.4,4.2,0.1
-		C759.2,135.5,760.8,136.3,760.6,136.8z"/>
-	<path class="st26" d="M759,147.9c-0.3,0.8-2,1-3.8,0.5c-1.8-0.5-3-1.4-2.7-2.2c0.3-0.8,2-1,3.8-0.5
-		C758.1,146.1,759.3,147.1,759,147.9z"/>
-	<path class="st26" d="M790.3,141.8c-0.3,0.7-1.8,1-3.3,0.6c-1.5-0.4-2.6-1.3-2.3-2.1c0.3-0.7,1.8-1,3.3-0.6
-		C789.6,140.2,790.6,141.1,790.3,141.8z"/>
-	<path class="st26" d="M755.7,109.3c0.8-2,0.3-3.9-1-4.2c-1.3-0.3-3.1,1-3.9,3c-0.8,2-0.3,3.9,1,4.2
-		C753.1,112.6,754.9,111.3,755.7,109.3z"/>
-	<path class="st26" d="M769.5,114.7c0.4-1-0.6-2.1-2.3-2.5c-1.7-0.4-3.3,0-3.7,1c-0.4,1,0.6,2.1,2.3,2.5
-		C767.4,116.2,769.1,115.7,769.5,114.7z"/>
-	<path class="st26" d="M801,115.4c0.3-0.7-1.7-1.8-4.5-2.4c-2.7-0.7-5.2-0.7-5.4-0.1c-0.3,0.7,1.7,1.8,4.5,2.4
-		C798.3,116.1,800.7,116.1,801,115.4z"/>
-	<path class="st26" d="M721.1,111.1c-0.3,0.8-2.7,1-5.4,0.3c-2.6-0.7-4.5-1.9-4.1-2.7c0.3-0.8,2.7-1,5.4-0.3
-		C719.6,109,721.5,110.2,721.1,111.1z"/>
-	<path class="st26" d="M684.1,110c-0.2,0.5-1.8,0.5-3.6,0c-1.8-0.5-3.1-1.2-2.9-1.7c0.2-0.5,1.8-0.5,3.6,0
-		C683,108.8,684.2,109.6,684.1,110z"/>
-	<path class="st26" d="M717.9,97.8c-0.4,1-2,1.5-3.5,1.1c-1.5-0.4-2.5-1.5-2.1-2.5c0.4-1,2-1.5,3.5-1.1
-		C717.4,95.7,718.3,96.8,717.9,97.8z"/>
-	<path class="st26" d="M834.1,168.7c-0.3,0.7-2.5,0.8-5,0.1c-2.5-0.6-4.3-1.7-4-2.4c0.3-0.7,2.5-0.8,5-0.1
-		C832.6,166.9,834.4,168,834.1,168.7z"/>
-	<path class="st26" d="M781.9,171.1c-0.3,0.7-1.8,0.9-3.4,0.5c-1.6-0.4-2.7-1.3-2.4-1.9c0.3-0.7,1.8-0.9,3.4-0.5
-		C781.1,169.6,782.2,170.4,781.9,171.1z"/>
-	<ellipse transform="matrix(0.9697 0.2441 -0.2441 0.9697 43.7213 -153.1616)" class="st26" cx="639.8" cy="99.8" rx="3.6" ry="0"/>
-	<path class="st26" d="M668.8,76c-0.2,0.6-1.7,0.7-3.2,0.3c-1.5-0.4-2.6-1.2-2.4-1.7c0.2-0.6,1.7-0.7,3.2-0.3
-		C668,74.6,669,75.4,668.8,76z"/>
-</g>
-<path id="breadTop" class="st0" d="M12.8,144.1l875.3-9.8c0,0,29.7-14.5,19.5-56.6C897.5,35.5,780,6.5,493.7,5
-	C207.3,3.6-62.5,65.3,12.8,144.1z"/>
-<path id="breadTopShadow" class="st1" d="M493.7,5c286.3,1.5,403.8,30.5,414,72.6c1.2,5.1,1.9,9.9,2.1,14.2c0.2-5.6-0.3-12-2.1-19.2
-	C897.5,30.5,780,1.5,493.7,0C237.2-1.3-6,48.1,0.1,115C6.2,50.7,243.6,3.8,493.7,5z"/>
-<g id="lines">
-	<path class="st27" d="M82.4,100.1C95,105.1,157,57,196,27.5c-11.8,2-23.2,4.2-34.1,6.5C124.3,59.2,72.2,96.1,82.4,100.1z"/>
-	<path class="st27" d="M178.2,100.1c15.1,6,101.5-64.7,133.8-87.5c-8.7,0.8-17.2,1.6-25.7,2.5C259,32.8,164.8,94.8,178.2,100.1z"/>
-	<path class="st27" d="M274,100.1c15.6,6.2,107.5-69.6,136.9-89.7c2.5-1.7,4.4-3.1,5.8-4.3c-5.9,0.2-11.8,0.4-17.7,0.7
-		c-5.4,1.9-9.7,3.6-9.7,3.6S258.4,93.9,274,100.1z"/>
-	<path class="st27" d="M369.8,100.1c15.6,6.2,107.5-69.6,136.9-89.7c3.2-2.2,5.5-4,7-5.3c-4.5,0-9.1-0.1-13.7-0.1
-		c-7.5,2.5-14.8,5.4-14.8,5.4S354.2,93.9,369.8,100.1z"/>
-	<path class="st27" d="M465.6,100.1c15.6,6.2,107.5-69.6,136.9-89.7c1.7-1.2,3.2-2.2,4.3-3.1c-5.2-0.2-10.6-0.4-16-0.6
-		c-5.5,1.9-9.9,3.7-9.9,3.7S450,93.9,465.6,100.1z"/>
-	<path class="st27" d="M561.4,100.1c15.2,6,102.1-65.2,134.1-87.8c-6.3-0.5-12.8-1-19.5-1.4C665.3,17.7,546.5,94.2,561.4,100.1z"/>
-	<path class="st27" d="M657.2,100.1c13.5,5.3,83.4-50.1,121.4-78.5c-6.2-0.9-12.6-1.8-19.2-2.7C726.6,40.4,644.7,95.1,657.2,100.1z"
-		/>
-</g>
-</svg>
-						</div>
-                    <div class="col-md-4 col-sm-4">
-                        <div id="hello" style="color:white">hello</div>
-
-                        <script>
-                            var path = document.querySelector("#salami1 path");
-
-                            var total_length = path.getTotalLength();
-
-
-                            document.getElementById("hello").innerHTML = total_length;
-                        </script>
-
-                        <div>
-                            Baguette
-                            <select class="bread">
-                                <option value="test">Test</option>
-                                <option value="baguette">Française</option>
-                            </select>
-                        </div>
-                        <div>
-                            Option 0
-                            <select class="salad">
-                                <option value="test">Test</option>
-                                <option value="baguette">Salade</option>
-                            </select>
-                        </div>
-                        <div>
-                            Option 1
-                            <select class="ham">
-                                <option value="test">Test</option>
-                                <option value="ham">Jambon</option>
-								<option value="salami">Salami</option>
-                            </select>
-                        </div>
-                        <div>
-                            Option 2
-                            <select class="cheese">
-                                <option value="test">Test</option>
-                                <option value="cheddar">Cheddar</option>
-                                <option value="mozza">Mozzarella</option>
-								<option value="brie">Brie</option>
-								<option value="raclette">Raclette</option>
-								<option value="pickle">Pickle</option>
-                            </select>
-                        </div>
-                        <div>
-                            Option 3
-                            <select class="tomato">
-                                <option value="test">Test</option>
-                                <option value="baguette">Tomato</option>
-                            </select>
-                        </div>
-                        <div>
-                            <button class="reset">Replay</button>
-                        </div>
-
-                    </div>
-                    <script>
-                        $('.bread').on('change', function () {
-                            breadBot.style.animation = "draw 1.5s forwards 1 linear";
-                            breadTop.style.animation = "draw 1.5s forwards 1 linear";
-                            breadBotShadow.style.animation = "draw 1.5s forwards 1 linear";
-                            breadTopShadow.style.animation = "draw 1.5s forwards 1 linear";
-                            lines.style.animation = "draw 1.5s forwards 1 linear";
-
-                        });
-
-                        $('.salad').on('change', function () {
-                            salad1.style.animation = "draw 1.5s forwards 1 linear";
-                            salad2.style.animation = "draw 1.5s forwards 1 linear";
-
-                        });
-
-                        $('.ham').on('change', function () {
-                            if ($(this).val() == 'ham') {
-                                ham1.style.animation = "draw 1.5s forwards 1 linear";
-                                ham2.style.animation = "draw 1.5s forwards 1 linear";
-                                ham3.style.animation = "draw 1.5s forwards 1 linear";
-                            }
-                            if ($(this).val() == 'salami') {
-                                salami1.style.animation = "draw 1.5s forwards 1 linear";
-                                salami2.style.animation = "draw 1.5s forwards 1 linear";
-                                salami3.style.animation = "draw 1.5s forwards 1 linear";
-                            }
-
-
-                        });
-                        $('.cheese').on('change', function () {
-                            if ($(this).val() == 'cheddar') {
-                                cheese1.style.animation = "draw 1.5s forwards 1 linear";
-                                cheese2.style.animation = "draw 1.5s forwards 1 linear";
-                            }
-                            if ($(this).val() == 'mozza') {
-                                mozza1.style.animation = "draw 1.5s forwards 1 linear";
-                                mozza2.style.animation = "draw 1.5s forwards 1 linear";
-                            }
-                            if ($(this).val() == 'brie') {
-                                brie1.style.animation = "draw 1.5s forwards 1 linear";
-                                brie2.style.animation = "draw 1.5s forwards 1 linear";
-                                brie3.style.animation = "draw 1.5s forwards 1 linear";
-
-                            }
-                            if ($(this).val() == 'raclette') {
-                                raclette1.style.animation = "draw 1.5s forwards 1 linear";
-                                raclette2.style.animation = "draw 1.5s forwards 1 linear";
-                                raclette3.style.animation = "draw 1.5s forwards 1 linear";
-
-                            }
-                            if ($(this).val() == 'pickle') {
-                                pickle1.style.animation = "draw 1.5s forwards 1 linear";
-                                pickle2.style.animation = "draw 1.5s forwards 1 linear";
-                                pickle3.style.animation = "draw 1.5s forwards 1 linear";
-
-                            }
-
-                        });
-                        $('.tomato').on('change', function () {
-                            tomato1.style.animation = "draw 1.5s forwards 1 linear";
-                            tomato2.style.animation = "draw 1.5s forwards 1 linear";
-                            tomato3.style.animation = "draw 1.5s forwards 1 linear";
-
-                        });
-                    </script>
-                </div>
-			</div>
-        </div>
-	</div>
 </section>
+
+<footer class="background-section-footer">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-sm-8">
+                Mail : freshsandwich@gmail.com
+                <p class="paddingFooter">Tel : 079 955 01 47</p>
+            </div>
+            <div class="col-sm-4 madeLove">
+                made with <span class="heart heartbeat">&#9825;</span> in switzerland
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="js/sandwichCreation.js"></script>
+<script src="js/dragAndDrop.js"></script>
 
 </body>
 </html>

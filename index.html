@@ -12,8 +12,8 @@
     <script src="js/loadSvg.js"></script>
     <script src="js/loadLogo.js"></script>
     <script src="js/scroll.js"></script>
-
-
+	<script src="js/sandwichCreation.js"></script>
+	<script src="js/dragAndDrop.js"></script>
 </head>
 <body>
 
@@ -26,11 +26,11 @@
 <nav class="navbarScroll navbar navbar-default navbar-fixed-top">
     <div class="menu" id="menu">
         <ul>
-            <li><a class="scrollTo" id="animate1" href="#section1">accueil</a></li>
-            <li><a class="scrollTo" id="animate2" href="#section2">menu</a></li>
-            <li><a class="scrollTo" id="animate3" href="#section3">commander</a></li>
-            <li><a class="scrollTo" id="animate4" href="#section4">contact</a></li>
-            <li><a class="scrollTo" id="animate5" href="#section5">staff</a></li>
+            <li><a class="scrollTo" id="animate1" href="#section1">Accueil</a></li>
+            <li><a class="scrollTo" id="animate2" href="#section2">Menu</a></li>
+            <li><a class="scrollTo" id="animate3" href="#section3">Commander</a></li>
+            <li><a class="scrollTo" id="animate4" href="#section4">Contact</a></li>
+            <li><a class="scrollTo" id="animate5" href="#section5">Jobs</a></li>
         </ul>
     </div>
 </nav>
@@ -432,9 +432,9 @@
     <div class="container-fluid ">
         <div class="row">
             <div class="col-lg-12">
-                <div class="section-title"><span><div
-                        class="title">Contacte-nous</div> </span>
-                </div>
+                <div class="section-title">
+					<span><div class="title">Contacte-nous</div></span>
+				</div>
             </div>
         </div>
         <div class="row">
@@ -476,8 +476,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title"><span><div
-                        class="title">Staff</div> </span>
-                </div>
+					class="title">Jobs</div> </span>
+				</div>
             </div>
         </div>
 
@@ -537,26 +537,20 @@
                 <input class="form-control field-marge" type="text" placeholder="Ville"/>
             </div>
         </div>
-
-        <div class="row ">
+		<div class="row ">
             <div class="col-md-4 text-postule-list">
                 Curriculum Vitae :
             </div>
-            <div class="col-md-8 field-postule">
-                <div id="holder">Glissez-déposez votre CV
-                    <div id="fileName"></div>
+            <div class="col-md-8 field-postule" id="holderMax">
+                <div>Transmets nous ton CV
+                    <button type="button" id="goThoughtFile">Parcourir</button>
+                    <input type="file" name="cvFile" id="fileName" style="display:none"/>
+                    <div id="nameFileDrop"></div>
                 </div>
             </div>
         </div>
-        <div class="row send-postule">
-            <div class="col-md-4 text-postule-list">
-            </div>
-            <div class="col-md-8 field-postule">
-                <button>Envoyer</button>
-            </div>
-        </div>
+	</div>
 </section>
-
 
 <footer class="background-section-footer">
     <div class="container-fluid ">
@@ -571,8 +565,5 @@
         </div>
     </div>
 </footer>
-<script src="js/sandwichCreation.js"></script>
-<script src="js/dragAndDrop.js"></script>
-
 </body>
 </html>
