@@ -329,8 +329,114 @@
     stroke-width: 0;
     fill-opacity: 0;
 }
+/*LOGO*/
+#fresh
+{
+    animation: draw-logo 2s forwards 1 linear;
+    stroke: #FFFFFF;
+    stroke-dasharray: 755px;
+    stroke-dashoffset: 755px;
+    stroke-width: 1;
+    fill-opacity: 0;
+
+}
+#sandwich
+{
+    animation: draw-logo 2s forwards 1 linear;
+    stroke: #FFFFFF;
+    stroke-dasharray: 417px;
+    stroke-dashoffset: 417px;
+    stroke-width: 0;
+    fill-opacity: 0;
+
+}
+#herb1{
+    animation: draw-herbs 2s forwards 1 linear;
+    stroke: #67ae3e;
+    stroke-dasharray: 731px;
+    stroke-dashoffset: 731px;
+    stroke-width: 0;
+    fill-opacity: 0;
+
+}
+#herb2{
+    animation: draw-herbs 2s forwards 1 linear;
+    stroke: #5c9f38;
+    stroke-dasharray: 631px;
+    stroke-dashoffset: 631px;
+    stroke-width: 0;
+    fill-opacity: 0;
+
+}
+#herb3{
+    animation: draw-herbs 2s forwards 1 linear;
+    stroke: #80c242;
+    stroke-dasharray: 929px;
+    stroke-dashoffset: 929px;
+    stroke-width: 0;
+    fill-opacity: 0;
+
+}
+#herb4{
+    animation: draw-herbs 2s forwards 1 linear;
+    stroke: #98c93c;
+    stroke-dasharray: 509px;
+    stroke-dashoffset: 509px;
+    stroke-width: 0;
+    fill-opacity: 0;
+
+}
+#herb5{
+    animation: draw-herbs 2s forwards 1 linear;
+    stroke: #72be44;
+    stroke-dasharray: 830px;
+    stroke-dashoffset: 830px;
+    stroke-width: 0;
+    fill-opacity: 0;
+
+}
+#herb6{
+    animation: draw-herbs 2s forwards 1 linear;
+    stroke: #519032;
+    stroke-dasharray: 724px;
+    stroke-dashoffset: 724px;
+    stroke-width: 0;
+    fill-opacity: 0;
+
+}
 
 
+@keyframes draw-logo {
+    0% {
+        fill-opacity: 0;
+        stroke-width: 2;
+    }
+    99% {
+        fill-opacity: 0;
+        stroke-width: 2;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        stroke-width: 0;
+        fill-opacity: 1;
+    }
+}
+
+@keyframes draw-herbs {
+    0% {
+        fill-opacity: 0;
+        stroke-width: 3;
+    }
+    99% {
+        fill-opacity: 0;
+        stroke-width: 3;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        stroke-width: 0;
+        fill-opacity: 1;
+    }
+}
 
 
 @keyframes draw {
