@@ -13,12 +13,13 @@
     <script src="js/loadLogo.js"></script>
     <script src="js/scroll.js"></script>
 
+
 </head>
 <body>
 
 <div id="player">
     <audio controls autoplay hidden>
-        <source src="music/music.mp3" type="audio/mpeg">
+        <source src="music/music" type="audio/mpeg">
     </audio>
 </div>
 
@@ -48,7 +49,8 @@
                     <div>
 
                         <p class="text-mainsection">
-                            <span class="guillemets">"</span>Crée ton sandwich. Goûte la différence.<span class="guillemets">"</span>
+                            <span class="guillemets">"</span>Crée ton sandwich. Goûte la différence.<span
+                                class="guillemets">"</span>
                         </p>
                     </div>
                 </div>
@@ -64,293 +66,287 @@
     <div class=" container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <div class="section-title"><span><img src="img/menu.svg" class="svg menu-icon" /><div class="title">menu</div> </span></div>
+                <div class="section-title"><span><div
+                        class="title">menu</div> </span></div>
             </div>
         </div>
-        <div class="col-md-4">
-            <table class="table menu-text menu-table" jput="t_template">
-                <thead class="menu-text-entete">
-                <tr>
-                    <th>Ingredients</th>
-                    <th>1/3</th>
-                    <th>1/2</th>
-                    <th>2/3</th>
-                </tr>
-                </thead>
-                <tbody jput="tbody_template">
-                <tr>
-                    <td><img src="img/bread.svg" class="legume"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+        <div class="row">
+            <div class="col-md-4">
+                <table class="table menu-text menu-table">
+                    <thead class="menu-text-entete">
+                    <tr>
+                        <th>Ingredients</th>
+                        <th>1/3</th>
+                        <th>1/2</th>
+                        <th>2/3</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><img src="img/bread.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
 
-                </tr>
-                <tr>
-                    <td>Française</td>
-                    <td>4,50</td>
-                    <td>5,10</td>
-                    <td>6,00</td>
-                </tr>
-                <tr>
-                    <td>Céréal</td>
-                    <td>5,20</td>
-                    <td>6,00</td>
-                    <td>6,80</td>
-                </tr>
-                <tr>
-                    <td>Portugais</td>
-                    <td>5,80</td>
-                    <td>6,50</td>
-                    <td>7,20</td>
-                </tr>
-                <tr>
-                    <td><img src="img/salad.svg" class="legume"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    </tr>
+                    <tr>
+                        <td>Français</td>
+                        <td>4,50</td>
+                        <td>5,10</td>
+                        <td>6,00</td>
+                    </tr>
+                    <tr>
+                        <td>Céréal</td>
+                        <td>5,20</td>
+                        <td>6,00</td>
+                        <td>6,80</td>
+                    </tr>
+                    <tr>
+                        <td>Portugais</td>
+                        <td>5,80</td>
+                        <td>6,50</td>
+                        <td>7,20</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/salad.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
 
-                </tr>
-                <tr>
-                    <td>Laitue</td>
-                    <td>0,40</td>
-                    <td>0,40</td>
-                    <td>0,40</td>
+                    </tr>
+                    <tr>
+                        <td>Laitue</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
 
-                </tr>
-                <tr>
-                    <td>Feuille de chêne</td>
-                    <td>0,40</td>
-                    <td>0,40</td>
-                    <td>0,40</td>
-                </tr>
-                <tr>
-                    <td>Tomate</td>
-                    <td>0,40</td>
-                    <td>0,40</td>
-                    <td>0,40</td>
-                </tr>
-                <tr>
-                    <td>Oignon</td>
-                    <td>0,40</td>
-                    <td>0,40</td>
-                    <td>0,40</td>
-                </tr>
+                    </tr>
+                    <tr>
+                        <td>Feuille de chêne</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                    </tr>
+                    <tr>
+                        <td>Tomate</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                    </tr>
+                    <tr>
+                        <td>Oignon</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                    </tr>
 
-                <tr>
-                    <td><img src="img/meat.svg" class="legume"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Jambon</td>
-                    <td>0,60</td>
-                    <td>0,60</td>
-                    <td>0,60</td>
-                </tr>
-                <tr>
-                    <td>Salami</td>
-                    <td>0,60</td>
-                    <td>0,60</td>
-                    <td>0,60</td>
-                </tr>
-                <tr>
-                    <td>Mortadelle</td>
-                    <td>0,60</td>
-                    <td>0,60</td>
-                    <td>0,60</td>
-                </tr>
-                <tr>
-                    <td>Lard</td>
-                    <td>0,60</td>
-                    <td>0,60</td>
-                    <td>0,60</td>
-                </tr>
+                    <tr>
+                        <td><img src="img/meat.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Jambon</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                    </tr>
+                    <tr>
+                        <td>Salami</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                    </tr>
+                    <tr>
+                        <td>Mortadelle</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                    </tr>
+                    <tr>
+                        <td>Lard</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                        <td>0,60</td>
+                    </tr>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <table class="table menu-text menu-table">
+                    <thead class="menu-text-entete">
+                    <tr>
+                        <th>Ingredients</th>
+                        <th>1/3</th>
+                        <th>1/2</th>
+                        <th>2/3</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <tr>
+                        <td><img src="img/fish.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Saumon</td>
+                        <td>1,20</td>
+                        <td>1,20</td>
+                        <td>1,20</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/cheese.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Cheddar</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                    </tr>
+                    <tr>
+                        <td>Emmental</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                    </tr>
+                    <tr>
+                        <td>Mozzarella</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                    </tr>
+                    <tr>
+                        <td>Brie</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                    </tr>
+                    <tr>
+                        <td>Raclette</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                    </tr>
+                    <tr>
+                        <td>Edam</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                        <td>0,50</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/plus.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Cornichon</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                    </tr>
+                    <tr>
+                        <td>Oeuf</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                        <td>0,40</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <table class="table menu-text menu-table">
+                    <thead class="menu-text-entete">
+                    <tr>
+                        <th>Ingredients</th>
+                        <th>1/3</th>
+                        <th>1/2</th>
+                        <th>2/3</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <tr>
+                        <td><img src="img/sauce.svg" class="legume"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Beurre</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Moutard</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Mayonnaise</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Huile d'olive</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Pesto</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Sauce tartare</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Sauce cocktail</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Sauce curry</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Miel</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+                    <tr>
+                        <td>Confiture</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                        <td>0,20</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-md-4">
-            <table class="table menu-text menu-table">
-                <thead class="menu-text-entete">
-                <tr>
-                    <th>Ingredients</th>
-                    <th>1/3</th>
-                    <th>1/2</th>
-                    <th>2/3</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                <tr>
-                    <td><img src="img/fish.svg" class="legume"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Saumon</td>
-                    <td>1,20</td>
-                    <td>1,20</td>
-                    <td>1,20</td>
-                </tr>
-                <tr>
-                    <td><img src="img/cheese.svg" class="legume"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Cheddar</td>
-                    <td>0,50</td>
-                    <td>0,50</td>
-                    <td>0,50</td>
-                </tr>
-                <tr>
-                    <td>Emmental</td>
-                    <td>0,50</td>
-                    <td>0,50</td>
-                    <td>0,50</td>
-                </tr>
-                <tr>
-                    <td>Mozzarella</td>
-                    <td>0,50</td>
-                    <td>0,50</td>
-                    <td>0,50</td>
-                </tr>
-                <tr>
-                    <td>Brie</td>
-                    <td>0,50</td>
-                    <td>0,50</td>
-                    <td>0,50</td>
-                </tr>
-                <tr>
-                    <td>Raclette</td>
-                    <td>0,50</td>
-                    <td>0,50</td>
-                    <td>0,50</td>
-                </tr>
-                <tr>
-                    <td>Edam</td>
-                    <td>0,50</td>
-                    <td>0,50</td>
-                    <td>0,50</td>
-                </tr>
-                <tr>
-                    <td><img src="img/plus.svg" class="legume"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Cornichon</td>
-                    <td>0,40</td>
-                    <td>0,40</td>
-                    <td>0,40</td>
-                </tr>
-                <tr>
-                    <td>Oeuf</td>
-                    <td>0,40</td>
-                    <td>0,40</td>
-                    <td>0,40</td>
-                </tr>
-
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-4">
-            <table class="table menu-text menu-table">
-                <thead class="menu-text-entete">
-                <tr>
-                    <th>Ingredients</th>
-                    <th>1/3</th>
-                    <th>1/2</th>
-                    <th>2/3</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                <tr>
-                    <td><img src="img/sauce.svg" class="legume"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Beurre</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                </tr>
-                <tr>
-                    <td>Moutard</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                </tr>
-                <tr>
-                    <td>Mayonnaise</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                </tr>
-                <tr>
-                    <td>Huile d'olive</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                </tr>
-                <tr>
-                    <td>Pesto</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                </tr>
-                <tr>
-                    <td>Sauce tartare</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                </tr>
-                <tr>
-                    <td>Sauce cocktail</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                </tr>
-                <tr>
-                    <td>Sauce curry</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                </tr>
-				<tr>
-					<td>Sauce mexicaine</td>
-					<td>0,20</td>
-					<td>0,20</td>
-					<td>0,20</td>
-				</tr>
-				<tr>
-					<td>Sauce satay</td>
-					<td>0,20</td>
-					<td>0,20</td>
-					<td>0,20</td>
-				</tr>
-                <tr>
-                    <td>Miel</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                </tr>
-                <tr>
-                    <td>Confiture</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                    <td>0,20</td>
-                </tr>
-
-                </tbody>
-            </table>
+        <div class="scrollTo" href="#section3">
+            <img src="img/down-arrow.svg" class="arrow">
         </div>
     </div>
 </section>
@@ -359,40 +355,34 @@
 <section id="section3" class="background-section-green">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
-                <h2 class="titre ">MON SANDWICH</h2>
+            <div class="col-lg-12">
+                <div class="section-title"><span><div
+                        class="title">mon sandwich</div> </span></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 col-sm-10">
+            <div class="col-md-9 col-sm-9">
                 <div>
                     <img src="img/sandwich.svg" class="svg"/>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-2">
+            <div class="col-md-3 col-sm-3">
                 <div id="hello" style="color:white">hello</div>
 
-                <script>
-                    var path = document.querySelector("#raclette1 polygon");
 
-                    var total_length = path.getTotalLength();
-
-
-                    document.getElementById("hello").innerHTML = total_length;
-                </script>
-
-                <div>
-                    Baguette
+                <div class="row">
                     <select class="select" id="bread">
+                        <div class="options">
                         <option selected="selected" disabled="disabled">Types de baguettes</option>
                         <option value="cr">Céréales</option>
                         <option value="fr">Française</option>
                         <option value="pt">Portugaises</option>
+                        </div>
                     </select>
                 </div>
-                <div>
-                    Sélectionne tes ingrédients
+                <div class="row">
                     <select class="select" id="multiselect" onclick="showCheckboxes()">
+                        <option selected="selected" disabled="disabled">Sélectionne tes ingrédients</option>
                     </select>
                     <div id="checkboxes">
                         <label for="salad">
@@ -427,73 +417,66 @@
                             <input type="checkbox" id="ognon"/>Ognons</label>
                         <label for="salad2">
                             <input type="checkbox" id="salad2"/>Laitue 2ème feuille</label>
+                        <label for="tomato">
+                            <input type="checkbox" id="tomato"/>Tomates</label>
                         <label for="chene2">
                             <input type="checkbox" id="chene2"/>Feuilles de chêne 2ème feuille</label>
                     </div>
                 </div>
-                <div>
-                    1er étage
-                    <select class="select" id="first">
-                        <option selected="selected" disabled="disabled">Légumes</option>
-                        <option value="lt">Laitue</option>
-                        <option value="ch">Feuilles de chêne</option>
+                <div class="row">
+                    <select class="select" id="sauce">
+                        <option selected="selected" disabled="disabled">Choisissez votre sauce</option>
+                        <option value="beurre">Beurre</option>
+                        <option value="moutarde">Moutarde</option>
+                        <option value="mayonnaise">Mayonnaise</option>
+                        <option value="olive">Huile d'olive</option>
+                        <option value="pesto">Pesto</option>
+                        <option value="tartare">Sauce tartare</option>
+                        <option value="cocktail">Sauce cocktail</option>
+                        <option value="curry">Sauce curry</option>
+                        <option value="miel">Miel</option>
+                        <option value="confiture">Confiture</option>
                     </select>
                 </div>
-                <div>
-                    2ème étage
-                    <select class="select" id="second">
-                        <option selected="selected" disabled="disabled">Je sais pas quoi</option>
-                        <option value="ha">Jambon</option>
-                        <option value="sa">Salami</option>
-                        <option value="mo">Mortadelle</option>
+                <div class="row">
+                    <select class="select" id="size">
+                        <div class="options">
+                            <option selected="selected" disabled="disabled">Tailles</option>
+                            <option value="1/3">1/3</option>
+                            <option value="1/2">1/2</option>
+                            <option value="2/3">2/3</option>
+                        </div>
                     </select>
                 </div>
-                <div>
-                    3ème étages
-                    <select class="select" id="third">
-                        <option selected="selected" disabled="disabled">Types de fromages</option>
-                        <option value="ch">Cheddar</option>
-                        <option value="em">Emmental</option>
-                        <option value="mo">Mozzarella</option>
-                        <option value="br">Brie</option>
-                        <option value="ra">Raclette</option>
-                    </select>
+                <div class="row">
+                    Total
                 </div>
-                <div>
-                    Option 3
-                    <select class="select" id="fourth">
-                        <option selected="selected" disabled="disabled">Je sais pas quoi</option>
-                        <option value="to">Tomates</option>
-                        <option value="lt">Laitue</option>
-                        <option value="ch">Feuilles de chêne</option>
-                    </select>
-                </div>
-                <div>
-                    Suppléments
-                    <select class="select" id="fifth">
-                        <option selected="selected" disabled="disabled">Suppléments</option>
-                        <option value="pc">Cornichons</option>
-                    </select>
-                </div>
-
-                <script>
-                    var expanded = false;
-
-                    function showCheckboxes() {
-                        var checkboxes = document.getElementById("checkboxes");
-                        if (!expanded) {
-                            checkboxes.style.display = "block";
-                            expanded = true;
-                        } else {
-                            checkboxes.style.display = "none";
-                            expanded = false;
-                        }
-                    }
-                </script>
-
             </div>
+        </div>
+
+        <div>
+
+            <script>
+                var expanded = false;
+
+                function showCheckboxes() {
+                    var checkboxes = document.getElementById("checkboxes");
+                    if (!expanded) {
+                        checkboxes.style.display = "block";
+                        expanded = true;
+                    } else {
+                        checkboxes.style.display = "none";
+                        expanded = false;
+                    }
+                }
+            </script>
 
         </div>
+
+    </div>
+    <div class="scrollTo" href="#section4">
+        <img src="img/down-arrow.svg" class="arrow">
+    </div>
     </div>
 </section>
 
@@ -532,6 +515,9 @@
             <div class="col-md-3">
             </div>
 
+        </div>
+        <div class="scrollTo" href="#section5">
+            <img src="img/down-arrow.svg" class="arrow">
         </div>
     </div>
 </section>
@@ -643,50 +629,8 @@
         </div>
     </div>
 </footer>
-
-
-<script>
-    $(".custom-select").each(function () {
-        var classes = $(this).attr("class"),
-            id = $(this).attr("id"),
-            name = $(this).attr("name");
-        var template = '<div class="' + classes + '">';
-        template += '<span class="custom-select-trigger">' + $(this).attr("placeholder") + '</span>';
-        template += '<div class="custom-options">';
-        $(this).find("option").each(function () {
-            template += '<span class="custom-option ' + $(this).attr("class") + '" data-value="' + $(this).attr("value") + '">' + $(this).html() + '</span>';
-        });
-        template += '</div></div>';
-
-        $(this).wrap('<div class="custom-select-wrapper"></div>');
-        $(this).hide();
-        $(this).after(template);
-    });
-    $(".custom-option:first-of-type").hover(function () {
-        $(this).parents(".custom-options").addClass("option-hover");
-    }, function () {
-        $(this).parents(".custom-options").removeClass("option-hover");
-    });
-    $(".custom-select-trigger").on("click", function () {
-        $('html').one('click', function () {
-            $(".custom-select").removeClass("opened");
-        });
-        $(this).parents(".custom-select").toggleClass("opened");
-        event.stopPropagation();
-    });
-    $(".custom-option").on("click", function () {
-        $(this).parents(".custom-select-wrapper").find("select").val($(this).data("value"));
-        $(this).parents(".custom-options").find(".custom-option").removeClass("selection");
-        $(this).addClass("selection");
-        $(this).parents(".custom-select").removeClass("opened");
-        $(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text());
-    });
-
-
-</script>
 <script src="js/sandwichCreation.js"></script>
 <script src="js/dragAndDrop.js"></script>
-
 
 </body>
 </html>

@@ -401,6 +401,9 @@ $('#checkboxes').on('change' , function () {
                     /*start animation*/
                     startAnimation('#salad');
                     startAnimation('#saladShadow');
+                    calculatePrice(id);
+
+
                     break;
                 case "chene":
                     /*start animation*/
@@ -614,3 +617,66 @@ function endAnimation (targetElementClass) {
     targetElement.off();
 
 }
+
+function calculatePrice(targetId)
+{
+
+    loadJSON("data/dbSandwicherie.json");
+
+
+}
+
+function calcule(data)
+{
+    alert(data.ingredients[0].nom);
+
+
+    switch(targetId)
+    {
+        case "salad":
+
+            break;
+        case "chene":
+            break;
+        case "ham":
+            break;
+        case "salami":
+            break;
+        case "morta":
+            break;
+        case "bacon":
+            break;
+        case "salmon":
+            break;
+        case "cheddar":
+            break;
+        case "edam":
+            break;
+        case "mozza":
+            break;
+        case "brie":
+            break;
+        case "raclette":
+            break;
+        case "pickle":
+            break;
+        case "egg":
+            break;
+        case "ognon":
+            break;
+        case "salad2":
+            break;
+        case "tomato":
+            break;
+        case "chene2":
+            break;
+    }
+}
+
+function loadJSON(file, callback) {
+    $.get(file, function (data) {
+        calcule(data);
+    })
+
+}
+
