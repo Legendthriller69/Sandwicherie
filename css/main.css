@@ -109,7 +109,6 @@ section {
     font-family: Carosello;
     display: inline-block;
     font-size: 5em;
-    padding-right: 10px;
 
 }
 .section-title > span
@@ -206,9 +205,9 @@ section {
 
 /*--------------arrow section1 ----------------*/
 .arrow {
-    position: absolute;
+    position: relative;
+    margin-top: 100px;
     left: 50%;
-    bottom: 5%;
     width: 40px;
     animation: arrow-scroll 1.7s infinite ease
 }
@@ -247,6 +246,7 @@ section {
 .menu-table {
     width: 60%;
     font-size: 11px;
+    margin:0 auto;
 }
 
 /*--------------section4 contact----------------*/
