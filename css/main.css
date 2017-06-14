@@ -99,7 +99,7 @@ section {
 .section-title
 {
     text-align: center;
-    margin-top: 70px;
+    margin-top: 30px;
     color: #FFFFFF;
     vertical-align: middle;
 }
@@ -211,6 +211,7 @@ section {
     width: 40px;
     animation: arrow-scroll 1.7s infinite ease
 }
+
 
 @keyframes arrow-scroll {
     0% {
