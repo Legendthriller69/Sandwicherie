@@ -1,490 +1,144 @@
 {
 	"pains": [
-		{ 
-			"nom" : "français",
-			"taille": "1/3",
-			"prix" : 4.50
+		{
+			"nom": "Baguette française",
+			"prix": 4.50
 		},
 		{
-			"nom" : "français",
-			"taille": "1/2",
-			"prix" : 5.10
+			"nom": "Pain aux céréales",
+			"prix": 5.20
 		},
 		{
-			"nom" : "français",
-			"taille": "2/3",
-			"prix" : 6.00
-		},
-		{
-			"nom" : "céréal",
-			"taille": "1/3",
-			"prix" : 5.20
-		},
-		{
-			"nom" : "céréal",
-			"taille": "1/2",
-			"prix" : 6.00
-		},
-		{
-			"nom" : "céréal",
-			"taille": "2/3",
-			"prix" : 6.80
-		},
-		{
-			"nom" : "portugais",
-			"taille": "1/3",
-			"prix" : 5.80
-		},
-		{
-			"nom" : "portugais",
-			"taille": "1/2",
-			"prix" : 6.50
-		},
-		{
-			"nom" : "portugais",
-			"taille": "2/3",
-			"prix" : 7.20
+			"nom": "Pain portuguais",
+			"prix": 5.80
 		}
-
 	],
-
-	"ingrédients": [
-		{ 
-			"nom" : "laitue",
-			"taille": "1/3",
-			"prix" : 0.40
+	"legumes": [
+		{
+			"nom": "laitue",
+			"prix": 0.40
 		},
 		{
-			"nom" : "laitue",
-			"taille": "1/2",
-			"prix" : 0.40
+			"nom": "feuille de chêne",
+			"prix": 0.40
 		},
 		{
-			"nom" : "laitue",
-			"taille": "2/3",
-			"prix" : 0.40
+			"nom": "tomates",
+			"prix": 0.50
 		},
 		{
-			"nom" : "feuille de chêne",
-			"taille": "1/3",
-			"prix" : 0.40
+			"nom": "oignons",
+			"prix": 0.50
+		}
+	],
+	"viandes": [
+		{
+			"nom": "jambon",
+			"prix": 0.50
 		},
 		{
-			"nom" : "feuille de chêne",
-			"taille": "1/2",
-			"prix" : 0.40
+			"nom": "salami",
+			"prix": 0.50
 		},
 		{
-			"nom" : "feuille de chêne",
-			"taille": "2/3",
-			"prix" : 0.40
+			"nom": "mortadelle",
+			"prix": 0.50
 		},
 		{
-			"nom" : "tomate",
-			"taille": "1/3",
-			"prix" : 0.50	  
+			"nom": "lard",
+			"prix": 0.50
+		}
+	],
+	"poissons": [
+		{
+			"nom": "saumon",
+			"prix": 0.50
+		}
+	],
+	"fromages": [
+		{
+			"nom": "cheddar",
+			"prix": 0.50
 		},
 		{
-			"nom" : "tomate",
-			"taille": "1/2",
-			"prix" : 0.50
+			"nom": "emmental",
+			"prix": 0.50
 		},
 		{
-			"nom" : "tomate",
-			"taille": "2/3",
-			"prix" : 0.50
+			"nom": "mozzarella",
+			"prix": 0.50
 		},
 		{
-			"nom" : "oignon",
-			"taille": "1/3",
-			"prix" : 0.50		  
+			"nom": "brie",
+			"prix": 0.50
 		},
 		{
-			"nom" : "oignon",
-			"taille": "1/2",
-			"prix" : 0.50
+			"nom": "raclette",
+			"prix": 0.50
 		},
 		{
-			"nom" : "oignon",
-			"taille": "2/3",
-			"prix" : 0.50
+			"nom": "edam",
+			"prix": 0.50
+		}
+	],
+	"supplementss": [
+		{
+			"nom": "cornichons",
+			"prix": 0.50
 		},
 		{
-			"nom" : "jambon",
-			"taille": "1/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "jambon",
-			"taille": "1/2",
-			"prix" : 0.60
-		},
-		{
-			"nom" : "jambon",
-			"taille": "2/3",
-			"prix" : 0.70
-		},
-		{
-			"nom" : "salami",
-			"taille": "1/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "salami",
-			"taille": "1/2",
-			"prix" : 0.60
-		},
-		{
-			"nom" : "salami",
-			"taille": "2/3",
-			"prix" : 0.70
-		},
-		{
-			"nom" : "mortadelle",
-			"taille": "1/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "mortadelle",
-			"taille": "1/2",
-			"prix" : 0.60
-		},
-		{
-			"nom" : "mortadelle",
-			"taille": "2/3",
-			"prix" : 0.70
-		},
-		{
-			"nom" : "lard",
-			"taille": "1/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "lard",
-			"taille": "1/2",
-			"prix" : 0.60
-		},
-		{
-			"nom" : "lard",
-			"taille": "2/3",
-			"prix" : 0.70
-		},
-		{
-			"nom" : "saumon",
-			"taille": "1/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "saumon",
-			"taille": "1/2",
-			"prix" : 0.60
-		},
-		{
-			"nom" : "saumon",
-			"taille": "2/3",
-			"prix" : 0.70
-		},
-		{
-			"nom" : "cheddar",
-			"taille": "1/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "cheddar",
-			"taille": "1/2",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "cheddar",
-			"taille": "2/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "emmental",
-			"taille": "1/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "emmental",
-			"taille": "1/2",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "emmental",
-			"taille": "2/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "mozzarella",
-			"taille": "1/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "mozzarella",
-			"taille": "1/2",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "mozzarella",
-			"taille": "2/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "brie",
-			"taille": "1/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "brie",
-			"taille": "1/2",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "brie",
-			"taille": "2/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "raclette",
-			"taille": "1/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "raclette",
-			"taille": "1/2",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "raclette",
-			"taille": "2/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "edam",
-			"taille": "1/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "edam",
-			"taille": "1/2",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "edam",
-			"taille": "2/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "cornichons",
-			"taille": "1/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "cornichons",
-			"taille": "1/2",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "cornichons",
-			"taille": "2/3",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "oeuf",
-			"taille": "1/3",
-			"prix" : 0.50		  
-		},
-		{
-			"nom" : "oeuf",
-			"taille": "1/2",
-			"prix" : 0.50
-		},
-		{
-			"nom" : "oeuf",
-			"taille": "2/3",
-			"prix" : 0.50
+			"nom": "oeufs",
+			"prix": 0.50
 		}
 	],
 
-	"sauce": [
+	"sauces": [
 		{
 			"nom" : "beurre",
-			"taille": "1/3",
 			"prix" : 0.20
 		},
 		{
-			"nom" : "beurre",
-			"taille": "1/2",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "beurre",
-			"taille": "2/3",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "moutard",
-			"taille": "1/3",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "moutard",
-			"taille": "1/2",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "moutard",
-			"taille": "2/3",
+			"nom" : "moutarde",
 			"prix" : 0.20
 		},
 		{
 			"nom" : "mayonnaise",
-			"taille": "1/3",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "mayonnaise",
-			"taille": "1/2",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "mayonnaise",
-			"taille": "2/3",
 			"prix" : 0.20
 		},
 		{
 			"nom" : "huile d'olive",
-			"taille": "1/3",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "huile d'olive",
-			"taille": "1/2",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "huile d'olive",
-			"taille": "2/3",
 			"prix" : 0.20
 		},
 		{
 			"nom" : "pesto",
-			"taille": "1/3",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "pesto",
-			"taille": "1/2",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "pesto",
-			"taille": "2/3",
 			"prix" : 0.20
 		},
 		{
 			"nom" : "sauce tartare",
-			"taille": "1/3",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "sauce tartare",
-			"taille": "1/2",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "sauce tartare",
-			"taille": "2/3",
 			"prix" : 0.20
 		},
 		{
 			"nom" : "sauce cocktail",
-			"taille": "1/3",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "sauce cocktail",
-			"taille": "1/2",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "sauce cocktail",
-			"taille": "2/3",
 			"prix" : 0.20
 		},
 		{
 			"nom" : "sauce curry",
-			"taille": "1/3",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "sauce curry",
-			"taille": "1/2",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "sauce curry",
-			"taille": "2/3",
 			"prix" : 0.20
 		},
 		{
 			"nom" : "sauce mexicaine",
-			"taille": "1/3",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "sauce mexicaine",
-			"taille": "1/2",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "sauce mexicaine",
-			"taille": "2/3",
 			"prix" : 0.20
 		},
 		{
 			"nom" : "sauce satay",
-			"taille": "1/3",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "sauce satay",
-			"taille": "1/2",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "sauce satay",
-			"taille": "2/3",
 			"prix" : 0.20
 		},
 		{
 			"nom" : "miel",
-			"taille": "1/3",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "miel",
-			"taille": "1/2",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "miel",
-			"taille": "2/3",
 			"prix" : 0.20
 		},
 		{
 			"nom" : "confiture",
-			"taille": "1/3",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "confiture",
-			"taille": "1/2",
-			"prix" : 0.20
-		},
-		{
-			"nom" : "confiture",
-			"taille": "2/3",
 			"prix" : 0.20
 		}
 	]
