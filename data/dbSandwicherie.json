@@ -13,7 +13,7 @@
 			"prix": 5.80
 		}
 	],
-	"legume": [
+	"legumes": [
 		{
 			"nom": "laitue",
 			"prix": 0.40
@@ -31,7 +31,7 @@
 			"prix": 0.50
 		}
 	],
-	"viande": [
+	"viandes": [
 		{
 			"nom": "jambon",
 			"prix": 0.50
@@ -49,13 +49,13 @@
 			"prix": 0.50
 		}
 	],
-	"poisson": [
+	"poissons": [
 		{
 			"nom": "saumon",
 			"prix": 0.50
 		}
 	],
-	"fromage": [
+	"fromages": [
 		{
 			"nom": "cheddar",
 			"prix": 0.50
@@ -81,7 +81,7 @@
 			"prix": 0.50
 		}
 	],
-	"supplements": [
+	"supplementss": [
 		{
 			"nom": "cornichons",
 			"prix": 0.50
@@ -92,7 +92,7 @@
 		}
 	],
 
-	"sauce": [
+	"sauces": [
 		{
 			"nom" : "beurre",
 			"prix" : 0.20

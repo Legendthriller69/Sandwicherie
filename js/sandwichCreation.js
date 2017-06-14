@@ -9,7 +9,8 @@ $(document).ready(function() {
     {
         var id = $('#bread').find("option:selected").val();
 
-        calcule(id);
+
+        calculatePriceBread(id);
         switch(id)
         {
             case "fr":
@@ -276,13 +277,14 @@ function endAnimation (targetElementClass) {
     targetElement.off();
 
 }
-
-function calcule(id)
+function calculatePriceBread(id)
 {
-    console.log(data);
+
+    var newEntry = "<div class='price-element price-element-"+id+"'>"+data.pains[id].nom + " : "+data.pains[id].prix+".- chf</div>";
+
     switch(id)
     {
-        case "fr":
+        case '0':
             /*end others animations*/
             endAnimation('#breadTopPt');
             endAnimation('#breadTopShadowPt');
@@ -297,7 +299,8 @@ function calcule(id)
             endAnimation('#breadBotCereals');
             endAnimation('#breadBotShadowCereals');
 
-            $('.pt').remove();
+            $('.price-element-1').remove();
+            $('.price-element-2').remove();
             /*start animation*/
             startAnimation('#breadTop');
             startAnimation('#breadTopShadow');
@@ -306,10 +309,9 @@ function calcule(id)
             startAnimation('#breadBot');
             startAnimation('#breadBotShadow');
 
-            var newEntry = "<div class='"+id+"'>"+data.ingredients[0].nom + " : "+data.ingredients[0].prix+".- chf</div>";
             $('#total').append(newEntry);
             break;
-        case "pt":
+        case '1':
             /*end others animations*/
             endAnimation('#breadTop');
             endAnimation('#breadTopShadow');
@@ -323,7 +325,8 @@ function calcule(id)
             endAnimation('#breadBotCereals');
             endAnimation('#breadBotShadowCereals');
 
-            $('.fr').remove();
+            $('.price-element-0').remove();
+            $('.price-element-2').remove();
             /*start animation*/
             startAnimation('#breadTopPt');
             startAnimation('#breadTopShadowPt');
@@ -332,9 +335,20 @@ function calcule(id)
 
             startAnimation('#breadBotPt');
             startAnimation('#breadBotShadowPt');
-
-            var newEntry = "<div class='"+id+"'>"+data.ingredients[1].nom + " : "+data.ingredients[1].prix+".- chf</div>";
             $('#total').append(newEntry);
+            break;
+        case '2':
+            break;
+    }
+}
+function calcule(id)
+{
+    console.log(data);
+    switch(id)
+    {
+
+        case "pt":
+
             break;
         case "cr":
             break;
