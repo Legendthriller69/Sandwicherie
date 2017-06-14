@@ -301,49 +301,6 @@
                     </select>
                 </div>
                 <div class="row">
-                    <select class="select" id="multiselect" onclick="showCheckboxes()">
-                        <option selected="selected" disabled="disabled">Sélectionne tes ingrédients</option>
-                    </select>
-                    <div id="checkboxes">
-                        <label for="0">
-                            <input type="checkbox" id="0"/>Laitue</label>
-                        <label for="1">
-                            <input type="checkbox" id="1"/>Feuilles de chêne</label>
-                        <label for="2">
-                            <input type="checkbox" id="2"/>Jambon</label>
-                        <label for="3">
-                            <input type="checkbox" id="3"/>Salami</label>
-                        <label for="4">
-                            <input type="checkbox" id="4"/>Mortadelle</label>
-                        <label for="5">
-                            <input type="checkbox" id="5"/>Lard</label>
-                        <label for="6">
-                            <input type="checkbox" id="6"/>Saumon</label>
-                        <label for="7">
-                            <input type="checkbox" id="7"/>Cheddar</label>
-                        <label for="8">
-                            <input type="checkbox" id="8"/>Edam</label>
-                        <label for="9">
-                            <input type="checkbox" id="9"/>Mozzarella</label>
-                        <label for="10">
-                            <input type="checkbox" id="10"/>Brie</label>
-                        <label for="11">
-                            <input type="checkbox" id="11"/>Raclette</label>
-                        <label for="12">
-                            <input type="checkbox" id="12"/>Cornichons</label>
-                        <label for="13">
-                            <input type="checkbox" id="13"/>Oeufs</label>
-                        <label for="14">
-                            <input type="checkbox" id="14"/>Ognons</label>
-                        <label for="15">
-                            <input type="checkbox" id="15"/>Laitue 2ème feuille</label>
-                        <label for="16">
-                            <input type="checkbox" id="16"/>Tomates</label>
-                        <label for="17">
-                            <input type="checkbox" id="17"/>Feuilles de chêne 2ème feuille</label>
-                    </div>
-                </div>
-                <div class="row">
                     <select class="select" id="sauce">
                         <option selected="selected" disabled="disabled">Choisissez votre sauce</option>
                         <option value="0">Beurre</option>
@@ -359,11 +316,84 @@
                     </select>
                 </div>
                 <div class="row">
-                    <div id="total">
+                    <select class="select multiselect" onclick="showCheckboxes('legumes')">
+                        <option selected="selected" disabled="disabled">Sélectionne tes légumes</option>
+                    </select>
+                    <div class="checkboxes" id="legumes">
+                        <label for="laitue">
+                            <input type="checkbox" id="laitue" value="0"/>Laitue</label>
+                        <label for="chene">
+                            <input type="checkbox" id="chene" value="1"/>Feuilles de chêne</label>
+                        <label for="tomates">
+                            <input type="checkbox" id="tomates" value="2"/>Tomates</label>
+                        <label for="ognons">
+                            <input type="checkbox" id="ognons" value="3"/>Ognons</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <select class="select multiselect" onclick="showCheckboxes('viandes')">
+                        <option selected="selected" disabled="disabled">Sélectionne tes viandes</option>
+                    </select>
+                    <div class="checkboxes" id="viandes">
+                        <label for="jambon">
+                            <input type="checkbox" id="jambon" value="0"/>Jambon</label>
+                        <label for="salami">
+                            <input type="checkbox" id="salami" value="1"/>Salami</label>
+                        <label for="mortadelle">
+                            <input type="checkbox" id="mortadelle" value="2"/>Mortadelle</label>
+                        <label for="lard">
+                            <input type="checkbox" id="lard" value="3"/>Lard</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <select class="select multiselect" onclick="showCheckboxes('fromages')">
+                        <option selected="selected" disabled="disabled">Sélectionne tes fromages</option>
+                    </select>
+                    <div class="checkboxes" id="fromages">
+                        <label for="cheddar">
+                            <input type="checkbox" id="cheddar" value="0"/>Cheddar</label>
+                        <label for="edam">
+                            <input type="checkbox" id="edam" value="1"/>Edam</label>
+                        <label for="mozzarella">
+                            <input type="checkbox" id="mozzarella" value="2"/>Mozzarella</label>
+                        <label for="brie">
+                            <input type="checkbox" id="brie" value="3"/>Brie</label>
+                        <label for="raclette">
+                            <input type="checkbox" id="raclette" value="4"/>Raclette</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <select class="select multiselect" onclick="showCheckboxes('poissons')">
+                        <option selected="selected" disabled="disabled">Sélectionne ton poisson</option>
+                    </select>
+                    <div class="checkboxes" id="poissons">
+                        <label for="saumon">
+                            <input type="checkbox" id="saumon" value="0"/>Saumon</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <select class="select multiselect" onclick="showCheckboxes('supplements')">
+                        <option selected="selected" disabled="disabled">Sélectionne tes suppléments</option>
+                    </select>
+                    <div class="checkboxes" id="supplements">
+                        <label for="cornichons">
+                            <input type="checkbox" id="cornichons" value="0"/>Cornichons</label>
+                        <label for="oeufs">
+                            <input type="checkbox" id="oeufs" value="1"/>Oeufs</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
 
                         Total
                         <table>
+                            <tbody   id="calcul">
 
+                            </tbody>
+                            <tfoot>
+                                <td>Total</td>
+                                <td id="total"></td>
+                            </tfoot>
                         </table>
                     </div>
 
@@ -376,8 +406,8 @@
             <script>
                 var expanded = false;
 
-                function showCheckboxes() {
-                    var checkboxes = document.getElementById("checkboxes");
+                function showCheckboxes(id) {
+                    var checkboxes = document.getElementById(id);
                     if (!expanded) {
                         checkboxes.style.display = "block";
                         expanded = true;
