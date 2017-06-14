@@ -100,6 +100,7 @@ section {
 {
     text-align: center;
     margin-top: 30px;
+	margin-bottom : 30px;
     color: #FFFFFF;
     vertical-align: middle;
 }
@@ -301,7 +302,7 @@ button {
 
 .send-postule {
     text-align: right;
-    margin-right: 200px;
+	margin-top : 10px;
 }
 
 #holder {
@@ -311,13 +312,9 @@ button {
     padding-bottom: 15px;
     text-align: center;
 }
-<<<<<<< HEAD
 #icon-del-file:hover {
 	color : red;
 }
-=======
-
->>>>>>> c8c201bbeef5abc3ed564f3b3bab48e7c4964af9
 /*--------------footer----------------*/
 .paddingFooter {
     padding-top: 10px;
