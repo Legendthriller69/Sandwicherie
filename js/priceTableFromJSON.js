@@ -1,11 +1,6 @@
 /**
  * Created by flavien on 14.06.17.
  *
- <script>
- $(document).ready(function() {
-            loadJSONIngredient();
-        });
- </script>
  */
 
 
@@ -15,7 +10,7 @@ function loadJSONIngredient() {
         var res = '<tr><td><img src="img/bread.svg" class="legume"></td><td></td></tr>';
 
         for (var i = 0; i < data.pains.length; i++){
-            res += '<tr><td>' + data.pains[i].nom + '</td><td>' + formattedPrice(data.pains[i].prix) + '</td></tr>';
+            res += '<tr><td>' + data.pains[i].nom + '</td><td>' + formattedPrice(data.pains[i].prix) +  '</td></tr>';
         }
 
         res += ' <tr><td><img src="img/salad.svg" class="legume"></td><td></td></tr>';
@@ -62,10 +57,13 @@ function loadJSONIngredient() {
         $("#tableIngredient3").html(res);
     })
 }
-var formattedPrice = function (prix) {
+var formattedPrice = function(prix) {
     prix = Math.round(prix * 100 )/100;
     prix = prix + '';
     if (prix.indexOf('.') != -1){
+        if (prix.split('.')[1].length == 1){
+            prix += '0';
+        }
         return prix.replace('.', ',');
     }
     return prix + '.-';
