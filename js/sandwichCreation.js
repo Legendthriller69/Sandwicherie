@@ -1,390 +1,50 @@
 /**
  * Created by Rafael Peixoto on 12.06.2017.
  */
-$('#bread').on('change', function () {
-    var val = $('#bread').find("option:selected").val();
+var data = null;
+$(document).ready(function() {
+    loadJSON("data/dbSandwicherie.json");
 
-    switch(val)
+    $('#bread').on('change', function ()
     {
-        case "fr":
-            /*end others animations*/
-            endAnimation('#breadTopPt');
-            endAnimation('#breadTopShadowPt');
-            endAnimation('#traitsPt');
-            endAnimation('#flavor');
-            endAnimation('#breadBotPt');
-            endAnimation('#breadBotShadowPt');
+        var id = $('#bread').find("option:selected").val();
 
-            endAnimation('#breadTopCereals');
-            endAnimation('#breadTopShadowCereals');
-            endAnimation('#cerealsTop');
-            endAnimation('#breadBotCereals');
-            endAnimation('#breadBotShadowCereals');
-            /*start animation*/
-            startAnimation('#breadTop');
-            startAnimation('#breadTopShadow');
-            startAnimation('#traits');
+        calcule(id);
+        switch(id)
+        {
+            case "fr":
 
-            startAnimation('#breadBot');
-            startAnimation('#breadBotShadow');
+                break;
+            case "pt":
 
+                break;
+            case "cr":
+                /*end others animations*/
+                endAnimation('#breadTop');
+                endAnimation('#breadTopShadow');
+                endAnimation('#traits');
+                endAnimation('#breadBot');
+                endAnimation('#breadBotShadow');
 
-            break;
-        case "pt":
-            /*end others animations*/
-            endAnimation('#breadTop');
-            endAnimation('#breadTopShadow');
-            endAnimation('#traits');
-            endAnimation('#breadBot');
-            endAnimation('#breadBotShadow');
-
-            endAnimation('#breadTopCereals');
-            endAnimation('#breadTopShadowCereals');
-            endAnimation('#cerealsTop');
-            endAnimation('#breadBotCereals');
-            endAnimation('#breadBotShadowCereals');
-            /*start animation*/
-            startAnimation('#breadTopPt');
-            startAnimation('#breadTopShadowPt');
-            startAnimation('#traitsPt');
-            startAnimation('#flavor');
-
-            startAnimation('#breadBotPt');
-            startAnimation('#breadBotShadowPt');
-            break;
-        case "cr":
-            /*end others animations*/
-            endAnimation('#breadTop');
-            endAnimation('#breadTopShadow');
-            endAnimation('#traits');
-            endAnimation('#breadBot');
-            endAnimation('#breadBotShadow');
-
-            endAnimation('#breadTopPt');
-            endAnimation('#breadTopShadowPt');
-            endAnimation('#traitsPt');
-            endAnimation('#flavor');
-            endAnimation('#breadBotPt');
-            endAnimation('#breadBotShadowPt');
-            /*start animation*/
-            startAnimation('#breadTopCereals');
-            startAnimation('#breadTopShadowCereals');
-            startAnimation('#cerealsTop');
-            startAnimation('#breadBotCereals');
-            startAnimation('#breadBotShadowCereals');
-            break;
-    }
-
-
-
-
+                endAnimation('#breadTopPt');
+                endAnimation('#breadTopShadowPt');
+                endAnimation('#traitsPt');
+                endAnimation('#flavor');
+                endAnimation('#breadBotPt');
+                endAnimation('#breadBotShadowPt');
+                /*start animation*/
+                startAnimation('#breadTopCereals');
+                startAnimation('#breadTopShadowCereals');
+                startAnimation('#cerealsTop');
+                startAnimation('#breadBotCereals');
+                startAnimation('#breadBotShadowCereals');
+                break;
+        }
+    });
 
 });
 
-$('#first').on('change', function () {
-    var val = $('#first').find("option:selected").val();
 
-    switch(val)
-    {
-        case "lt":
-            /*end others animations*/
-            endAnimation('#saladCh');
-            endAnimation('#saladShadowCh');
-
-            /*start animation*/
-            startAnimation('#salad');
-            startAnimation('#saladShadow');
-
-
-            break;
-        case "ch":
-            /*end others animations*/
-            endAnimation('#salad');
-            endAnimation('#saladShadow');
-
-            /*start animation*/
-            startAnimation('#saladCh');
-            startAnimation('#saladShadowCh');
-            break;
-    }
-
-
-});
-
-$('#second').on('change', function () {
-    var val = $('#second').find("option:selected").val();
-
-    switch(val)
-    {
-        case "ha":
-            /*end others animations*/
-            endAnimation('#salami1');
-            endAnimation('#salami2');
-            endAnimation('#salami3');
-            endAnimation('#morta1');
-            endAnimation('#morta2');
-            endAnimation('#morta3');
-
-            /*start animation*/
-            startAnimation('#ham1');
-            startAnimation('#ham2');
-            startAnimation('#ham3');
-
-
-            break;
-        case "sa":
-            /*end others animations*/
-            endAnimation('#morta1');
-            endAnimation('#morta2');
-            endAnimation('#morta3');
-            endAnimation('#ham1');
-            endAnimation('#ham2');
-            endAnimation('#ham3');
-
-            /*start animation*/
-            startAnimation('#salami1');
-            startAnimation('#salami2');
-            startAnimation('#salami3');
-            break;
-        case "mo":
-            /*end others animations*/
-            endAnimation('#ham1');
-            endAnimation('#ham2');
-            endAnimation('#ham3');
-            endAnimation('#salami1');
-            endAnimation('#salami2');
-            endAnimation('#salami3');
-
-            /*start animation*/
-            startAnimation('#morta1');
-            startAnimation('#morta2');
-            startAnimation('#morta3');
-            break;
-    }
-
-
-});
-
-$('#second').on('change', function () {
-    var val = $('#second').find("option:selected").val();
-
-    switch(val)
-    {
-        case "ha":
-            /*end others animations*/
-            endAnimation('#salami1');
-            endAnimation('#salami2');
-            endAnimation('#salami3');
-            endAnimation('#morta1');
-            endAnimation('#morta2');
-            endAnimation('#morta3');
-
-            /*start animation*/
-            startAnimation('#ham1');
-            startAnimation('#ham2');
-            startAnimation('#ham3');
-
-
-            break;
-        case "sa":
-            /*end others animations*/
-            endAnimation('#morta1');
-            endAnimation('#morta2');
-            endAnimation('#morta3');
-            endAnimation('#ham1');
-            endAnimation('#ham2');
-            endAnimation('#ham3');
-
-            /*start animation*/
-            startAnimation('#salami1');
-            startAnimation('#salami2');
-            startAnimation('#salami3');
-            break;
-        case "mo":
-            /*end others animations*/
-            endAnimation('#ham1');
-            endAnimation('#ham2');
-            endAnimation('#ham3');
-            endAnimation('#salami1');
-            endAnimation('#salami2');
-            endAnimation('#salami3');
-
-            /*start animation*/
-            startAnimation('#morta1');
-            startAnimation('#morta2');
-            startAnimation('#morta3');
-            break;
-    }
-
-
-});
-
-$('#third').on('change', function () {
-    var val = $('#third').find("option:selected").val();
-
-    switch(val)
-    {
-        case "ch":
-            /*end others animations*/
-            endAnimation('#cheese1');
-            endAnimation('#cheese2');
-            endAnimation('#mozza1');
-            endAnimation('#mozza2');
-            endAnimation('#brie1');
-            endAnimation('#brie2');
-            endAnimation('#brie3');
-            endAnimation('#raclette1');
-            endAnimation('#raclette2');
-            endAnimation('#raclette3');
-
-            /*start animation*/
-            startAnimation('#cheddar1');
-            startAnimation('#cheddar2');
-
-
-
-            break;
-        case "em":
-            /*end others animations*/
-            endAnimation('#mozza1');
-            endAnimation('#mozza2');
-            endAnimation('#brie1');
-            endAnimation('#brie2');
-            endAnimation('#brie3');
-            endAnimation('#raclette1');
-            endAnimation('#raclette2');
-            endAnimation('#raclette3');
-            endAnimation('#cheddar1');
-            endAnimation('#cheddar2');
-
-            /*start animation*/
-            startAnimation('#cheese1');
-            startAnimation('#cheese2');
-            break;
-        case "mo":
-            /*end others animations*/
-            endAnimation('#cheese1');
-            endAnimation('#cheese2');
-            endAnimation('#brie1');
-            endAnimation('#brie2');
-            endAnimation('#brie3');
-            endAnimation('#raclette1');
-            endAnimation('#raclette2');
-            endAnimation('#raclette3');
-            endAnimation('#cheddar1');
-            endAnimation('#cheddar2');
-
-            /*start animation*/
-            startAnimation('#mozza1');
-            startAnimation('#mozza2');
-            break;
-        case "br":
-            /*end others animations*/
-            endAnimation('#cheese1');
-            endAnimation('#cheese2');
-            endAnimation('#mozza1');
-            endAnimation('#mozza2');
-            endAnimation('#raclette1');
-            endAnimation('#raclette2');
-            endAnimation('#raclette3');
-            endAnimation('#cheddar1');
-            endAnimation('#cheddar2');
-
-            /*start animation*/
-            startAnimation('#brie1');
-            startAnimation('#brie2');
-            startAnimation('#brie3');
-            break;
-        case "ra":
-            /*end others animations*/
-            endAnimation('#cheese1');
-            endAnimation('#cheese2');
-            endAnimation('#mozza1');
-            endAnimation('#mozza2');
-            endAnimation('#brie1');
-            endAnimation('#brie2');
-            endAnimation('#brie3');
-            endAnimation('#cheddar1');
-            endAnimation('#cheddar2');
-
-            /*start animation*/
-            startAnimation('#raclette1');
-            startAnimation('#raclette2');
-            startAnimation('#raclette3');
-            break;
-    }
-
-
-});
-
-$('#fourth').on('change', function () {
-    var val = $('#fourth').find("option:selected").val();
-
-    switch(val)
-    {
-        case "lt":
-            /*end others animations*/
-            endAnimation('#saladTopCh');
-            endAnimation('#saladTopShadowCh');
-            endAnimation('#tomato1');
-            endAnimation('#tomato2');
-            endAnimation('#tomato3');
-
-            /*start animation*/
-            startAnimation('#saladTop');
-            startAnimation('#saladTopShadow');
-
-
-            break;
-        case "ch":
-            /*end others animations*/
-            endAnimation('#saladTop');
-            endAnimation('#saladTopShadow');
-            endAnimation('#tomato1');
-            endAnimation('#tomato2');
-            endAnimation('#tomato3');
-
-            /*start animation*/
-            startAnimation('#saladTopCh');
-            startAnimation('#saladTopShadowCh');
-            break;
-
-        case "to":
-            /*end others animations*/
-            endAnimation('#saladTop');
-            endAnimation('#saladTopShadow');
-            endAnimation('#saladTopCh');
-            endAnimation('#saladTopShadowCh');
-
-            /*start animation*/
-            startAnimation('#tomato1');
-            startAnimation('#tomato2');
-            startAnimation('#tomato3');
-            break;
-    }
-
-
-});
-
-$('#fifth').on('change', function () {
-    var val = $('#fifth').find("option:selected").val();
-
-    switch(val)
-    {
-        case "pc":
-            /*end others animations*/
-
-            /*start animation*/
-            startAnimation('#pickle1');
-            startAnimation('#pickle2');
-            startAnimation('#pickle3');
-
-
-            break;
-    }
-
-
-});
 
 $('#checkboxes').on('change' , function () {
 
@@ -401,7 +61,6 @@ $('#checkboxes').on('change' , function () {
                     /*start animation*/
                     startAnimation('#salad');
                     startAnimation('#saladShadow');
-                    calculatePrice(id);
 
 
                     break;
@@ -618,20 +277,69 @@ function endAnimation (targetElementClass) {
 
 }
 
-function calculatePrice(id)
+function calcule(id)
 {
-
-    loadJSON("data/dbSandwicherie.json");
-
-
-}
-
-function calcule(data, id)
-{
+    console.log(data);
     switch(id)
     {
+        case "fr":
+            /*end others animations*/
+            endAnimation('#breadTopPt');
+            endAnimation('#breadTopShadowPt');
+            endAnimation('#traitsPt');
+            endAnimation('#flavor');
+            endAnimation('#breadBotPt');
+            endAnimation('#breadBotShadowPt');
+
+            endAnimation('#breadTopCereals');
+            endAnimation('#breadTopShadowCereals');
+            endAnimation('#cerealsTop');
+            endAnimation('#breadBotCereals');
+            endAnimation('#breadBotShadowCereals');
+
+            $('.pt').remove();
+            /*start animation*/
+            startAnimation('#breadTop');
+            startAnimation('#breadTopShadow');
+            startAnimation('#traits');
+
+            startAnimation('#breadBot');
+            startAnimation('#breadBotShadow');
+
+            var newEntry = "<div class='"+id+"'>"+data.ingredients[0].nom + " : "+data.ingredients[0].prix+".- chf</div>";
+            $('#total').append(newEntry);
+            break;
+        case "pt":
+            /*end others animations*/
+            endAnimation('#breadTop');
+            endAnimation('#breadTopShadow');
+            endAnimation('#traits');
+            endAnimation('#breadBot');
+            endAnimation('#breadBotShadow');
+
+            endAnimation('#breadTopCereals');
+            endAnimation('#breadTopShadowCereals');
+            endAnimation('#cerealsTop');
+            endAnimation('#breadBotCereals');
+            endAnimation('#breadBotShadowCereals');
+
+            $('.fr').remove();
+            /*start animation*/
+            startAnimation('#breadTopPt');
+            startAnimation('#breadTopShadowPt');
+            startAnimation('#traitsPt');
+            startAnimation('#flavor');
+
+            startAnimation('#breadBotPt');
+            startAnimation('#breadBotShadowPt');
+
+            var newEntry = "<div class='"+id+"'>"+data.ingredients[1].nom + " : "+data.ingredients[1].prix+".- chf</div>";
+            $('#total').append(newEntry);
+            break;
+        case "cr":
+            break;
         case "salad":
-            $('#total').innerHTML = data.ingredients[0].nom +" : "+ data.ingredients[0].prix;
+
             break;
         case "chene":
             break;
@@ -670,9 +378,9 @@ function calcule(data, id)
     }
 }
 
-function loadJSON(file, id) {
-    $.get(file, function (data) {
-        calcule(data, id);
+function loadJSON(file) {
+    $.get(file, function (json) {
+        data = json;
     })
 
 }
