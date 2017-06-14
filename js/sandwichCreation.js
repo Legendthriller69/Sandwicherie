@@ -3,255 +3,62 @@
  */
 var data = null;
 var total = null;
-$(document).ready(function() {
-    loadJSON("data/dbSandwicherie.json");
+$(document).ready(function () {
+    loadJSON("/Sandwicherie/data/dbSandwicherie.json");
+    console.log(data);
 
-    $('#bread').on('change', function ()
+    $('#bread').on('change', function () {
+        var id = $('#bread').find("option:selected").val();
+        calculatePriceBread(id);
+    });
+
+    $('.checkbox-legume').on('change', function ()
     {
-        var idPain = $('#bread').find("option:selected").val();
-        calculatePriceBread(idPain);
-    });
-
-    $('#legumes').on('change' , function () {
-
-
-        $('input:checkbox').each(function()
+        var id = $(this).attr('value');
+        if ($(this).is(':checked'))
         {
-            if ($(this).is(':checked'))
-            {
-                var idLegume = $(this).attr('value');
-                addLegumes(idLegume);
-                switch('hello')
-                {
-                    case "salad":
-                        /*start animation*/
-                        startAnimation('#salad');
-                        startAnimation('#saladShadow');
-
-
-                        break;
-                    case "chene":
-                        /*start animation*/
-                        startAnimation('#saladCh');
-                        startAnimation('#saladShadowCh');
-                        break
-                    case "ham":
-                        /*start animation*/
-                        startAnimation('#ham1');
-                        startAnimation('#ham2');
-                        startAnimation('#ham3');
-                        break;
-                    case "salami":
-                        /*start animation*/
-                        startAnimation('#salami1');
-                        startAnimation('#salami2');
-                        startAnimation('#salami3');
-                        break;
-                    case "morta":
-                        /*start animation*/
-                        startAnimation('#morta1');
-                        startAnimation('#morta2');
-                        startAnimation('#morta3');
-                        break;
-                    case "bacon":
-                        /*start animation*/
-                        startAnimation('#bacon1');
-                        startAnimation('#bacon2');
-                        break;
-                    case "salmon":
-                        /*start animation*/
-                        startAnimation('#saumon1');
-                        startAnimation('#saumon2');
-                        startAnimation('#saumon3');
-                        break;
-                    case "cheddar":
-                        /*start animation*/
-                        startAnimation('#cheddar1');
-                        startAnimation('#cheddar2');
-                        break;
-                    case "edam":
-                        /*start animation*/
-                        startAnimation('#cheese1');
-                        startAnimation('#cheese2');
-                        break;
-                    case "mozza":
-                        /*start animation*/
-                        startAnimation('#mozza2');
-                        startAnimation('#mozza1');
-                        break;
-                    case "brie":
-                        /*start animation*/
-                        startAnimation('#brie1');
-                        startAnimation('#brie2');
-                        startAnimation('#brie3');
-                        break;
-                    case "raclette":
-                        /*start animation*/
-                        startAnimation('#raclette1');
-                        startAnimation('#raclette2');
-                        startAnimation('#raclette3');
-                        break;
-                    case "pickle":
-                        /*start animation*/
-                        startAnimation('#pickle1');
-                        startAnimation('#pickle2');
-                        startAnimation('#pickle3');
-                        break;
-                    case "egg":
-                        /*start animation*/
-                        startAnimation('#egg1');
-                        startAnimation('#egg2');
-                        startAnimation('#egg3');
-                        break;
-                    case "ognon":
-                        /*start animation*/
-                        startAnimation('#ognon1');
-                        startAnimation('#ognon2');
-                        startAnimation('#ognon3');
-                        break;
-                    case "salad2":
-                        /*start animation*/
-                        startAnimation('#saladTop');
-                        startAnimation('#saladTopShadow');
-                        break;
-                    case "chene2":
-                        /*start animation*/
-                        startAnimation('#saladTopCh');
-                        startAnimation('#saladTopShadowCh');
-                        break
-                }
-
-
-            } else {
-                var idLegume2 = $(this).attr('value');
-                removeLegumes(idLegume2);
-                switch('hello')
-                {
-                    case "salad":
-                        /*start animation*/
-                        endAnimation('#salad');
-                        endAnimation('#saladShadow');
-                        break;
-                    case "chene":
-                        /*start animation*/
-                        endAnimation('#saladCh');
-                        endAnimation('#saladShadowCh');
-                        break;
-                    case "ham":
-                        /*start animation*/
-                        endAnimation('#ham1');
-                        endAnimation('#ham2');
-                        endAnimation('#ham3');
-                        break;
-                    case "salami":
-                        /*start animation*/
-                        endAnimation('#salami1');
-                        endAnimation('#salami2');
-                        endAnimation('#salami3');
-                        break;
-                    case "morta":
-                        /*start animation*/
-                        endAnimation('#morta1');
-                        endAnimation('#morta2');
-                        endAnimation('#morta3');
-                        break;
-                    case "bacon":
-                        /*start animation*/
-                        endAnimation('#bacon1');
-                        endAnimation('#bacon2');
-                        break;
-                    case "salmon":
-                        /*start animation*/
-                        endAnimation('#saumon1');
-                        endAnimation('#saumon2');
-                        endAnimation('#saumon3');
-                        break;
-                    case "cheddar":
-                        /*start animation*/
-                        endAnimation('#cheddar1');
-                        endAnimation('#cheddar2');
-                        break;
-                    case "edam":
-                        /*start animation*/
-                        endAnimation('#cheese1');
-                        endAnimation('#cheese2');
-                        break;
-                    case "mozza":
-                        /*start animation*/
-                        endAnimation('#mozza2');
-                        endAnimation('#mozza1');
-                        break;
-                    case "brie":
-                        /*start animation*/
-                        endAnimation('#brie1');
-                        endAnimation('#brie2');
-                        endAnimation('#brie3');
-                        break;
-                    case "raclette":
-                        /*start animation*/
-                        endAnimation('#raclette1');
-                        endAnimation('#raclette2');
-                        endAnimation('#raclette3');
-                        break;
-                    case "pickle":
-                        /*start animation*/
-                        endAnimation('#pickle1');
-                        endAnimation('#pickle2');
-                        endAnimation('#pickle3');
-                        break;
-                    case "egg":
-                        /*start animation*/
-                        endAnimation('#egg1');
-                        endAnimation('#egg2');
-                        endAnimation('#egg3');
-                        break;
-                    case "ognon":
-                        /*start animation*/
-                        endAnimation('#ognon1');
-                        endAnimation('#ognon2');
-                        endAnimation('#ognon3');
-                        break;
-                    case "salad2":
-                        /*start animation*/
-                        endAnimation('#saladTop');
-                        endAnimation('#saladTopShadow');
-                        break;
-                    case "chene2":
-                        /*start animation*/
-                        endAnimation('#saladTopCh');
-                        endAnimation('#saladTopShadowCh');
-                        break
-                }
-            }
-
-
-        });
-
-
+            addLegume(id);
+        }
+        else
+        {
+            removeLegume(id);
+        }
     });
+
+    $('.checkbox-viande').on('change', function ()
+    {
+        var id = $(this).attr('value');
+        if ($(this).is(':checked'))
+        {
+            addViande(id);
+        }
+        else
+        {
+            removeViande(id);
+        }
+    });
+
 
 });
 
-function startAnimation (targetElementClass) {
+function startAnimation(targetElementClass) {
     var targetElement = $(targetElementClass);
     targetElement.css('animation', "draw 1.5s forwards 1 linear");
 
 }
 
-function endAnimation (targetElementClass) {
+function endAnimation(targetElementClass) {
     var targetElement = $(targetElementClass);
-    targetElement.css('animation','');
+    targetElement.css('animation', '');
     targetElement.off();
 
 }
-function calculatePriceBread(id)
-{
+function calculatePriceBread(id) {
 
-    var newEntry = "<tr  class='price-element price-element-bread-"+id+"'><td>+ "+data.pains[id].nom + "</td><td>"+data.pains[id].prix+".-</td></tr>";
+    var newEntry = "<tr  class='price-element price-element-bread-" + id + "'><td>+ " + data.pains[id].nom + "</td><td>" + data.pains[id].prix + ".-</td></tr>";
     total += data.pains[id].prix;
 
-    switch(id)
-    {
+    switch (id) {
         case '0':
             /*end others animations*/
 
@@ -262,7 +69,7 @@ function calculatePriceBread(id)
             endAnimation('#breadBotPt');
             endAnimation('#breadBotShadowPt');
             $('.price-element-bread-1').remove();
-            if(total - data.pains[1].prix >= 0 )
+            if (total - data.pains[1].prix >= 0)
                 total -= data.pains[1].prix;
 
             endAnimation('#breadTopCereals');
@@ -271,7 +78,7 @@ function calculatePriceBread(id)
             endAnimation('#breadBotCereals');
             endAnimation('#breadBotShadowCereals');
             $('.price-element-bread-2').remove();
-            if(total - data.pains[2].prix >= 0 )
+            if (total - data.pains[2].prix >= 0)
                 total -= data.pains[2].prix;
 
             /*start animation*/
@@ -294,7 +101,7 @@ function calculatePriceBread(id)
             endAnimation('#breadBot');
             endAnimation('#breadBotShadow');
             $('.price-element-bread-0').remove();
-            if(total - data.pains[0].prix >= 0 )
+            if (total - data.pains[0].prix >= 0)
                 total -= data.pains[0].prix;
 
             endAnimation('#breadTopPt');
@@ -304,7 +111,7 @@ function calculatePriceBread(id)
             endAnimation('#breadBotPt');
             endAnimation('#breadBotShadowPt');
             $('.price-element-bread-2').remove();
-            if(total - data.pains[2].prix >= 0 )
+            if (total - data.pains[2].prix >= 0)
                 total -= data.pains[2].prix;
             /*start animation*/
             startAnimation('#breadTopCereals');
@@ -323,7 +130,7 @@ function calculatePriceBread(id)
             endAnimation('#breadBot');
             endAnimation('#breadBotShadow');
             $('.price-element-bread-0').remove();
-            if(total - data.pains[0].prix >= 0 )
+            if (total - data.pains[0].prix >= 0)
                 total -= data.pains[0].prix;
 
             endAnimation('#breadTopCereals');
@@ -332,7 +139,7 @@ function calculatePriceBread(id)
             endAnimation('#breadBotCereals');
             endAnimation('#breadBotShadowCereals');
             $('.price-element-bread-1').remove();
-            if(total - data.pains[1].prix >= 0 )
+            if (total - data.pains[1].prix >= 0)
                 total -= data.pains[1].prix;
 
             /*start animation*/
@@ -349,15 +156,13 @@ function calculatePriceBread(id)
     }
 }
 
-function addLegumes(id)
-{
-    var newEntry = "<tr  class='price-element price-element-legumes-"+id+"'><td>+ "+data.legumes[id].nom + "</td><td>"+data.legumes[id].prix+".-</td></tr>";
+function addLegume(id) {
+    var newEntry = "<tr  class='price-element price-element-legume-" + id + "'><td>+ " + data.legumes[id].nom + "</td><td>" + data.legumes[id].prix + ".-</td></tr>";
     total += data.legumes[id].prix;
     $('#calcul').append(newEntry);
     $('#total').html(total);
 
-    switch(id)
-    {
+    switch (id) {
         case '0':
             /*start animation*/
             startAnimation('#salad');
@@ -382,10 +187,11 @@ function addLegumes(id)
             break;
     }
 }
-function removeLegumes(id)
-{
-    switch(id)
-    {
+function removeLegume(id) {
+    total -= data.legumes[id].prix;
+    $('.price-element-legume-'+id).remove();
+    $('#total').html(total);
+    switch (id) {
         case '0':
             /*start animation*/
             endAnimation('#salad');
@@ -407,6 +213,108 @@ function removeLegumes(id)
             endAnimation('#ognon1');
             endAnimation('#ognon2');
             endAnimation('#ognon3');
+            break;
+    }
+}
+function addViande(id) {
+    var newEntry = "<tr  class='price-element price-element-viande-" + id + "'><td>+ " + data.viandes[id].nom + "</td><td>" + data.viandes[id].prix + ".-</td></tr>";
+    total += data.viandes[id].prix;
+    $('#calcul').append(newEntry);
+    $('#total').html(total);
+
+    switch (id) {
+        case '0':
+            /*start animation*/
+            startAnimation('#ham1');
+            startAnimation('#ham2');
+            startAnimation('#ham3');
+            break;
+        case '1':
+            /*start animation*/
+            startAnimation('#salami1');
+            startAnimation('#salami2');
+            startAnimation('#salami3');
+            break;
+        case '2':
+            /*start animation*/
+            startAnimation('#morta1');
+            startAnimation('#morta2');
+            startAnimation('#morta3');
+            break;
+        case '3':
+            /*start animation*/
+            startAnimation('#bacon1');
+            startAnimation('#bacon2');
+            startAnimation('#bacon3');
+            break;
+    }
+}
+function removeViande(id) {
+    total -= data.viandes[id].prix;
+    $('.price-element-viande-'+id).remove();
+    $('#total').html(total);
+
+    switch (id) {
+        case '0':
+            /*end animation*/
+            endAnimation('#ham1');
+            endAnimation('#ham2');
+            endAnimation('#ham3');
+            break;
+        case '1':
+            /*end animation*/
+            endAnimation('#salami1');
+            endAnimation('#salami2');
+            endAnimation('#salami3');
+            break;
+        case '2':
+            /*end animation*/
+            endAnimation('#morta1');
+            endAnimation('#morta2');
+            endAnimation('#morta3');
+            break;
+        case '3':
+            /*end animation*/
+            endAnimation('#lard1');
+            endAnimation('#lard2');
+            endAnimation('#lard3');
+            break;
+    }
+}
+function addFromage(id) {
+    var newEntry = "<tr  class='price-element price-element-fromage-" + id + "'><td>+ " + data.fromages[id].nom + "</td><td>" + data.formages[id].prix + ".-</td></tr>";
+    total += data.fromages[id].prix;
+    $('#calcul').append(newEntry);
+    $('#total').html(total);
+
+    switch (id) {
+        case '0':
+            /*start animation*/
+            startAnimation('#cheddar1');
+            startAnimation('#cheddar2');
+            break;
+        case '1':
+            /*start animation*/
+            startAnimation('#cheese1');
+            startAnimation('#cheese2');
+            break;
+        case '2':
+            /*start animation*/
+            startAnimation('#mozza1');
+            startAnimation('#mozza2');
+            startAnimation('#mozza3');
+            break;
+        case '3':
+            /*start animation*/
+            startAnimation('#brie1');
+            startAnimation('#brie2');
+            startAnimation('#brie3');
+            break;
+        case '4':
+            /*start animation*/
+            startAnimation('#raclette1');
+            startAnimation('#raclette2');
+            startAnimation('#raclette3');
             break;
     }
 }

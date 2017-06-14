@@ -61,7 +61,7 @@
 			"prix": 0.50
 		},
 		{
-			"nom": "emmental",
+			"nom": "edam",
 			"prix": 0.50
 		},
 		{
@@ -75,13 +75,9 @@
 		{
 			"nom": "raclette",
 			"prix": 0.50
-		},
-		{
-			"nom": "edam",
-			"prix": 0.50
 		}
 	],
-	"supplementss": [
+	"supplements": [
 		{
 			"nom": "cornichons",
 			"prix": 0.50
