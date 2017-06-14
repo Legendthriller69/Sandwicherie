@@ -324,7 +324,7 @@ function endAnimation (targetElementClass) {
 
 }
 
-function calculatePrice(targetId)
+function calculatePrice(id)
 {
 
     loadJSON("data/dbSandwicherie.json");
@@ -332,15 +332,12 @@ function calculatePrice(targetId)
 
 }
 
-function calcule(data)
+function calcule(data, id)
 {
-    alert(data.ingredients[0].nom);
-
-
-    switch(targetId)
+    switch(id)
     {
         case "salad":
-
+            $('#total').innerHTML = data.ingredients[0].nom +" : "+ data.ingredients[0].prix;
             break;
         case "chene":
             break;
@@ -379,9 +376,9 @@ function calcule(data)
     }
 }
 
-function loadJSON(file, callback) {
+function loadJSON(file, id) {
     $.get(file, function (data) {
-        calcule(data);
+        calcule(data, id);
     })
 
 }
