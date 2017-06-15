@@ -524,14 +524,14 @@
 
 <section id="section4" class="background-section">
     <div class="container-fluid ">
-		<form name="contactForm" action="index.php" method="post">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="section-title"><span><div
-							class="title">Contacte-nous</div> </span>
-					</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="section-title"><span><div
+						class="title">Contacte-nous</div> </span>
 				</div>
 			</div>
+		</div>
+		<form name="contactForm" action="index.php" method="post">
 			<div class="row">
 				<div class="col-md-3">
 				</div>
@@ -568,7 +568,6 @@
 
 <section id="section5" class="background-section">
     <div class="container-fluid ">
-		<form name="contactForm" action="index.php" method="post">
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title"><span><div
@@ -576,79 +575,81 @@
 				</div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 text-postule-list">
-                Nom :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" name="cvNom" placeholder="Nom"/>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-md-4 text-postule-list">
-                Prénom :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" name="cvPrenom" placeholder="Prénom"/>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-md-4 text-postule-list">
-                Téléphone :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" name="cvTelephone" placeholder="Téléphone"/>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-md-4 text-postule-list">
-                E-mail :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" name="cvEmail" placeholder="E-mail"/>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-md-4 text-postule-list">
-                Adresse :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" name="cvAdresse" placeholder="Adresse"/>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-md-4 text-postule-list">
-                Npa :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" name="cvNpa" placeholder="Npa"/>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-md-4 text-postule-list">
-                Ville :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" name="cvVille" placeholder="Ville"/>
-            </div>
-        </div>
-		<div class="row ">
-			<div class="col-md-4 text-postule-list">
-				Curriculum Vitae :
-			</div>
-			<div class="col-md-8 field-postule">
-				<div id="holder" >Glissez-déposez votre CV
-					<input type="file" name="cvFile" id="fileName"/>
+		<form name="contactForm" action="index.php" method="post">
+			<div class="row">
+				<div class="col-md-4 text-postule-list">
+					Nom :
+				</div>
+				<div class="col-md-8 field-postule">
+					<input class="form-control field-marge" type="text" name="cvNom" placeholder="Nom"/>
 				</div>
 			</div>
-		</div>
-		<div class="row send-postule">
-			<div class="col-md-4 text-postule-list">
+			<div class="row ">
+				<div class="col-md-4 text-postule-list">
+					Prénom :
+				</div>
+				<div class="col-md-8 field-postule">
+					<input class="form-control field-marge" type="text" name="cvPrenom" placeholder="Prénom"/>
+				</div>
 			</div>
-			<div class="col-md-8 field-postule">
-				<button name="cvButton">Envoyer</button>
+			<div class="row ">
+				<div class="col-md-4 text-postule-list">
+					Téléphone :
+				</div>
+				<div class="col-md-8 field-postule">
+					<input class="form-control field-marge" type="text" name="cvTelephone" placeholder="Téléphone"/>
+				</div>
 			</div>
-		</div>
+			<div class="row ">
+				<div class="col-md-4 text-postule-list">
+					E-mail :
+				</div>
+				<div class="col-md-8 field-postule">
+					<input class="form-control field-marge" type="text" name="cvEmail" placeholder="E-mail"/>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-md-4 text-postule-list">
+					Adresse :
+				</div>
+				<div class="col-md-8 field-postule">
+					<input class="form-control field-marge" type="text" name="cvAdresse" placeholder="Adresse"/>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-md-4 text-postule-list">
+					Npa :
+				</div>
+				<div class="col-md-8 field-postule">
+					<input class="form-control field-marge" type="text" name="cvNpa" placeholder="Npa"/>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-md-4 text-postule-list">
+					Ville :
+				</div>
+				<div class="col-md-8 field-postule">
+					<input class="form-control field-marge" type="text" name="cvVille" placeholder="Ville"/>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-md-4 text-postule-list">
+					Curriculum Vitae :
+				</div>
+				<div class="col-md-8 field-postule">
+					<div id="holder" >Glissez-déposez votre CV
+						<input type="file" name="cvFile" id="fileName"/>
+					</div>
+				</div>
+			</div>
+			<div class="row send-postule">
+				<div class="col-md-4 text-postule-list">
+				</div>
+				<div class="col-md-8 field-postule">
+					<button name="cvButton">Envoyer</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </section>
 

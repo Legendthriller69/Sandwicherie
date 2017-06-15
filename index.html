@@ -281,7 +281,7 @@
 
 
 <section id="section4" class="background-section">
-    <div class="container-fluid ">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
@@ -289,34 +289,35 @@
 				</div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-            </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-6">
-                        <input class="form-control" type="text" placeholder="Nom"/>
-                    </div>
-                    <div class="col-md-6">
-                        <input class="form-control" type="text" placeholder="E-mail"/>
-                    </div>
-                </div>
-                <div class="row ">
-                    <div class="col-md-12">
-                        <textarea class="form-control" rows="10"></textarea>
-                    </div>
+        <form name="contactForm" action="index.php" method="post">
+			<div class="row">
+				<div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+				</div>
+				<div class="col-lg-6 col-md-12">
+					<div class="row">
+						<div class="col-lg-6">
+							<input class="form-control" name="contactName" type="text" placeholder="Nom"/>
+						</div>
+						<div class="col-lg-6">
+							<input class="form-control" name="contactEmail" type="text" placeholder="E-mail"/>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-lg-12">
+							<textarea class="form-control" name="contactContent" placeholder="Contenu du message" rows="10"></textarea>
+						</div>
 
-                </div>
-                <div class="row right">
-                    <div class="col-md-12">
-                        <button>Envoyer</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-            </div>
-
-        </div>
+					</div>
+					<div class="row right">
+						<div class="col-lg-12">
+							<button name="contactButton">Envoyer</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+				</div>
+			</div>
+		</form>
         <div class="scrollTo" href="#section5">
             <img src="img/down-arrow.svg" class="arrow">
         </div>
@@ -324,7 +325,7 @@
 </section>
 
 <section id="section5" class="background-section">
-    <div class="container-fluid ">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title"><span><div
@@ -332,81 +333,82 @@
 				</div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-4 text-postule-list">
-                Nom :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" placeholder="Nom"/>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-md-4 text-postule-list">
-                Prénom :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" placeholder="Prénom"/>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-md-4 text-postule-list">
-                Téléphone :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" placeholder="Téléphone"/>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-md-4 text-postule-list">
-                E-mail :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" placeholder="E-mail"/>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-md-4 text-postule-list">
-                Adresse :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" placeholder="Adresse"/>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-md-4 text-postule-list">
-                Npa :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" placeholder="Npa"/>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-md-4 text-postule-list">
-                Ville :
-            </div>
-            <div class="col-md-8 field-postule">
-                <input class="form-control field-marge" type="text" placeholder="Ville"/>
-            </div>
-        </div>
-		<div class="row ">
-            <div class="col-md-4 text-postule-list">
-                Curriculum Vitae :
-            </div>
-            <div class="col-md-8 field-postule" id="holderMax">
-                <div>Transmets nous ton CV
-                    <button type="button" id="goThoughtFile">Parcourir</button>
-                    <input type="file" name="cvFile" id="fileName" style="display:none"/>
-                    <div id="nameFileDrop"></div>
-                </div>
-            </div>
-        </div>
-		<div class="row right">
-            <div class="col-md-8 send-postule">
-                <button>Envoyer</button>
-            </div>
-            <div class="col-md-4"></div>
-        </div>
+		<form name="contactForm" action="index.php" method="post">
+			<div class="row">
+				<div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+					Nom :
+				</div>
+				<div class="col-lg-7 field-postule col-md-12">
+					<input class="form-control field-marge" type="text" placeholder="Nom"/>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+					Prénom :
+				</div>
+				<div class="col-lg-7 field-postule col-md-12">
+					<input class="form-control field-marge" type="text" placeholder="Prénom"/>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+					Téléphone :
+				</div>
+				<div class="col-lg-7 field-postule col-md-12">
+					<input class="form-control field-marge" type="text" placeholder="Téléphone"/>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+					E-mail :
+				</div>
+				<div class="col-lg-7 field-postule col-md-12">
+					<input class="form-control field-marge" type="text" placeholder="E-mail"/>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+					Adresse :
+				</div>
+				<div class="col-lg-7 field-postule col-md-12">
+					<input class="form-control field-marge" type="text" placeholder="Adresse"/>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+					Npa :
+				</div>
+				<div class="col-lg-7 field-postule col-md-12">
+					<input class="form-control field-marge" type="text" placeholder="Npa"/>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+					Ville :
+				</div>
+				<div class="col-lg-7 field-postule col-md-12">
+					<input class="form-control field-marge" type="text" placeholder="Ville"/>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+					Curriculum Vitae :
+				</div>
+				<div class="col-lg-7 field-postule col-md-12" id="holderMax">
+					<div>Transmets nous ton CV
+						<button type="button" id="goThoughtFile">Parcourir</button>
+						<input type="file" name="cvFile" id="fileName" style="display:none"/>
+						<div id="nameFileDrop"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row right">
+				<div class="col-lg-7 send-postule col-md-12 col-sm-12 col-xs-12">
+					<button>Envoyer</button>
+				</div>
+				<div class="col-lg-5"></div>
+			</div>
+		</form>
 	</div>
 </section>
 
@@ -418,8 +420,9 @@
                 <p class="paddingFooter">Tel : 079 955 01 47</p>
             </div>
             <div class="col-sm-4 madeLove">
-                made with <span class="heart heartbeat">&#9825;</span> in switzerland
+                made with <div class="heart heartbeat">&#9825;</div> in switzerland
             </div>
+			<div></div>
         </div>
     </div>
 </footer>
