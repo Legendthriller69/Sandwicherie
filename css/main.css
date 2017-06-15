@@ -268,6 +268,10 @@ textarea, input {
     margin: 4px 2px;
     cursor: pointer;
 }
+.button-submit:hover {
+    background-color : white;
+	color : black;
+}
 
 .button-commander {
     background-color: #092756;
@@ -280,6 +284,10 @@ textarea, input {
     width: 100%;
     height: 4.4em;
     margin-bottom: 20px;
+}
+.button-commander:hover {
+    background-color : white;
+	color : black;
 }
 
 /*--------------section 5 staff----------------*/
