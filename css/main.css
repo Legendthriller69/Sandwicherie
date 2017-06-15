@@ -364,3 +364,14 @@ textarea, input {
         display: none !important;
     }
 }
+
+@media all and (max-width:1040px)
+{
+    .background-section1 {
+        background-image: url("../img/background.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+    }
+}
