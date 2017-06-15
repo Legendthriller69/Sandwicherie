@@ -44,6 +44,14 @@ section {
 
 }
 
+.background-sectionbis
+{
+    background: #092756;
+    color: black;
+    background: linear-gradient(to bottom, rgba(57,173,219,.25), rgba(42,60,87,0.4)), linear-gradient(135deg, #670d10, #092756);
+
+}
+
 .background-section-green {
     background: #97CE68;
     color: black;
