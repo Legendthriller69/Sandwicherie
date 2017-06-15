@@ -510,3 +510,10 @@ function showCheckboxes(id) {
     }
 }
 
+function makeActive(id)
+{
+    var select = document.getElementById(id);
+    select.addClass('active');
+    $('.select').not(this).removeClass('active');
+}
+

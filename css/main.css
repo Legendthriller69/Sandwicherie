@@ -105,6 +105,12 @@ section {
     transition: background 300ms ease-in-out;
 }
 
+.active{
+    background-color: white;
+    color: rgba(30, 30, 30, 1) !important;
+}
+
+
 .menu ul {
     margin-bottom: 0;
 }

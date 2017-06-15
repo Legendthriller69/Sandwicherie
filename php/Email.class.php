@@ -22,7 +22,7 @@
             $mail->Host = 'smtp.gmail.com'; 
             $mail->SMTPAuth = true; 
             $mail->Username = 'pedroferreira.1870@gmail.com';
-            $mail->Password = 'raw_1870'; 
+            $mail->Password = 'raw_1870';
             $mail->Port = 465;    
 			$mail->setFrom('pedroferreira.1870@gmail.com', 'Fresh Sandwich');
 			$mail->isHTML(true);
