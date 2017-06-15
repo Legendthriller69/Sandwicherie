@@ -2,14 +2,57 @@
  * Created by Rafael Peixoto on 12.06.2017.
  */
 var data = null;
-var total = null;
+var total = 0.00;
+var lastBreadChecked = null;
+var lastSauceChecked = null;
+var expanded = false;
 $(document).ready(function () {
     loadJSON("/Sandwicherie/data/dbSandwicherie.json");
 
+    $('.checkbox-pain').on('change', function ()
+    {
+        var id = $(this).attr('value');
+        if ($(this).is(':checked'))
+        {
+            if(lastBreadChecked != null)
+            {
+                if(lastBreadChecked != id)
+                {
+                    removePain(lastBreadChecked);
+                    lastBreadChecked = id;
+                }
+            }
+            else
+            {
+                lastBreadChecked = id;
+            }
 
-    $('#bread').on('change', function () {
-        var id = $('#bread').find("option:selected").val();
-        calculatePriceBread(id);
+            addPain(id);
+        }
+
+    });
+
+    $('.checkbox-sauce').on('change', function ()
+    {
+        var id = $(this).attr('value');
+        if ($(this).is(':checked'))
+        {
+            if(lastSauceChecked != null)
+            {
+                if(lastSauceChecked != id)
+                {
+                    removeSauce(lastSauceChecked);
+                    lastSauceChecked = id;
+                }
+            }
+            else
+            {
+                lastSauceChecked = id;
+            }
+
+            addSauce(id);
+        }
+
     });
 
     $('.checkbox-legume').on('change', function ()
@@ -90,34 +133,13 @@ function endAnimation(targetElementClass) {
     targetElement.off();
 
 }
-function calculatePriceBread(id) {
-
-    var newEntry = "<tr  class='price-element price-element-bread-" + id + "'><td>+ " + data.pains[id].nom + "</td><td>" + data.pains[id].prix + ".-</td></tr>";
+function addPain(id) {
+    var newEntry = "<tr  class='price-element price-element-pain-" + id + "'><td>+ " + data.pains[id].nom + "</td><td>" + data.pains[id].prix + ".-</td></tr>";
     total += data.pains[id].prix;
+    refresh(newEntry);
 
     switch (id) {
         case '0':
-            /*end others animations*/
-
-            endAnimation('#breadTopPt');
-            endAnimation('#breadTopShadowPt');
-            endAnimation('#traitsPt');
-            endAnimation('#flavor');
-            endAnimation('#breadBotPt');
-            endAnimation('#breadBotShadowPt');
-            $('.price-element-bread-1').remove();
-            if (total - data.pains[1].prix >= 0)
-                total -= data.pains[1].prix;
-
-            endAnimation('#breadTopCereals');
-            endAnimation('#breadTopShadowCereals');
-            endAnimation('#cerealsTop');
-            endAnimation('#breadBotCereals');
-            endAnimation('#breadBotShadowCereals');
-            $('.price-element-bread-2').remove();
-            if (total - data.pains[2].prix >= 0)
-                total -= data.pains[2].prix;
-
             /*start animation*/
 
             startAnimation('#breadTop');
@@ -126,58 +148,16 @@ function calculatePriceBread(id) {
 
             startAnimation('#breadBot');
             startAnimation('#breadBotShadow');
-
-            refresh(newEntry);
             break;
         case '1':
-            /*end others animations*/
-            endAnimation('#breadTop');
-            endAnimation('#breadTopShadow');
-            endAnimation('#traits');
-            endAnimation('#breadBot');
-            endAnimation('#breadBotShadow');
-            $('.price-element-bread-0').remove();
-            if (total - data.pains[0].prix >= 0)
-                total -= data.pains[0].prix;
-
-            endAnimation('#breadTopPt');
-            endAnimation('#breadTopShadowPt');
-            endAnimation('#traitsPt');
-            endAnimation('#flavor');
-            endAnimation('#breadBotPt');
-            endAnimation('#breadBotShadowPt');
-            $('.price-element-bread-2').remove();
-            if (total - data.pains[2].prix >= 0)
-                total -= data.pains[2].prix;
             /*start animation*/
             startAnimation('#breadTopCereals');
             startAnimation('#breadTopShadowCereals');
             startAnimation('#cerealsTop');
             startAnimation('#breadBotCereals');
             startAnimation('#breadBotShadowCereals');
-
-            refresh(newEntry);
             break;
         case '2':
-            /*end others animations*/
-            endAnimation('#breadTop');
-            endAnimation('#breadTopShadow');
-            endAnimation('#traits');
-            endAnimation('#breadBot');
-            endAnimation('#breadBotShadow');
-            $('.price-element-bread-0').remove();
-            if (total - data.pains[0].prix >= 0)
-                total -= data.pains[0].prix;
-
-            endAnimation('#breadTopCereals');
-            endAnimation('#breadTopShadowCereals');
-            endAnimation('#cerealsTop');
-            endAnimation('#breadBotCereals');
-            endAnimation('#breadBotShadowCereals');
-            $('.price-element-bread-1').remove();
-            if (total - data.pains[1].prix >= 0)
-                total -= data.pains[1].prix;
-
             /*start animation*/
             startAnimation('#breadTopPt');
             startAnimation('#breadTopShadowPt');
@@ -186,7 +166,41 @@ function calculatePriceBread(id) {
 
             startAnimation('#breadBotPt');
             startAnimation('#breadBotShadowPt');
-            refresh(newEntry);
+            break;
+    }
+}
+function removePain(id) {
+    total -= data.pains[id].prix;
+    deleteRow('.price-element-pain-'+id);
+
+    switch (id) {
+        case '0':
+            /*start animation*/
+
+            endAnimation('#breadTop');
+            endAnimation('#breadTopShadow');
+            endAnimation('#traits');
+
+            endAnimation('#breadBot');
+            endAnimation('#breadBotShadow');
+            break;
+        case '1':
+            /*start animation*/
+            endAnimation('#breadTopCereals');
+            endAnimation('#breadTopShadowCereals');
+            endAnimation('#cerealsTop');
+            endAnimation('#breadBotCereals');
+            endAnimation('#breadBotShadowCereals');
+            break;
+        case '2':
+            /*start animation*/
+            endAnimation('#breadTopPt');
+            endAnimation('#breadTopShadowPt');
+            endAnimation('#traitsPt');
+            endAnimation('#flavor');
+
+            endAnimation('#breadBotPt');
+            endAnimation('#breadBotShadowPt');
             break;
     }
 }
@@ -194,8 +208,7 @@ function calculatePriceBread(id) {
 function addLegume(id) {
     var newEntry = "<tr  class='price-element price-element-legume-" + id + "'><td>+ " + data.legumes[id].nom + "</td><td>" + data.legumes[id].prix + ".-</td></tr>";
     total += data.legumes[id].prix;
-    $('#calcul').append(newEntry);
-    $('#total').html(total);
+    refresh(newEntry);
 
     switch (id) {
         case '0':
@@ -224,8 +237,7 @@ function addLegume(id) {
 }
 function removeLegume(id) {
     total -= data.legumes[id].prix;
-    $('.price-element-legume-'+id).remove();
-    $('#total').html(total);
+    deleteRow('.price-element-legume-'+id);
     switch (id) {
         case '0':
             /*start animation*/
@@ -254,8 +266,7 @@ function removeLegume(id) {
 function addViande(id) {
     var newEntry = "<tr  class='price-element price-element-viande-" + id + "'><td>+ " + data.viandes[id].nom + "</td><td>" + data.viandes[id].prix + ".-</td></tr>";
     total += data.viandes[id].prix;
-    $('#calcul').append(newEntry);
-    $('#total').html(total);
+    refresh(newEntry);
 
     switch (id) {
         case '0':
@@ -286,8 +297,7 @@ function addViande(id) {
 }
 function removeViande(id) {
     total -= data.viandes[id].prix;
-    $('.price-element-viande-'+id).remove();
-    $('#total').html(total);
+    deleteRow('.price-element-viande-'+id);
 
     switch (id) {
         case '0':
@@ -319,8 +329,7 @@ function removeViande(id) {
 function addFromage(id) {
     var newEntry = "<tr  class='price-element price-element-fromage-" + id + "'><td>+ " + data.fromages[id].nom + "</td><td>" + data.fromages[id].prix + ".-</td></tr>";
     total += data.fromages[id].prix;
-    $('#calcul').append(newEntry);
-    $('#total').html(total);
+    refresh(newEntry);
 
     switch (id) {
         case '0':
@@ -355,8 +364,7 @@ function addFromage(id) {
 }
 function removeFromage(id) {
     total -= data.fromages[id].prix;
-    $('.price-element-fromage-'+id).remove();
-    $('#total').html(total);
+    deleteRow('.price-element-fromage-'+id);
 
     switch (id) {
         case '0':
@@ -393,8 +401,7 @@ function removeFromage(id) {
 function addPoisson(id) {
     var newEntry = "<tr  class='price-element price-element-poisson-" + id + "'><td>+ " + data.poissons[id].nom + "</td><td>" + data.poissons[id].prix + ".-</td></tr>";
     total += data.poissons[id].prix;
-    $('#calcul').append(newEntry);
-    $('#total').html(total);
+    refresh(newEntry);
 
     startAnimation('#saumon1');
     startAnimation('#saumon2');
@@ -402,20 +409,27 @@ function addPoisson(id) {
 }
 function removePoisson(id) {
     total -= data.poissons[id].prix;
-    $('.price-element-poisson-'+id).remove();
-    $('#total').html(total);
+    deleteRow('.price-element-poisson-'+id);
 
     endAnimation('#saumon1');
     endAnimation('#saumon2');
     endAnimation('#saumon3');
+}
+function addSauce(id) {
+    var newEntry = "<tr  class='price-element price-element-sauce-" + id + "'><td>+ " + data.sauces[id].nom + "</td><td>" + data.sauces[id].prix + ".-</td></tr>";
+    total += data.sauces[id].prix;
+    refresh(newEntry);
+}
+function removeSauce(id) {
+    total -= data.sauces[id].prix;
+    deleteRow('.price-element-sauce-'+id);
 }
 
 function addSupplement(id) {
 
     var newEntry = "<tr  class='price-element price-element-sup-" + id + "'><td>+ " + data.supplements[id].nom + "</td><td>" + data.supplements[id].prix + ".-</td></tr>";
     total += data.supplements[id].prix;
-    $('#calcul').append(newEntry);
-    $('#total').html(total);
+    refresh(newEntry);
 
     switch (id) {
         case '0':
@@ -434,8 +448,7 @@ function addSupplement(id) {
 }
 function removeSupplement(id) {
     total -= data.supplements[id].prix;
-    $('.price-element-sup-'+id).remove();
-    $('#total').html(total);
+    deleteRow('.price-element-sup-'+id);
 
     switch (id) {
         case '0':
@@ -475,5 +488,25 @@ function refresh(row)
 {
     $('#calcul').append(row);
     $('#total').html(formattedPrice(total));
+}
+
+function deleteRow(element)
+{
+    $(element).remove();
+    $('#total').html(formattedPrice(total));
+}
+
+function showCheckboxes(id) {
+    var checkboxes = document.getElementById(id);
+    if (!expanded) {
+        checkboxes.style.display = "block";
+        expanded = true;
+        console.log($('.checkboxes').not(document.getElementById(id)));
+        $('.checkboxes').not(document.getElementById(id)).hide();
+
+    } else {
+        checkboxes.style.display = "none";
+        expanded = false;
+    }
 }
 

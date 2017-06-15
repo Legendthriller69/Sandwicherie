@@ -333,7 +333,7 @@
 #fresh
 {
     animation: draw-logo 2s forwards 1 linear;
-    stroke: #FFFFFF;
+    stroke: #4b4b66;
     stroke-dasharray: 755px;
     stroke-dashoffset: 755px;
     stroke-width: 1;
@@ -343,7 +343,7 @@
 #sandwich
 {
     animation: draw-logo 2s forwards 1 linear;
-    stroke: #FFFFFF;
+    stroke: #4b4b66;
     stroke-dasharray: 417px;
     stroke-dashoffset: 417px;
     stroke-width: 0;
