@@ -24,13 +24,6 @@ $(document).ready(function() {
             $svg = $svg.removeAttr('xmlns:a');
             // Replace image with new SVG
             $img.replaceWith($svg);
-
-            var path = document.querySelector("#herb6");
-
-            var total_length = path.getTotalLength();
-
-
-            document.getElementById("hello").innerHTML = total_length;
         });
     });
 
