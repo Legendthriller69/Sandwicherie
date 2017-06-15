@@ -6,7 +6,6 @@
 
 function loadJSONIngredient() {
     $.get("/Sandwicherie/data/dbSandwicherie.json", function (data) {
-
         var res = '<tr><td><img src="img/bread.svg" class="legume"></td><td></td></tr>';
 
         for (var i = 0; i < data.pains.length; i++){
@@ -47,8 +46,6 @@ function loadJSONIngredient() {
         }
         $("#tableIngredient2").html(res);
 
-
-
         res = '<tr><td><img src="img/sauce.svg" class="legume"></td><td></td></tr>';
 
         for (var i = 0; i < data.sauces.length; i++){
@@ -57,6 +54,7 @@ function loadJSONIngredient() {
         $("#tableIngredient3").html(res);
     })
 }
+
 var formattedPrice = function(prix) {
     prix = Math.round(prix * 100 )/100;
     prix = prix + '';
