@@ -5,7 +5,7 @@ var data = null;
 var total = null;
 $(document).ready(function () {
     loadJSON("/Sandwicherie/data/dbSandwicherie.json");
-    console.log(data);
+
 
     $('#bread').on('change', function () {
         var id = $('#bread').find("option:selected").val();
@@ -35,6 +35,43 @@ $(document).ready(function () {
         else
         {
             removeViande(id);
+        }
+    });
+    $('.checkbox-fromage').on('change', function ()
+    {
+        var id = $(this).attr('value');
+        if ($(this).is(':checked'))
+        {
+            addFromage(id);
+        }
+        else
+        {
+            removeFromage(id);
+        }
+    });
+    $('.checkbox-poisson').on('change', function ()
+    {
+        var id = $(this).attr('value');
+        if ($(this).is(':checked'))
+        {
+            addPoisson(id);
+        }
+        else
+        {
+            removePoisson(id);
+        }
+    });
+    $('.checkbox-sup').on('change', function ()
+    {
+
+        var id = $(this).attr('value');
+        if ($(this).is(':checked'))
+        {
+            addSupplement(id);
+        }
+        else
+        {
+            removeSupplement(id);
         }
     });
 
@@ -90,8 +127,7 @@ function calculatePriceBread(id) {
             startAnimation('#breadBot');
             startAnimation('#breadBotShadow');
 
-            $('#calcul').append(newEntry);
-            $('#total').html(total);
+            refresh(newEntry);
             break;
         case '1':
             /*end others animations*/
@@ -119,8 +155,8 @@ function calculatePriceBread(id) {
             startAnimation('#cerealsTop');
             startAnimation('#breadBotCereals');
             startAnimation('#breadBotShadowCereals');
-            $('#calcul').append(newEntry);
-            $('#total').html(total);
+
+            refresh(newEntry);
             break;
         case '2':
             /*end others animations*/
@@ -150,8 +186,7 @@ function calculatePriceBread(id) {
 
             startAnimation('#breadBotPt');
             startAnimation('#breadBotShadowPt');
-            $('#calcul').append(newEntry);
-            $('#total').html(total);
+            refresh(newEntry);
             break;
     }
 }
@@ -275,14 +310,14 @@ function removeViande(id) {
             break;
         case '3':
             /*end animation*/
-            endAnimation('#lard1');
-            endAnimation('#lard2');
-            endAnimation('#lard3');
+            endAnimation('#bacon1');
+            endAnimation('#bacon2');
+            endAnimation('#bacon3');
             break;
     }
 }
 function addFromage(id) {
-    var newEntry = "<tr  class='price-element price-element-fromage-" + id + "'><td>+ " + data.fromages[id].nom + "</td><td>" + data.formages[id].prix + ".-</td></tr>";
+    var newEntry = "<tr  class='price-element price-element-fromage-" + id + "'><td>+ " + data.fromages[id].nom + "</td><td>" + data.fromages[id].prix + ".-</td></tr>";
     total += data.fromages[id].prix;
     $('#calcul').append(newEntry);
     $('#total').html(total);
@@ -318,10 +353,127 @@ function addFromage(id) {
             break;
     }
 }
+function removeFromage(id) {
+    total -= data.fromages[id].prix;
+    $('.price-element-fromage-'+id).remove();
+    $('#total').html(total);
+
+    switch (id) {
+        case '0':
+            /*start animation*/
+            endAnimation('#cheddar1');
+            endAnimation('#cheddar2');
+            break;
+        case '1':
+            /*start animation*/
+            endAnimation('#cheese1');
+            endAnimation('#cheese2');
+            break;
+        case '2':
+            /*start animation*/
+            endAnimation('#mozza1');
+            endAnimation('#mozza2');
+            endAnimation('#mozza3');
+            break;
+        case '3':
+            /*start animation*/
+            endAnimation('#brie1');
+            endAnimation('#brie2');
+            endAnimation('#brie3');
+            break;
+        case '4':
+            /*start animation*/
+            endAnimation('#raclette1');
+            endAnimation('#raclette2');
+            endAnimation('#raclette3');
+            break;
+    }
+}
+
+function addPoisson(id) {
+    var newEntry = "<tr  class='price-element price-element-poisson-" + id + "'><td>+ " + data.poissons[id].nom + "</td><td>" + data.poissons[id].prix + ".-</td></tr>";
+    total += data.poissons[id].prix;
+    $('#calcul').append(newEntry);
+    $('#total').html(total);
+
+    startAnimation('#saumon1');
+    startAnimation('#saumon2');
+    startAnimation('#saumon3');
+}
+function removePoisson(id) {
+    total -= data.poissons[id].prix;
+    $('.price-element-poisson-'+id).remove();
+    $('#total').html(total);
+
+    endAnimation('#saumon1');
+    endAnimation('#saumon2');
+    endAnimation('#saumon3');
+}
+
+function addSupplement(id) {
+
+    var newEntry = "<tr  class='price-element price-element-sup-" + id + "'><td>+ " + data.supplements[id].nom + "</td><td>" + data.supplements[id].prix + ".-</td></tr>";
+    total += data.supplements[id].prix;
+    $('#calcul').append(newEntry);
+    $('#total').html(total);
+
+    switch (id) {
+        case '0':
+            /*start animation*/
+            startAnimation('#pickle1');
+            startAnimation('#pickle2');
+            startAnimation('#pickle3');
+            break;
+        case '1':
+            /*start animation*/
+            startAnimation('#egg1');
+            startAnimation('#egg2');
+            startAnimation('#egg3');
+            break;
+    }
+}
+function removeSupplement(id) {
+    total -= data.supplements[id].prix;
+    $('.price-element-sup-'+id).remove();
+    $('#total').html(total);
+
+    switch (id) {
+        case '0':
+            /*start animation*/
+            endAnimation('#pickle1');
+            endAnimation('#pickle2');
+            endAnimation('#pickle3');
+            break;
+        case '1':
+            /*start animation*/
+            endAnimation('#egg1');
+            endAnimation('#egg2');
+            endAnimation('#egg3');
+            break;
+    }
+}
 function loadJSON(file) {
     $.get(file, function (json) {
         data = json;
     })
 
+}
+
+var formattedPrice = function(prix) {
+    prix = Math.round(prix * 100 )/100;
+    prix = prix + '';
+    if (prix.indexOf('.') != -1){
+        if (prix.split('.')[1].length == 1){
+            prix += '0';
+        }
+        return prix.replace('.', ',');
+    }
+    return prix + '.-';
+}
+
+function refresh(row)
+{
+    $('#calcul').append(row);
+    $('#total').html(formattedPrice(total));
 }
 
