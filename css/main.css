@@ -33,7 +33,7 @@ section {
     background-image: url("../img/background.png");
     background-position: center;
     background-size: 100%;
-
+	opacity : 0.9
 }
 
 .background-section {
@@ -148,8 +148,6 @@ section {
     vertical-align: middle;
     display: inline-block;
     padding-right: 10%;
-
-
 }
 
 /*--------------section 1----------------*/
@@ -307,6 +305,7 @@ button {
 .send-postule {
     text-align: right;
 	margin-top : 10px;
+    margin-left : -40px;
 }
 #holderMax {
     color: #ccc;
