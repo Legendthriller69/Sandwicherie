@@ -1,39 +1,13 @@
 <?php
 	require_once('php/Email.class.php');
 	
-	//Display success messages
-	if(isset($_SESSION['success'])) {
-		foreach($_SESSION['success'] as $success)
-		{
-			$html .= '<script>$.growl.notice({ title : "Succès", message: "'.$success.'" });</script>';
-		}
-		unset($_SESSION['success']);
-	}
-	//Display warning messages
-	if(isset($_SESSION['warning'])) {
-		foreach($_SESSION['warning'] as $warning)
-		{
-			$html .= '<script>$.growl.warning({ title : "Attention", message: "'.$warning.'" });</script>';
-		}
-		unset($_SESSION['warning']);
-	}
-	//Display error messages
-	if(isset($_SESSION['error'])) {
-		foreach($_SESSION['error'] as $error)
-		{
-			$html .= '<script>$.growl.error({ title : "Erreur", message: "'.$error.'" });</script>';
-		}
-		unset($_SESSION['error']);
-	}	
 	if(isset($_POST['contactButton'])) {
-		if(isset($_POST['contactName']) && $_POST['contactName'] != null) {
-			$email = new Email();
-			$email->formulaireContact($_POST['contactName'], $_POST['contactEmail'], $_POST['contactContent']);
-		}
+		$email = new Email();
+		$email->formulaireContact($_POST['contactName'], $_POST['contactEmail'], $_POST['contactContent']);
 	}	
 	if(isset($_POST['cvButton'])) {
 		$email = new Email();
-		$email->sendCV($_POST['cvNom'], $_POST['cvPrenom'], $_POST['cvTelephone'], $_POST['cvEmail'], $_POST['cvAdresse'], $_POST['cvNpa'], $_POST['cvVille'], $_POST['cvFile']);
+		$email->sendCV($_POST['cvNom'], $_POST['cvPrenom'], $_POST['cvTelephone'], $_POST['cvEmail'], $_POST['cvAdresse'], $_POST['cvNpa'], $_POST['cvVille']);
 	}
 ?>
 <!DOCTYPE html>
@@ -42,34 +16,40 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link href="css/bootstrap.css" rel='stylesheet' type='text/css'>
     <link href="css/main.css" rel='stylesheet' type='text/css'>
     <link href="css/sandwich.css" rel='stylesheet' type='text/css'>
     <link href="css/svg.css" rel='stylesheet' type='text/css'>
-    <script src="js/jquery.min.js"></script>
     <script src="js/loadSvg.js"></script>
     <script src="js/loadLogo.js"></script>
     <script src="js/scroll.js"></script>
-	<script src="js/jquery.growl.js"></script>
+    <script src="js/sandwichCreation.js"></script>
+    <script src="js/dragAndDrop.js"></script>
+    <script src="js/priceTableFromJSON.js"></script>
 
-
+    <script>
+        $(document).ready(function () {
+            loadJSONIngredient();
+        });
+    </script>
 </head>
 <body>
 
 <div id="player">
     <audio controls autoplay hidden>
-        <source src="music/music" type="audio/mpeg">
+        <source src="music/music.mp3" type="audio/mpeg">
     </audio>
 </div>
 
 <nav class="navbarScroll navbar navbar-default navbar-fixed-top">
     <div class="menu" id="menu">
         <ul>
-            <li><a class="scrollTo" id="animate1" href="#section1">accueil</a></li>
-            <li><a class="scrollTo" id="animate2" href="#section2">menu</a></li>
-            <li><a class="scrollTo" id="animate3" href="#section3">commander</a></li>
-            <li><a class="scrollTo" id="animate4" href="#section4">contact</a></li>
-            <li><a class="scrollTo" id="animate5" href="#section5">staff</a></li>
+            <li><a class="scrollTo" id="animate1" href="#section1">Accueil</a></li>
+            <li><a class="scrollTo" id="animate2" href="#section2">Menu</a></li>
+            <li><a class="scrollTo" id="animate3" href="#section3">Commander</a></li>
+            <li><a class="scrollTo" id="animate4" href="#section4">Contact</a></li>
+            <li><a class="scrollTo" id="animate5" href="#section5">Jobs</a></li>
         </ul>
     </div>
 </nav>
@@ -85,8 +65,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div>
-
+                    <div class="col-lg-12">
                         <p class="text-mainsection">
                             <span class="guillemets">"</span>Crée ton sandwich. Goûte la différence.<span
                                 class="guillemets">"</span>
@@ -95,10 +74,9 @@
                 </div>
             </div>
         </div>
-        <div class="scrollTo" href="#section2">
-            <img src="img/down-arrow.svg" class="svg arrow">
+        <div>
+            <span href="#section2" class="scrollTo"><img src="img/down-arrow.svg" class="svg arrow"></span>
         </div>
-
     </div>
 </section>
 <section id="section2" class="background-section">
@@ -115,101 +93,10 @@
                     <thead class="menu-text-entete">
                     <tr>
                         <th>Ingredients</th>
-                        <th>1/3</th>
-                        <th>1/2</th>
-                        <th>2/3</th>
+                        <th></th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td><img src="img/bread.svg" class="legume"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-
-                    </tr>
-                    <tr>
-                        <td>Français</td>
-                        <td>4,50</td>
-                        <td>5,10</td>
-                        <td>6,00</td>
-
-                    </tr>
-                    <tr>
-                        <td>Céréal</td>
-                        <td>5,20</td>
-                        <td>6,00</td>
-                        <td>6,80</td>
-                    </tr>
-                    <tr>
-                        <td>Portugais</td>
-                        <td>5,80</td>
-                        <td>6,50</td>
-                        <td>7,20</td>
-                    </tr>
-                    <tr>
-                        <td><img src="img/salad.svg" class="legume"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-
-                    </tr>
-                    <tr>
-                        <td>Laitue</td>
-                        <td>0,40</td>
-                        <td>0,40</td>
-                        <td>0,40</td>
-
-                    </tr>
-                    <tr>
-                        <td>Feuille de chêne</td>
-                        <td>0,40</td>
-                        <td>0,40</td>
-                        <td>0,40</td>
-                    </tr>
-                    <tr>
-                        <td>Tomate</td>
-                        <td>0,40</td>
-                        <td>0,40</td>
-                        <td>0,40</td>
-                    </tr>
-                    <tr>
-                        <td>Oignon</td>
-                        <td>0,40</td>
-                        <td>0,40</td>
-                        <td>0,40</td>
-                    </tr>
-
-                    <tr>
-                        <td><img src="img/meat.svg" class="legume"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Jambon</td>
-                        <td>0,60</td>
-                        <td>0,60</td>
-                        <td>0,60</td>
-                    </tr>
-                    <tr>
-                        <td>Salami</td>
-                        <td>0,60</td>
-                        <td>0,60</td>
-                        <td>0,60</td>
-                    </tr>
-                    <tr>
-                        <td>Mortadelle</td>
-                        <td>0,60</td>
-                        <td>0,60</td>
-                        <td>0,60</td>
-                    </tr>
-                    <tr>
-                        <td>Lard</td>
-                        <td>0,60</td>
-                        <td>0,60</td>
-                        <td>0,60</td>
-                    </tr>
+                    <tbody id="tableIngredient">
 
                     </tbody>
                 </table>
@@ -219,85 +106,10 @@
                     <thead class="menu-text-entete">
                     <tr>
                         <th>Ingredients</th>
-                        <th>1/3</th>
-                        <th>1/2</th>
-                        <th>2/3</th>
+                        <th></th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                    <tr>
-                        <td><img src="img/fish.svg" class="legume"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Saumon</td>
-                        <td>1,20</td>
-                        <td>1,20</td>
-                        <td>1,20</td>
-                    </tr>
-                    <tr>
-                        <td><img src="img/cheese.svg" class="legume"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Cheddar</td>
-                        <td>0,50</td>
-                        <td>0,50</td>
-                        <td>0,50</td>
-                    </tr>
-                    <tr>
-                        <td>Emmental</td>
-                        <td>0,50</td>
-                        <td>0,50</td>
-                        <td>0,50</td>
-                    </tr>
-                    <tr>
-                        <td>Mozzarella</td>
-                        <td>0,50</td>
-                        <td>0,50</td>
-                        <td>0,50</td>
-                    </tr>
-                    <tr>
-                        <td>Brie</td>
-                        <td>0,50</td>
-                        <td>0,50</td>
-                        <td>0,50</td>
-                    </tr>
-                    <tr>
-                        <td>Raclette</td>
-                        <td>0,50</td>
-                        <td>0,50</td>
-                        <td>0,50</td>
-                    </tr>
-                    <tr>
-                        <td>Edam</td>
-                        <td>0,50</td>
-                        <td>0,50</td>
-                        <td>0,50</td>
-                    </tr>
-                    <tr>
-                        <td><img src="img/plus.svg" class="legume"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Cornichon</td>
-                        <td>0,40</td>
-                        <td>0,40</td>
-                        <td>0,40</td>
-                    </tr>
-                    <tr>
-                        <td>Oeuf</td>
-                        <td>0,40</td>
-                        <td>0,40</td>
-                        <td>0,40</td>
-                    </tr>
+                    <tbody id="tableIngredient2">
 
                     </tbody>
                 </table>
@@ -307,86 +119,17 @@
                     <thead class="menu-text-entete">
                     <tr>
                         <th>Ingredients</th>
-                        <th>1/3</th>
-                        <th>1/2</th>
-                        <th>2/3</th>
+                        <th></th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                    <tr>
-                        <td><img src="img/sauce.svg" class="legume"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Beurre</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                    </tr>
-                    <tr>
-                        <td>Moutard</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                    </tr>
-                    <tr>
-                        <td>Mayonnaise</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                    </tr>
-                    <tr>
-                        <td>Huile d'olive</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                    </tr>
-                    <tr>
-                        <td>Pesto</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                    </tr>
-                    <tr>
-                        <td>Sauce tartare</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                    </tr>
-                    <tr>
-                        <td>Sauce cocktail</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                    </tr>
-                    <tr>
-                        <td>Sauce curry</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                    </tr>
-                    <tr>
-                        <td>Miel</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                    </tr>
-                    <tr>
-                        <td>Confiture</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                        <td>0,20</td>
-                    </tr>
+                    <tbody id="tableIngredient3">
 
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="scrollTo" href="#section3">
-            <img src="img/down-arrow.svg" class="arrow">
+        <div>
+            <span href="#section3" class="scrollTo"><img src="img/down-arrow.svg" class="svg arrow"></span>
         </div>
     </div>
 </section>
@@ -398,276 +141,326 @@
             <div class="col-lg-12">
                 <div class="section-title"><span><div
                         class="title">Mon sandwich</div> </span>
-				</div>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-9 col-sm-9">
-                <div>
+            <div class="col-md-6 col-sm-6">
+                <div class="row">
                     <img src="img/sandwich.svg" class="svg"/>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3">
-                <div id="hello" style="color:white">hello</div>
-
-
-                <div class="row">
-                    <select class="select" id="bread">
-                        <div class="options">
-                        <option selected="selected" disabled="disabled">Types de baguettes</option>
-                        <option value="cr">Céréales</option>
-                        <option value="fr">Française</option>
-                        <option value="pt">Portugaises</option>
-                        </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="col-md-6 col-sm-6">
+                    <select class="select multiselect" onclick="showCheckboxes('pains')" name="salut">
+                        <option value="" hidden>Pains</option>
                     </select>
-                </div>
-                <div class="row">
-                    <select class="select" id="multiselect" onclick="showCheckboxes()">
-                        <option selected="selected" disabled="disabled">Sélectionne tes ingrédients</option>
-                    </select>
-                    <div id="checkboxes">
-                        <label for="salad">
-                            <input type="checkbox" id="salad"/>Laitue</label>
-                        <label for="chene">
-                            <input type="checkbox" id="chene"/>Feuilles de chêne</label>
-                        <label for="ham">
-                            <input type="checkbox" id="ham"/>Jambon</label>
-                        <label for="salami">
-                            <input type="checkbox" id="salami"/>Salami</label>
-                        <label for="morta">
-                            <input type="checkbox" id="morta"/>Mortadelle</label>
-                        <label for="bacon">
-                            <input type="checkbox" id="bacon"/>Lard</label>
-                        <label for="salmon">
-                            <input type="checkbox" id="salmon"/>Saumon</label>
-                        <label for="cheddar">
-                            <input type="checkbox" id="cheddar"/>Cheddar</label>
-                        <label for="edam">
-                            <input type="checkbox" id="edam"/>Edam</label>
-                        <label for="mozza">
-                            <input type="checkbox" id="mozza"/>Mozzarella</label>
-                        <label for="brie">
-                            <input type="checkbox" id="brie"/>Brie</label>
-                        <label for="raclette">
-                            <input type="checkbox" id="raclette"/>Raclette</label>
-                        <label for="pickle">
-                            <input type="checkbox" id="pickle"/>Cornichons</label>
-                        <label for="egg">
-                            <input type="checkbox" id="egg"/>Oeufs</label>
-                        <label for="ognon">
-                            <input type="checkbox" id="ognon"/>Ognons</label>
-                        <label for="salad2">
-                            <input type="checkbox" id="salad2"/>Laitue 2ème feuille</label>
-                        <label for="tomato">
-                            <input type="checkbox" id="tomato"/>Tomates</label>
-                        <label for="chene2">
-                            <input type="checkbox" id="chene2"/>Feuilles de chêne 2ème feuille</label>
+                    <div class="checkboxes" id="pains">
+                        <label for="francaise">
+                            <input type="radio" class="checkbox-pain" id="francaise" name="pain"
+                                   value="0"/>Française</label>
+                        <label for="cereales">
+                            <input type="radio" class="checkbox-pain" id="cereales" name="pain"
+                                   value="1"/>Céréales</label>
+                        <label for="portugaise">
+                            <input type="radio" class="checkbox-pain" id="portugaise" name="pain" value="2"/>Portugaise</label>
                     </div>
                 </div>
-                <div class="row">
-                    <select class="select" id="sauce">
-                        <option selected="selected" disabled="disabled">Choisissez votre sauce</option>
-                        <option value="beurre">Beurre</option>
-                        <option value="moutarde">Moutarde</option>
-                        <option value="mayonnaise">Mayonnaise</option>
-                        <option value="olive">Huile d'olive</option>
-                        <option value="pesto">Pesto</option>
-                        <option value="tartare">Sauce tartare</option>
-                        <option value="cocktail">Sauce cocktail</option>
-                        <option value="curry">Sauce curry</option>
-                        <option value="miel">Miel</option>
-                        <option value="confiture">Confiture</option>
+                <div class="col-md-6 col-sm-6">
+                    <select class="select multiselect" onclick="showCheckboxes('sauces')">
+                        <option value="" hidden>Sauces</option>
                     </select>
+                    <div class="checkboxes" id="sauces">
+                        <label for="beurre">
+                            <input type="radio" class="checkbox-sauce" id="beurre" name="sauce"
+                                   value="0"/>Beurre</label>
+                        <label for="moutarde">
+                            <input type="radio" class="checkbox-sauce" id="moutarde" name="sauce"
+                                   value="1"/>Moutarde</label>
+                        <label for="mayonnaise">
+                            <input type="radio" class="checkbox-sauce" id="mayonnaise" name="sauce" value="2"/>Mayonnaise</label>
+                        <label for="huile">
+                            <input type="radio" class="checkbox-sauce" id="huile" name="sauce" value="3"/>Huile
+                            d'olive</label>
+                        <label for="pesto">
+                            <input type="radio" class="checkbox-sauce" id="pesto" name="sauce"
+                                   value="4"/>Pesto</label>
+                        <label for="tartare">
+                            <input type="radio" class="checkbox-sauce" id="tartare" name="sauce" value="5"/>Sauce
+                            tartare</label>
+                        <label for="cocktail">
+                            <input type="radio" class="checkbox-sauce" id="cocktail" name="sauce" value="6"/>Sauce
+                            cocktail</label>
+                        <label for="curry">
+                            <input type="radio" class="checkbox-sauce" id="curry" name="sauce" value="7"/>Sauce
+                            curry</label>
+                        <label for="miel">
+                            <input type="radio" class="checkbox-sauce" id="miel" name="sauce"
+                                   value="8"/>Miel</label>
+                        <label for="confiture">
+                            <input type="radio" class="checkbox-sauce" id="confiture" name="sauce" value="9"/>Confiture</label>
+                    </div>
                 </div>
-                <div class="row">
-                    <select class="select" id="size">
-                        <div class="options">
-                            <option selected="selected" disabled="disabled">Tailles</option>
-                            <option value="1/3">1/3</option>
-                            <option value="1/2">1/2</option>
-                            <option value="2/3">2/3</option>
-                        </div>
+                <div class="col-md-6 col-sm-6">
+                    <select class="select multiselect" onclick="showCheckboxes('legumes')">
+                        <option value="" hidden>Légumes</option>
                     </select>
+                    <div class="checkboxes" id="legumes">
+                        <label for="laitue">
+                            <input type="checkbox" class="checkbox-legume" id="laitue" value="0"/>Laitue</label>
+                        <label for="chene">
+                            <input type="checkbox" class="checkbox-legume" id="chene" value="1"/>Feuilles de
+                            chêne</label>
+                        <label for="tomates">
+                            <input type="checkbox" class="checkbox-legume" id="tomates" value="2"/>Tomates</label>
+                        <label for="ognons">
+                            <input type="checkbox" class="checkbox-legume" id="ognons" value="3"/>Ognons</label>
+                    </div>
                 </div>
-                <div class="row">
-                    Total
+                <div class="col-md-6 col-sm-6">
+                    <select class="select multiselect" onclick="showCheckboxes('viandes')">
+                        <option value="" hidden>Viandes</option>
+                    </select>
+                    <div class="checkboxes" id="viandes">
+                        <label for="jambon">
+                            <input type="checkbox" class="checkbox-viande" id="jambon" value="0"/>Jambon</label>
+                        <label for="salami">
+                            <input type="checkbox" class="checkbox-viande" id="salami" value="1"/>Salami</label>
+                        <label for="mortadelle">
+                            <input type="checkbox" class="checkbox-viande" id="mortadelle"
+                                   value="2"/>Mortadelle</label>
+                        <label for="lard">
+                            <input type="checkbox" class="checkbox-viande" id="lard" value="3"/>Lard</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <select class="select multiselect" onclick="showCheckboxes('fromages')">
+                        <option value="" hidden>Fromages</option>
+                    </select>
+                    <div class="checkboxes" id="fromages">
+                        <label for="cheddar">
+                            <input type="checkbox" class="checkbox-fromage" id="cheddar" value="0"/>Cheddar</label>
+                        <label for="edam">
+                            <input type="checkbox" class="checkbox-fromage" id="edam" value="1"/>Edam</label>
+                        <label for="mozzarella">
+                            <input type="checkbox" class="checkbox-fromage" id="mozzarella"
+                                   value="2"/>Mozzarella</label>
+                        <label for="brie">
+                            <input type="checkbox" class="checkbox-fromage" id="brie" value="3"/>Brie</label>
+                        <label for="raclette">
+                            <input type="checkbox" class="checkbox-fromage" id="raclette"
+                                   value="4"/>Raclette</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <select class="select multiselect" onclick="showCheckboxes('poissons')">
+                        <option value="" hidden>Poissons</option>
+                    </select>
+                    <div class="checkboxes" id="poissons">
+                        <label for="saumon">
+                            <input type="checkbox" class="checkbox-poisson" id="saumon" value="0"/>Saumon</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <select class="select multiselect" onclick="showCheckboxes('supplements')">
+                        <option value="" hidden>Suppléments</option>
+                    </select>
+                    <div class="checkboxes" id="supplements">
+                        <label for="cornichons">
+                            <input type="checkbox" class="checkbox-sup" id="cornichons"
+                                   value="0"/>Cornichons</label>
+                        <label for="oeufs">
+                            <input type="checkbox" class="checkbox-sup" id="oeufs" value="1"/>Oeufs</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <button type="button" class="button-commander">Commander</button>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div>
+
+
+                        <table class="table menu-text menu-table">
+                            <thead class="menu-text-entete">
+                            <td>
+                                Facture
+                            </td>
+
+                            </thead>
+                            <tbody id="calcul">
+
+                            </tbody>
+                            <tfoot>
+                            <td>Total</td>
+                            <td id="total"></td>
+                            </tfoot>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>
 
         <div>
 
-            <script>
-                var expanded = false;
-
-                function showCheckboxes() {
-                    var checkboxes = document.getElementById("checkboxes");
-                    if (!expanded) {
-                        checkboxes.style.display = "block";
-                        expanded = true;
-                    } else {
-                        checkboxes.style.display = "none";
-                        expanded = false;
-                    }
-                }
-            </script>
 
         </div>
-
-    </div>
-    <div class="scrollTo" href="#section4">
-        <img src="img/down-arrow.svg" class="arrow">
-    </div>
+        <div>
+            <span href="#section4" class="scrollTo"><img src="img/down-arrow.svg" class="svg arrow"></span>
+        </div>
     </div>
 </section>
 
 
-<section id="section4" class="background-section">
-    <div class="container-fluid ">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="section-title"><span><div
-						class="title">Contacte-nous</div> </span>
-				</div>
-			</div>
-		</div>
-		<form name="contactForm" action="index.php" method="post">
-			<div class="row">
-				<div class="col-md-3">
-				</div>
-				<div class="col-md-6">
-					<div class="row">
-						<div class="col-md-6">
-							<input class="form-control" name="contactName" type="text" placeholder="Nom"/>
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" name="contactEmail" type="text" placeholder="E-mail"/>
-						</div>
-					</div>
-					<div class="row ">
-						<div class="col-md-12">
-							<textarea class="form-control" name="contactContent" rows="10"></textarea>
-						</div>
+<section id="section4" class="background-sectionbis">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span><div class="title">Contacte-nous</div></span>
+                </div>
+            </div>
+        </div>
+        <form name="contactForm" action="index.php" method="post">
+            <div class="row">
+                <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input class="form-control" name="contactName" type="text" placeholder="Nom"/>
+                        </div>
+                        <div class="col-lg-6">
+                            <input class="form-control" name="contactEmail" type="text" placeholder="E-mail"/>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-lg-12">
+                            <textarea class="form-control" name="contactContent" placeholder="Contenu du message"
+                                      rows="10"></textarea>
+                        </div>
 
-					</div>
-					<div class="row right">
-						<div class="col-md-12">
-							<button name="contactButton">Envoyer</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-				</div>
-			</div>
-			<div class="scrollTo" href="#section5">
-				<img src="img/down-arrow.svg" class="arrow">
-			</div>
-		</form>
+                    </div>
+                    <div class="row right">
+                        <div class="col-lg-12">
+                            <button name="contactButton" class="button-submit">Envoyer</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <span href="#section5" class="scrollTo"><img src="img/down-arrow.svg" class="svg arrow"></span>
+        </div>
     </div>
 </section>
 
 <section id="section5" class="background-section">
-    <div class="container-fluid ">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title"><span><div
                         class="title">Jobs</div> </span>
-				</div>
+                </div>
             </div>
         </div>
-		<form name="contactForm" action="index.php" method="post">
-			<div class="row">
-				<div class="col-md-4 text-postule-list">
-					Nom :
-				</div>
-				<div class="col-md-8 field-postule">
-					<input class="form-control field-marge" type="text" name="cvNom" placeholder="Nom"/>
-				</div>
-			</div>
-			<div class="row ">
-				<div class="col-md-4 text-postule-list">
-					Prénom :
-				</div>
-				<div class="col-md-8 field-postule">
-					<input class="form-control field-marge" type="text" name="cvPrenom" placeholder="Prénom"/>
-				</div>
-			</div>
-			<div class="row ">
-				<div class="col-md-4 text-postule-list">
-					Téléphone :
-				</div>
-				<div class="col-md-8 field-postule">
-					<input class="form-control field-marge" type="text" name="cvTelephone" placeholder="Téléphone"/>
-				</div>
-			</div>
-			<div class="row ">
-				<div class="col-md-4 text-postule-list">
-					E-mail :
-				</div>
-				<div class="col-md-8 field-postule">
-					<input class="form-control field-marge" type="text" name="cvEmail" placeholder="E-mail"/>
-				</div>
-			</div>
-			<div class="row ">
-				<div class="col-md-4 text-postule-list">
-					Adresse :
-				</div>
-				<div class="col-md-8 field-postule">
-					<input class="form-control field-marge" type="text" name="cvAdresse" placeholder="Adresse"/>
-				</div>
-			</div>
-			<div class="row ">
-				<div class="col-md-4 text-postule-list">
-					Npa :
-				</div>
-				<div class="col-md-8 field-postule">
-					<input class="form-control field-marge" type="text" name="cvNpa" placeholder="Npa"/>
-				</div>
-			</div>
-			<div class="row ">
-				<div class="col-md-4 text-postule-list">
-					Ville :
-				</div>
-				<div class="col-md-8 field-postule">
-					<input class="form-control field-marge" type="text" name="cvVille" placeholder="Ville"/>
-				</div>
-			</div>
-			<div class="row ">
-				<div class="col-md-4 text-postule-list">
-					Curriculum Vitae :
-				</div>
-				<div class="col-md-8 field-postule">
-					<div id="holder" >Glissez-déposez votre CV
-						<input type="file" name="cvFile" id="fileName"/>
-					</div>
-				</div>
-			</div>
-			<div class="row send-postule">
-				<div class="col-md-4 text-postule-list">
-				</div>
-				<div class="col-md-8 field-postule">
-					<button name="cvButton">Envoyer</button>
-				</div>
-			</div>
-		</form>
-	</div>
+        <form name="cvForm" action="index.php#section5" method="post">
+            <div class="row">
+                <div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+                    Nom :
+                </div>
+                <div class="col-lg-7 field-postule col-md-12">
+                    <input class="form-control field-marge" type="text" placeholder="Nom" name="cvNom"/>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+                    Prénom :
+                </div>
+                <div class="col-lg-7 field-postule col-md-12">
+                    <input class="form-control field-marge" type="text" placeholder="Prénom" name="cvPrenom"/>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+                    Téléphone :
+                </div>
+                <div class="col-lg-7 field-postule col-md-12">
+                    <input class="form-control field-marge" type="text" placeholder="Téléphone" name="cvTelephone"/>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+                    E-mail :
+                </div>
+                <div class="col-lg-7 field-postule col-md-12">
+                    <input class="form-control field-marge" type="text" placeholder="E-mail" name="cvEmail"/>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+                    Adresse :
+                </div>
+                <div class="col-lg-7 field-postule col-md-12">
+                    <input class="form-control field-marge" type="text" placeholder="Adresse" name="cvAdresse"/>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+                    Npa :
+                </div>
+                <div class="col-lg-7 field-postule col-md-12">
+                    <input class="form-control field-marge" type="text" placeholder="Npa" name="cvNpa"/>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+                    Ville :
+                </div>
+                <div class="col-lg-7 field-postule col-md-12">
+                    <input class="form-control field-marge" type="text" placeholder="Ville" name="cvVille"/>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-5 text-postule-list hidden-md hidden-sm hidden-xs">
+                    Curriculum Vitae :
+                </div>
+                <div class="col-lg-7 field-postule col-md-12" id="holderMax">
+                    <div>Transmets nous ton CV
+                        <button type="button" class="button-submit" id="goThoughtFile">Parcourir</button>
+                        <input type="file" name="cvFile" id="fileName" style="display:none"/>
+                        <div id="nameFileDrop"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row right">
+                <div class="col-lg-7 send-postule col-md-12 col-sm-12 col-xs-12">
+                    <button class="button-submit" name="cvButton">Envoyer</button>
+                </div>
+                <div class="col-lg-5"></div>
+            </div>
+        </form>
+    </div>
 </section>
 
 <footer class="background-section-footer">
     <div class="container-fluid ">
         <div class="row">
             <div class="col-sm-8">
-                Mail : freshsandwich@gmail.com
+                email : freshsandwich@gmail.com
                 <p class="paddingFooter">Tel : 079 955 01 47</p>
             </div>
             <div class="col-sm-4 madeLove">
-                made with <span class="heart heartbeat">&#9825;</span> in switzerland
+                made with
+                <div class="heart heartbeat">&#9825;</div>
+                in switzerland
             </div>
+            <div></div>
         </div>
     </div>
 </footer>
-<script src="js/sandwichCreation.js"></script>
-<script src="js/dragAndDrop.js"></script>
-
 </body>
 </html>

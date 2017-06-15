@@ -83,6 +83,7 @@
 		public function sendCV($nom, $prenom, $tel, $email, $adresse, $npa, $ville, $file = null){
 			$mail = $this->mail;
 			$mail->addAddress('pedroferreira.1870@gmail.com');
+			$mail->Subject = 'Demande d\'emploi';
 			$mail->CharSet = 'UTF-8';
 			if($file != null)			
 				$mail->addAttachment($file);			
@@ -93,7 +94,7 @@
 				</head>
 				<body>
 					<p>Bonjour à toi membre de la team FreshSandwich,</p>
-					<p>Vous avez reçu une nouvelle demande d\emploi de la part de '.$prenom.' '.$nom.'. Annexé se trouve son CV.</p>
+					<p>Vous avez reçu une nouvelle demande d\'emploi de la part de '.$prenom.' '.$nom.'. Annexé se trouve son CV.</p>
 					<h3>Informations</h3>
 					<p>Nom : '.$nom.'</p>
 					<p>Prénom : '.$prenom.'</p>
